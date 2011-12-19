@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : categoriadao.query.xml
+    Created on : May 30, 2011, 2:54 AM
+    Author     : arcesino
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE properties SYSTEM 'http://java.sun.com/dtd/properties.dtd'>
+
+<properties>
+  <entry key="categorias.query.encontrarCategoriasDeLibro">
+    <![CDATA[
+      SELECT c.id, c.nombre 
+      FROM Libro_Categoria lc 
+      JOIN Categoria c 
+      ON c.id = lc.id_categoria AND lc.id_libro = :id_libro 
+      ORDER BY c.nombre
+    ]]>
+  </entry>
+  <entry key="categorias.query.encontrarCategorias">
+    <![CDATA[
+      SELECT c.id,c.nombre FROM Categoria c ORDER BY c.nombre
+    ]]>
+  </entry>
+  <entry key="categorias.query.encontrarCategoria">
+    <![CDATA[
+     SELECT c.nombre FROM Categoria c WHERE c.`nombre` = :nombre
+    ]]>
+  </entry>
+  <entry key="categorias.query.insertarCategoria">
+    <![CDATA[
+      INSERT INTO
+        Categoria (nombre)
+      VALUES (:nombre)
+    ]]>
+  </entry>
+</properties>

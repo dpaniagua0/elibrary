@@ -1,0 +1,251 @@
+/* 
+    Document   : global
+    Created on : Apr 20, 2011, 10:01:27 AM
+    Author     : arcesino
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+html {
+  font-size: 12px;
+  width: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  background: #EAF2D3;
+  font-size: 100%;
+  margin: 0;
+}
+
+.encabezado{
+  background-color: #A7C942;
+  color: #ffffff;
+  padding: 0px 5px;
+}
+
+.texto-encabezado {
+  font-size: 2.4em;
+  font-weight: bolder;
+  margin: 10px 0px 0px 5px;
+}
+
+#cuerpo {
+  width: 80%;
+  margin: 10px auto;
+  background-color: #FFFFFF;
+  border: 2px solid #A7C942;
+  padding: 10px 10px;
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+  border-radius: 12px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -moz-box-shadow: 0px 0px 10px #A7C942; /* FF3.5+ */
+  -webkit-box-shadow: 0px 0px 10px #A7C942; /* Saf3.0+, Chrome */
+  box-shadow: 0px 0px 10px #A7C942; /* Opera 10.5, IE9, Chrome 10+ */
+  background-image: -moz-linear-gradient(top, #FFFFFF, #CCCCCC); /* FF3.6 */
+  background-image: -ms-linear-gradient(top, #FFFFFF, #CCCCCC); /* IE10 */
+  background-image: -o-linear-gradient(top, #FFFFFF, #CCCCCC); /* Opera 11.10+ */
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#CCCCCC)); /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient(top, #FFFFFF, #CCCCCC); /* Chrome 10+, Saf5.1+ */
+  background-image: linear-gradient(top, #FFFFFF, #CCCCCC);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#FFFFFF', EndColorStr='#CCCCCC'); /* IE6–IE9 */
+}
+
+.mensaje-error {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-size: small;
+  font-weight: bold;
+  color: #B40404;
+}
+
+.detalles-usuario {
+  text-align: right;
+  padding-top: 15px;
+  float: right;
+}
+
+.usuario {
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.tamano-completo,#formulario-busqueda > table, #formulario-busqueda #busqueda, #nuevo-libro > fieldset > #encabezado {
+  width: 100%;
+}
+
+#buscar {
+  margin-left: 40px;
+}
+
+.box_round {
+  -moz-border-radius: 12px; /* FF1+ */
+  -webkit-border-radius: 12px; /* Saf3-4, iOS 1+, Android 1.5+ */
+  border-radius: 12px; /* Opera 10.5, IE9, Saf5, Chrome, FF4 */
+
+  /* useful if you don't want a bg color from leaking outside the border: */
+  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+}
+
+.box_shadow {
+  -moz-box-shadow: 0px 0px 4px #ffffff; /* FF3.5+ */
+  -webkit-box-shadow: 0px 0px 4px #ffffff; /* Saf3.0+, Chrome */
+  box-shadow: 0px 0px 4px #ffffff; /* Opera 10.5, IE9, Chrome 10+ */
+}
+
+.box_gradient {
+  background-color: #444444;
+  background-image: -moz-linear-gradient(top, #444444, #999999); /* FF3.6 */
+  background-image: -ms-linear-gradient(top, #444444, #999999); /* IE10 */
+  background-image: -o-linear-gradient(top, #444444, #999999); /* Opera 11.10+ */
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#444444), to(#999999)); /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient(top, #444444, #999999); /* Chrome 10+, Saf5.1+ */
+  background-image: linear-gradient(top, #444444, #999999);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#444444', EndColorStr='#999999'); /* IE6–IE9 */
+}
+
+input.busqueda{
+  background: #ffffff url("/elibrary/images/iconoLupa.gif")  no-repeat left scroll;
+  border-radius: 5px;
+  padding-left: 30px;
+}
+
+table.tabla-datos {
+  background-color: #FFFFFF;
+}
+
+th.columna-checkbox, td.columna-checkbox {
+  width: 1%;
+}
+
+.fila-par {
+  background-color: #EAF2D3;
+}
+
+.fila-seleccionada {
+  background-color: #c8d998;
+}
+
+.fila-cursor {
+  background-color: #D0F5A9;
+}
+
+/*ul, li{
+  margin:0;
+  padding:0;
+  list-style:none;
+}*/
+
+.menu_head{
+  border:1px solid;
+  border-radius: 5px;
+  background-color: #6EA954;
+}
+
+.menu_body {
+  display:none;
+  width:184px;
+  border-right:1px solid;
+  border-bottom:1px solid;
+  border-left:1px solid;
+}
+.menu_body li{
+  background:#6EA954;;
+}
+.menu_body li.alt{
+  background:dimgrey;
+}
+.menu_body li a{
+  color:#FFFFFF; text-decoration:none;
+  padding:10px;
+  display:block;
+}
+.menu_body li a:hover{
+  padding:15px 10px;
+  font-weight:bold;
+}
+
+/*label, input { display:block; }
+input.text { margin-bottom:12px; width:95%; padding: .4em; }
+fieldset { padding:0; border:0; margin-top:25px; }
+h1 { font-size: 1.2em; margin: .6em 0; }*/
+div#users-contain { width: 350px; margin: 20px 0; }
+div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+.ui-dialog .ui-state-error { padding: .3em; }
+.validateTips { border: 1px solid transparent; padding: 0.3em; }
+
+
+/*body { font-size:62.5%; margin:0; padding:0; }*/
+#menuLog { font-size:1.4em; margin:20px; }
+.hidden { position:absolute; top:0; left:-9999px; width:1px; height:1px; overflow:hidden; }
+
+.fg-button { clear:left; margin:0 4px 40px 20px; padding: .4em 1em; text-decoration:none !important; cursor:pointer; position: relative; text-align: center; zoom: 1; }
+.fg-button .ui-icon { position: absolute; top: 50%; margin-top: -8px; left: 50%; margin-left: -8px; }
+a.fg-button { float:left;  }
+button.fg-button { width:auto; overflow:visible; } /* removes extra button width in IE */
+
+.fg-button-icon-left { padding-left: 2.1em; }
+.fg-button-icon-right { padding-right: 2.1em; }
+.fg-button-icon-left .ui-icon { right: auto; left: .2em; margin-left: 0; }
+.fg-button-icon-right .ui-icon { left: auto; right: .2em; margin-left: 0; }
+.fg-button-icon-solo { display:block; width:8px; text-indent: -9999px; }	 /* solo icon buttons must have block properties for the text-indent to work */
+
+.fg-button.ui-state-loading .ui-icon { background: url(spinner_bar.gif) no-repeat 0 0; }
+.fg-menu-ipod .fg-menu li { width: 95%; }
+.fg-menu-ipod .ui-widget-content { border:0; }
+
+.ui-button { margin-left: -1px; }
+.ui-button-icon-only .ui-button-text { padding: 0.35em; }
+.ui-autocomplete-input { margin: 0; padding: 0.48em 0 0.47em 0.45em; }
+
+.autor,.categoria,.editorial{
+  margin-left: 10px;
+  height: 25px;
+  width:  25px;
+  border-style: groove;
+  background: url("/elibrary/images/pencil-small.png") no-repeat center;
+  border:1px solid;
+  border-radius: 5px;
+  background-color: #6EA954;
+  cursor: pointer;
+}
+
+.columna-id {
+  display: none;
+}
+
+.campo-requerido {
+  font-weight: bold;
+}
+
+input[name=autor],input[name=titulo],input[name=editorial],input[name=categoria],input[name=apellidos] {
+  width: 95%;
+}
+
+
+#tabla-categorias {
+  width: 50%;
+  margin-left: 25%;
+}
+
+#tabla-autores {
+  width: 50%;
+  margin: auto;
+}
+
+#tabla-editoriales {
+  width: 50%;
+  margin: auto;
+}
+
+.ui-progressbar-value {
+  background-image: url(/elibrary/images/pb-fill.png);
+}

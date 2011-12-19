@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : series.query.xml
+    Created on : May 30, 2011, 2:54 AM
+    Author     : arcesino
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE properties SYSTEM 'http://java.sun.com/dtd/properties.dtd'>
+
+<properties>
+  <entry key="series.query.encontrarSeriesDeLibro">
+    <![CDATA[
+     SELECT s.id, s.nombre 
+     FROM Libro l, Serie s 
+     WHERE l.id = :id_libro 
+     AND s.id = l.id_serie
+    ]]>
+  </entry>
+</properties>

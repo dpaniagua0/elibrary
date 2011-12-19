@@ -1,0 +1,61 @@
+/* 
+    Document   : libros
+    Created on : Jun 6, 2011, 2:07:35 PM
+    Author     : arcesino
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+#info-categoria .ui-widget-content {
+  padding: 5px;
+}
+
+.panel-botones {
+  text-align: center;
+  margin-top: 5px;
+  margin-left: auto;
+}
+
+#borde {
+  margin-top: 18px;
+  border-width: 1px;
+  border-top-style: solid;
+  border-top-color: #959FA9;
+}
+
+#autores, #editoriales {
+  width: 100%;
+}
+
+#autor, #apellidos, #editorial {
+  width: 100%;
+}
+
+/*.panel-botones > button {
+  -webkit-background-clip:padding-box;
+  background-color:#4B8EFA;
+  border-bottom-color:#3079ED;
+  border-bottom-left-radius:3px 3px;
+  border-bottom-right-radius:3px 3px;
+  border-bottom-style:solid;
+  border-left-color:#3079ED;
+  border-left-style:solid;
+  border-right-color:#3079ED;
+  border-right-style:solid;
+  border-top-color:#3079ED;
+  border-top-left-radius:3px 3px;
+  border-top-right-radius:3px 3px;
+  border-top-style:solid;
+  color:#FFFFFF;
+  font-weight:bold;
+  height:31px;
+  margin-top:10px;
+  width:65px;
+}*/
+
+

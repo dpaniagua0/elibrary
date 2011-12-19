@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : libros.query.xml
+    Created on : May 30, 2011, 2:54 AM
+    Author     : arcesino
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE properties SYSTEM 'http://java.sun.com/dtd/properties.dtd'>
+
+<properties>
+  <entry key="libros.query.encontrarLibros">
+    <![CDATA[
+      SELECT l.id, l.titulo, l.fecha_publicacion, l.isbn, s.id id_serie, 
+             s.nombre serie, a.id id_autor, a.nombre autor,
+             a.apellidos apellidos_autor, c.id id_categoria, c.nombre categoria,
+             e.id id_editorial, e.nombre editorial
+      FROM libro l
+      LEFT JOIN Serie s ON s.id = l.id_serie
+      LEFT JOIN Libro_Autor la ON la.id_libro = l.id
+      LEFT JOIN Autor a ON a.id = la.id_autor
+      LEFT JOIN Libro_Categoria lc ON lc.id_libro = l.id
+      LEFT JOIN Categoria c ON c.id = lc.id_categoria
+      LEFT JOIN Libro_Editorial le ON le.id_libro = l.id
+      LEFT JOIN Editorial e ON e.id = le.id_editorial
+      ORDER by l.id, l.titulo
+    ]]>
+  </entry>
+  <entry key="libros.query.deleteBook">
+    <![CDATA[
+      DELETE FROM libreria WHERE `isbn` = :isbn
+    ]]>
+  </entry>
+  <entry key="libros.query.insertarLibro">
+    <![CDATA[
+      INSERT INTO Libro (isbn, titulo, fecha_publicacion, id_serie, archivo, imagen)
+      VALUES (:isbn,:titulo,:fecha_publicacion,:id_serie,:archivo, :imagen)
+    ]]>
+  </entry>
+  <entry key="libros.query.encontrarLibroPorId">
+    <![CDATA[
+      SELECT * FROM Libro l WHERE l.id = :id
+    ]]>
+  </entry>
+</properties>

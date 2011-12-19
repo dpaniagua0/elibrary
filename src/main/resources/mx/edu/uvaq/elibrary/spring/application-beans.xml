@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+       default-autowire="byName">
+
+    <!-- Load application properties -->
+  <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations">
+      <list>
+        <value>classpath:mx/edu/uvaq/elibrary/elibrary.properties</value>
+      </list>
+    </property>
+  </bean>
+
+  <bean id="enviadorCorreos" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <property name="host" value="${javamail.servidor}"/>
+    <property name="port" value="${javamail.puerto}"/>
+    <property name="username" value="${javamail.usuario}"/>
+    <property name="password" value="${javamail.password}"/>
+    <property name="javaMailProperties">
+      <props>
+        <!-- Use SMTP-AUTH to authenticate to SMTP server -->
+        <prop key="mail.smtp.auth">true</prop>
+        <!-- Use TLS to encrypt communication with SMTP server -->
+        <prop key="mail.smtp.starttls.enable">true</prop>
+      </props>
+    </property>
+  </bean>
+
+  <bean id="motorVelocity" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+    <property name="velocityProperties">
+      <value>
+          resource.loader=class
+          class.resource.loader.class=org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+      </value>
+    </property>
+  </bean>
+</beans>

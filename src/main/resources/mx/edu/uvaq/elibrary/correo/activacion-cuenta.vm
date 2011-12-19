@@ -1,0 +1,16 @@
+## Plantilla para el correo de activación de cuenta
+<html>
+  <body>
+    <h3>Estimado ${usuario.correoElectronico},</h3>
+    <div>
+      Bienvenido a la comunidad de usuarios de <b>eLibrary</b> la libreria digital
+      de la Universidad Vasco de Quiroga.
+    </div>
+    <div>
+      Para que puedas comenzar a usar el sitio es necesario que actives tu cuenta haciendo click en el siguiente enlace:
+      <a href="${urlActivacion}?accion=activar&correoElectronico=${usuario.correoElectronico}&codigoActivacion=${usuario.codigoActivacion}">
+        ${urlActivacion}?accion=activar&correoElectronico=${usuario.correoElectronico}&codigoActivacion=${usuario.codigoActivacion}"
+      </a>
+    </div>
+  </body>
+</html>

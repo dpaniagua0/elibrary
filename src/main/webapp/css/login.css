@@ -1,0 +1,45 @@
+.forma-login {
+  position: relative;
+}
+
+.forma-login > table {
+  float: right;
+  margin-top: 5px;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+.forma-login > table, .forma-login > table th, .forma-login > table td {
+  border: hidden solid black;
+  padding: 0px;
+}
+
+.forma-login > table label {
+  font-size: small;
+  font-weight: bold;
+}
+
+.forma-login input {
+  margin-left: 3px;
+}
+
+input.accept{
+  border-color:#6EA954;
+  color:#ffffff;
+  height: 30px;
+  width:  120px;
+  background-color: #6EA954;
+  border-style: groove;
+}
+
+input.login{
+  border-color: #1e7d1d;
+  color:#ffffff;
+  width:  55px;
+  background-color: #6EA954;
+  border-style: groove;
+}
+
+#forma-registro > table {
+  margin-left: auto;
+}

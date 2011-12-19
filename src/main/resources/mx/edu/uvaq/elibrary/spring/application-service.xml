@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd" xmlns:aop="http://www.springframework.org/schema/aop">
+    
+  <bean id="usuariosServicio" class="mx.edu.uvaq.elibrary.modelo.negocio.servicio.impl.UsuariosServicioImpl">
+    <property name="usuarioDao" ref="usuarioDao" />
+  </bean>
+
+  <bean id="correoServicio" class="mx.edu.uvaq.elibrary.modelo.negocio.servicio.impl.CorreoServicioImpl">
+    <property name="enviadorCorreo" ref="enviadorCorreos" />
+    <property name="motorVelocity" ref="motorVelocity" />
+  </bean>
+
+  <bean id="registroServicio" class="mx.edu.uvaq.elibrary.modelo.negocio.servicio.impl.RegistroServicioImpl">
+    <property name="usuarioDao" ref="usuarioDao" />
+    <property name="correoServicio" ref="correoServicio"/>
+  </bean>
+
+  <bean id="librosServicio" class="mx.edu.uvaq.elibrary.modelo.negocio.servicio.impl.LibrosServicioImpl">
+    <property name="libroDao" ref="libroDao" />
+    <property name="autorDao" ref="autorDao" />
+    <property name="categoriaDao" ref="categoriaDao" />
+    <property name="editorialDao" ref="editorialDao" />
+    <property name="serieDao" ref="serieDao" />
+  </bean>
+
+  <bean id="categoriaServicio" class="mx.edu.uvaq.elibrary.modelo.negocio.servicio.impl.CategoriasServicioImpl">
+    <property name="categoriaDao" ref="categoriaDao" />
+  </bean>
+
+  <bean id="autorServicio" class="mx.edu.uvaq.elibrary.modelo.negocio.servicio.impl.AutoresServicioImpl">
+    <property name="autorDao" ref="autorDao" />
+  </bean>
+
+  <bean id="editorialServicio" class="mx.edu.uvaq.elibrary.modelo.negocio.servicio.impl.EditorialesServicioImpl">
+    <property name="editorialDao" ref="editorialDao" />
+  </bean>
+</beans>

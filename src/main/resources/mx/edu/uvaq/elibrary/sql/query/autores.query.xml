@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : autores.query.xml
+    Created on : May 30, 2011, 2:54 AM
+    Author     : arcesino
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE properties SYSTEM 'http://java.sun.com/dtd/properties.dtd'>
+
+<properties>
+  <entry key="autores.query.encontrarAutoresDeLibro">
+    <![CDATA[
+      SELECT a.id, a.nombre, a.apellidos
+      FROM Libro_Autor la 
+      JOIN Autor a 
+      ON a.id = la.id_autor AND la.id_libro = :id 
+      ORDER BY a.nombre
+    ]]>
+  </entry>
+  <entry key="autores.query.encontrarAutores">
+    <![CDATA[
+      SELECT * FROM Autor a ORDER BY a.nombre
+    ]]>
+  </entry>
+  <entry key="autores.query.insertarAutor">
+    <![CDATA[
+      INSERT INTO Autor (nombre, apellidos) VALUES(:nombre, :apellidos)
+    ]]>
+  </entry>
+  <entry key="autores.query.encontrarAutor">
+    <![CDATA[
+     SELECT a.nombre, a.apellidos FROM Autor a WHERE a.`nombre` = :nombre ORDER BY a.nombre
+    ]]>
+  </entry>
+</properties>

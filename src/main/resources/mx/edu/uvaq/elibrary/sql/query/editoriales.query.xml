@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : editoriales.query.xml
+    Created on : May 30, 2011, 2:54 AM
+    Author     : arcesino
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE properties SYSTEM 'http://java.sun.com/dtd/properties.dtd'>
+
+<properties>
+  <entry key="editoriales.query.encontrarEditorialesDeLibro">
+    <![CDATA[
+    SELECT e.id, e.nombre 
+    FROM Libro_Editorial le 
+    JOIN Editorial e 
+    ON e.id = le.id_editorial AND le.id_libro = :id_libro 
+    ORDER BY e.nombre
+    ]]>
+  </entry>
+  <entry key="editoriales.query.encontrarEditoriales">
+    <![CDATA[
+    SELECT * FROM Editorial e ORDER BY e.nombre
+    ]]>
+  </entry>
+  <entry key="editoriales.query.insertarEditorial">
+    <![CDATA[
+      INSERT INTO
+        Editorial (nombre)
+      VALUES (:nombre)
+    ]]>
+  </entry>
+  <entry key="editoriales.query.encontrarEditorial">
+    <![CDATA[
+    SELECT e.id,e.nombre FROM Editorial e WHERE e.nombre = :nombre ORDER BY e.nombre
+    ]]>
+  </entry>
+</properties>
