@@ -1,45 +1,87 @@
-.forma-login {
-  position: relative;
+/* 
+    Document   : inicio.css
+    Created on : Nov 14, 2011, 9:31:04 PM
+    Author     : daniel
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+/* Override some defaults */
+html, body {
+  background-color: #DCEAF4;
+  background-image: url('../img/nube.gif');
+  background-repeat: repeat-x;
 }
 
-.forma-login > table {
-  float: right;
-  margin-top: 5px;
-  text-align: left;
-  border-collapse: collapse;
+body {
+  padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+}
+.container > footer p {
+  text-align: center; /* center align it with the container */
+}
+.container {
+  width: 820px; /* downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
 }
 
-.forma-login > table, .forma-login > table th, .forma-login > table td {
-  border: hidden solid black;
-  padding: 0px;
+/* The white background content wrapper */
+.container > .content {
+  background-color: #fff;
+  padding: 20px;
+  margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  box-shadow: 0 1px 2px rgba(0,0,0,.15);
 }
 
-.forma-login > table label {
-  font-size: small;
-  font-weight: bold;
+/* Page header tweaks */
+.page-header {
+  background-color: #f5f5f5;
+  padding: 20px 20px 10px;
+  margin: -20px -20px 20px;
 }
 
-.forma-login input {
-  margin-left: 3px;
+/* Styles you shouldn't keep as they are for displaying this base example only */
+.content .span10,
+.content .span4 {
+  min-height: 400px;
+}
+/* Give a quick and non-cross-browser friendly divider */
+.content .span4 {
+  margin-left: 0;
+  padding-left: 19px;
+  border-left: 1px solid #eee;
 }
 
-input.accept{
-  border-color:#6EA954;
-  color:#ffffff;
-  height: 30px;
-  width:  120px;
-  background-color: #6EA954;
-  border-style: groove;
+.topbar .btn {
+  border: 0;
 }
 
-input.login{
-  border-color: #1e7d1d;
-  color:#ffffff;
-  width:  55px;
-  background-color: #6EA954;
-  border-style: groove;
+#image {
+
+  border: 1px solid #E5E5E5;
+  width: 203px;
+  height: 247px;
+  background-color: #F5F5F5;
+  padding: 10px 10px;
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+  border-radius: 12px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
 }
 
-#forma-registro > table {
-  margin-left: auto;
+#mensaje-error {
+  width: 25%;
+  height: 20px;
+  margin-left: 450px;
+  text-align: center;
 }

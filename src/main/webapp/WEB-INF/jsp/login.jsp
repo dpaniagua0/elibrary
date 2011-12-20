@@ -17,154 +17,149 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link href='${rutaContexto}/images/logo.png' rel='shortcut icon' />
-    <link rel="stylesheet" href="${rutaContexto}/css/global.css" type="text/css" />
+    <link rel="stylesheet" href="${rutaContexto}/css/bootstrap.css" type="text/css" />
     <link rel="stylesheet" href="${rutaContexto}/css/login.css" type="text/css" />
-    <link rel="stylesheet" href="${rutaContexto}/js/jquery/themes/start/jquery-ui-start.css" type="text/css" /><link rel="stylesheet" href="${rutaContexto}/css/global.css" type="text/css" />
-<!--    <link rel="stylesheet" href="${rutaContexto}/js/jquery/themes/redmond/jquery-ui-redmond.css" type="text/css" />  <script type="text/javascript" src="${rutaContexto}/js/jquery/jquery.js"></script>-->
+    <script type="text/javascript" src="${rutacontexto}/js/jquery/jquery.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/jquery/ui/jquery-ui.js"></script>
+    <link rel="stylesheet" href="${rutaContexto}/js/jquery/themes/start/jquery-ui-start.css" type="text/css" />
     <script type="text/javascript" src="${rutaContexto}/js/mensajes.js"></script>
+    <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-buttons.js"></script>
+    <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-modal.js"></script>
+    <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-alerts.js"></script>
     <!--    <script type="text/javascript">
           $(UVAQ.eLibrary.mostrarMensaje(formaRegistro));
         </script> -->
     <title>${i18n['login.titulo']}</title>
   </head>
   <body>
-    <div class="encabezado">
-      <form class="forma-login" action="j_security_check" method="POST">
-        <c:url var="url" value="/inicio" />
-        <a href="${url}" class="logo">
-          <img src="${rutaContexto}/images/elibrary.png" alt="logo.png" />
-        </a>
-        <%--<span class="texto-encabezado"><fmt:message key="login.encabezado" /></span>--%>
-        <table>
-          <tbody>
-            <tr>
-              <td>
-                <label for="correo-electronico">${i18n['etiquetas.correoElectronico']}:</label>
-              </td>
-              <td>
-                <label for="contrasena">${i18n['etiquetas.contraseña']}:</label>
-              </td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>
-                <input id="correo-electronico" name="j_username" type="text" value="${param['j_username']}" />
-              </td>
-              <td>
-                <input id="contrasena" name="j_password" type="password" />
-              </td>
-              <td>
-                <input class="login" type="submit" value="${i18n['login.etiquetas.entrar']}" />
-              </td>
-            </tr>
-            <tr>
-              <td class="mensaje-error" colspan="3">
-                <c:choose>
-                  <c:when test="${param['j_username'] ne null or param['j_password'] ne null}">
-                    <label>
-                      ${i18n['error.loginIncorrecto']}
-                    </label>
-                  </c:when>
-                  <c:otherwise>&nbsp;</c:otherwise>
-                </c:choose>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
+
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <c:url var="url" value="/inicio" />
+          <a href="${url}" class="logo brand">
+            Elibrary
+<!--            <img src="${rutaContexto}/images/elibrary.png"/>-->
+          </a>
+          <form action="j_security_check" method="POST"  class="pull-right">
+            <input id="username" class="input-medium " name="j_username" type="text" value="${param['j_username']}" placeholder="${i18n['etiquetas.correoElectronico']}"/>
+            <input id="password" class="input-medium" name="j_password" type="password" placeholder="${i18n['etiquetas.contraseña']}"/>
+            <button class="btn primary" type="submit">${i18n['login.etiquetas.entrar']}</button>
+          </form>
+        </div>
+      </div>
+      <c:choose>
+        <c:when test="${param['j_username'] ne null or param['j_password'] ne null}">
+          <div id='mensaje-error' data-alert='alert' acceskey='true' class='alert-message warning'>
+            <a href="#" class="close">×</a>
+            ${i18n['error.loginIncorrecto']}
+          </div>
+        </c:when>
+        <c:otherwise>&nbsp;</c:otherwise>
+      </c:choose>
     </div>
-    <div id="cuerpo">
-      <c:url var="url" value="/registro" />
-      <form id="forma-registro" action="${url}" method="POST">
-        <table>
-          <tbody>
-            <tr>
-              <td colspan="2">
-                <h2>
-                  ${i18n['login.etiquetas.nuevo']}
-                </h2>
-                <h4>
-                  ${i18n['login.etiquetas.registrate']}
-                </h4>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="nombre">${i18n['etiquetas.nombre']}:</label>
-              </td>
-              <td>
-                <input name="nombre" id="nombre"  value="${formaRegsitro.nombre}" type="text" />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="apellidos">${i18n['etiquetas.apellidos']}:</label>
-              </td>
-              <td>
-                <input name="apellidos" id="apellidos" type="text" value="${formaRegsitro.apellidos}" />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="correoElectronico">${i18n['login.etiquetas.correoElectronico']}</label>
-              </td>
-              <td>
-                <input name="correoElectronico" id="correo-electronico" type="text" value="${formaRegsitro.correoElectronico}" />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="contraseña">${i18n['etiquetas.contraseña']}:</label>
-              </td>
-              <td>
-                <input name="password" id="contrasena" type="password" value="${formaRegsitro.contrasena}" />
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2">
-                <input class="accept" type="submit" value="${i18n['login.etiquetas.registrar']}" />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
-      <c:if test="${not empty formaRegistro.mensajes['exito-registro']}">
-        <script type="text/javascript">
-          $(function() {
-            $( "#exito-registro" ).dialog({
-              modal: true,
-              hide: "explode",
-              buttons: {
-                Ok: function() {
-                  $( this ).dialog( "close" );
-                }
-              }
-            });
-          });
-        </script>
-        <div id="exito-registro" title="${formaRegistro.mensajes['exito-registro'].resumen}">
-          ${formaRegistro.mensajes['exito-registro'].detalle}
+
+    <div class="container">
+      <div class="content">
+        <div class="page-header">
+          <a href="${url}" class="logo brand">
+            <img src="${rutaContexto}/images/elibrary.png"/>
+          </a>
+
         </div>
-      </c:if>
-      <c:if test="${not empty formaRegistro.mensajes['exito-activacion']}">
-        <script type="text/javascript">
-          $(function() {
-            $( "#exito-activacion" ).dialog({
-              modal: true,
-              hide: "explode",
-              buttons: {
-                Ok: function() {
-                  $( this ).dialog( "close" );
-                }
-              }
-            });
-          });
-        </script>
-        <div id="exito-activacion" title="${formaRegistro.mensajes['exito-activacion'].resumen}">
-          ${formaRegistro.mensajes['exito-activacion'].detalle}
+        <div class="row">
+          <div class="span12">
+            <c:url var="url" value="/registro" />
+            <form id="forma-registro" action="${url}" method="POST">
+              <div style="display: table;">
+                <div style="display: table-row-group;">
+                  <div style="display: table-row;">
+                    <div style="display: table-cell;">
+                      <h2>
+                        ${i18n['login.etiquetas.registrate']}
+                      </h2>
+                    </div>
+                  </div>
+                  <div style="display: table-row;">
+                    <div style="display: table-cell;">
+                      <label for="nombre">${i18n['etiquetas.nombre']}:</label>
+                    </div>
+                    <div style="display: table-cell;">
+                      <input name="nombre" id="nombre"  value="${formaRegsitro.nombre}" type="text" />
+                    </div>
+                  </div>
+                  <div style="display: table-row;">
+                    <div style="display: table-cell;">
+                      <label for="apellidos">${i18n['etiquetas.apellidos']}:</label>
+                    </div>
+                    <div style="display: table-cell;">
+                      <input name="apellidos" id="apellidos" type="text" value="${formaRegsitro.apellidos}" />
+                    </div>
+                  </div>
+                  <div style="display: table-row;">
+                    <div style="display: table-cell;">
+                      <label for="correoElectronico">${i18n['login.etiquetas.correoElectronico']}</label>
+                    </div>
+                    <div style="display: table-cell;">
+                      <input name="correoElectronico" id="correo-electronico" type="text" value="${formaRegsitro.correoElectronico}" />
+                    </div>
+                  </div>
+                  <div style="display: table-row;">
+                    <div style="display: table-cell;">
+                      <label for="contraseña">${i18n['etiquetas.contraseña']}:</label>
+                    </div>
+                    <div style="display: table-cell;">
+                      <input name="password" id="contrasena" type="password" value="${formaRegsitro.contrasena}" />
+                    </div>
+                  </div>
+                  <div style="display: table-row;">
+                    <div style="display: table-cell;"></div>
+                    <div style="display: table-cell; text-align: right; padding-top: 5px;">
+                      <input class="btn success" type="submit" value="${i18n['login.etiquetas.registrar']}"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <c:if test="${not empty formaRegistro.mensajes['exito-registro']}">
+              <script type="text/javascript">
+                $(function() {
+                  $( "#exito-registro" ).dialog({
+                    modal: true,
+                    hide: "explode",
+                    buttons: {
+                      Ok: function() {
+                        $( this ).dialog( "close" );
+                      }
+                    }
+                  });
+                });
+              </script>
+              <div id="exito-registro" title="${formaRegistro.mensajes['exito-registro'].resumen}">
+                ${formaRegistro.mensajes['exito-registro'].detalle}
+              </div>
+            </c:if>
+            <c:if test="${not empty formaRegistro.mensajes['exito-activacion']}">
+              <script type="text/javascript">
+                $(function() {
+                  $( "#exito-activacion" ).dialog({
+                    modal: true,
+                    hide: "explode",
+                    buttons: {
+                      Ok: function() {
+                        $( this ).dialog( "close" );
+                      }
+                    }
+                  });
+                });
+              </script>
+              <div id="exito-activacion" title="${formaRegistro.mensajes['exito-activacion'].resumen}">
+                ${formaRegistro.mensajes['exito-activacion'].detalle}
+              </div>
+            </c:if>
+          </div>
         </div>
-      </c:if>
+      </div>
     </div>
   </body>
 </html>
