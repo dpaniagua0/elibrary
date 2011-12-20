@@ -70,56 +70,93 @@
         <div class="row">
           <div class="span12">
             <c:url var="url" value="/registro" />
+            <h2>
+              ${i18n['login.etiquetas.registrate']}
+            </h2>
             <form id="forma-registro" action="${url}" method="POST">
-              <div style="display: table;">
-                <div style="display: table-row-group;">
-                  <div style="display: table-row;">
-                    <div style="display: table-cell;">
-                      <h2>
-                        ${i18n['login.etiquetas.registrate']}
-                      </h2>
-                    </div>
-                  </div>
-                  <div style="display: table-row;">
-                    <div style="display: table-cell;">
-                      <label for="nombre">${i18n['etiquetas.nombre']}:</label>
-                    </div>
-                    <div style="display: table-cell;">
-                      <input name="nombre" id="nombre"  value="${formaRegsitro.nombre}" type="text" />
-                    </div>
-                  </div>
-                  <div style="display: table-row;">
-                    <div style="display: table-cell;">
-                      <label for="apellidos">${i18n['etiquetas.apellidos']}:</label>
-                    </div>
-                    <div style="display: table-cell;">
-                      <input name="apellidos" id="apellidos" type="text" value="${formaRegsitro.apellidos}" />
-                    </div>
-                  </div>
-                  <div style="display: table-row;">
-                    <div style="display: table-cell;">
-                      <label for="correoElectronico">${i18n['login.etiquetas.correoElectronico']}</label>
-                    </div>
-                    <div style="display: table-cell;">
-                      <input name="correoElectronico" id="correo-electronico" type="text" value="${formaRegsitro.correoElectronico}" />
-                    </div>
-                  </div>
-                  <div style="display: table-row;">
-                    <div style="display: table-cell;">
-                      <label for="contraseña">${i18n['etiquetas.contraseña']}:</label>
-                    </div>
-                    <div style="display: table-cell;">
-                      <input name="password" id="contrasena" type="password" value="${formaRegsitro.contrasena}" />
-                    </div>
-                  </div>
-                  <div style="display: table-row;">
-                    <div style="display: table-cell;"></div>
-                    <div style="display: table-cell; text-align: right; padding-top: 5px;">
-                      <input class="btn success" type="submit" value="${i18n['login.etiquetas.registrar']}"/>
-                    </div>
+              <fieldset>
+                <!--                <h2>
+                ${i18n['login.etiquetas.registrate']}
+              </h2>-->
+                <div class="clearfix">
+                  <label class="xlarge" for="nombre">${i18n['etiquetas.nombre']}:</label>
+                  <div class="input">
+                    <input name="nombre" id="nombre" class="xlarge" value="${formaRegsitro.nombre}" type="text" />
                   </div>
                 </div>
-              </div>
+                <div class="clearfix">
+                  <label class="xlarge" for="apellidos">${i18n['etiquetas.apellidos']}:</label>
+                  <div class="input">
+                    <input class="xlarge" name="apellidos" id="apellidos" type="text" value="${formaRegsitro.apellidos}" />
+                  </div>
+                </div>
+                <div class="clearfix">
+                  <label class="xlarge" for="correoElectronico">${i18n['login.etiquetas.correoElectronico']}:</label>
+                  <div class="input">
+                    <input class="xlarge" name="correoElectronico" id="correo-electronico" type="text" value="${formaRegsitro.correoElectronico}" />
+                  </div>
+                </div>
+                <div class="clearfix">
+                  <label class="xlarge" for="contraseña">${i18n['etiquetas.contraseña']}:</label>
+                  <div class="input">
+                    <input class="xlarge" name="password" id="contrasena" type="password" value="${formaRegsitro.contrasena}" />
+                  </div>
+                </div>
+                <div class="clearfix">
+                  <div style="text-align: center;">
+                    <input class="btn success" type="submit" value="${i18n['login.etiquetas.registrar']}"/>
+                  </div>
+                </div>
+              </fieldset>
+              <!--              <div style="display: table;">
+                              <div style="display: table-row-group;">
+                                <div style="display: table-row;">
+                                  <div style="display: table-cell;">
+                                    <h2>
+              ${i18n['login.etiquetas.registrate']}
+            </h2>
+          </div>
+        </div>
+        <div style="display: table-row;">
+          <div style="display: table-cell;">
+            <label for="nombre">${i18n['etiquetas.nombre']}:</label>
+          </div>
+          <div style="display: table-cell;">
+            <input name="nombre" id="nombre"  value="${formaRegsitro.nombre}" type="text" />
+          </div>
+        </div>
+        <div style="display: table-row;">
+          <div style="display: table-cell;">
+            <label for="apellidos">${i18n['etiquetas.apellidos']}:</label>
+          </div>
+          <div style="display: table-cell;">
+            <input name="apellidos" id="apellidos" type="text" value="${formaRegsitro.apellidos}" />
+          </div>
+        </div>
+        <div style="display: table-row;">
+          <div style="display: table-cell;">
+            <label for="correoElectronico">${i18n['login.etiquetas.correoElectronico']}:</label>
+          </div>
+          <div style="display: table-cell;">
+            <input name="correoElectronico" id="correo-electronico" type="text" value="${formaRegsitro.correoElectronico}" />
+          </div>
+        </div>
+        <div style="display: table-row;">
+          <div style="display: table-cell;">
+            <label for="contraseña">${i18n['etiquetas.contraseña']}:</label>
+          </div>
+          <div style="display: table-cell;">
+            <input name="password" id="contrasena" type="password" value="${formaRegsitro.contrasena}" />
+          </div>
+        </div>
+        <div style="display: table-row;">
+          <div style="display: table-cell;"></div>
+          <div style="display: table-cell; text-align: right; padding-top: 5px;">
+            <input class="btn success" type="submit" value="${i18n['login.etiquetas.registrar']}"/>
+          </div>
+        </div>
+      </div>
+    </div>-->
             </form>
             <c:if test="${not empty formaRegistro.mensajes['exito-registro']}">
               <script type="text/javascript">
