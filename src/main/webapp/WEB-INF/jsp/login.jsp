@@ -19,7 +19,8 @@
     <link href='${rutaContexto}/images/logo.png' rel='shortcut icon' />
     <link rel="stylesheet" href="${rutaContexto}/css/global.css" type="text/css" />
     <link rel="stylesheet" href="${rutaContexto}/css/login.css" type="text/css" />
-    <link rel="stylesheet" href="${rutaContexto}/js/jquery/themes/redmond/jquery-ui-redmond.css" type="text/css" />  <script type="text/javascript" src="${rutaContexto}/js/jquery/jquery.js"></script>
+    <link rel="stylesheet" href="${rutaContexto}/js/jquery/themes/start/jquery-ui-start.css" type="text/css" /><link rel="stylesheet" href="${rutaContexto}/css/global.css" type="text/css" />
+<!--    <link rel="stylesheet" href="${rutaContexto}/js/jquery/themes/redmond/jquery-ui-redmond.css" type="text/css" />  <script type="text/javascript" src="${rutaContexto}/js/jquery/jquery.js"></script>-->
     <script type="text/javascript" src="${rutaContexto}/js/jquery/ui/jquery-ui.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/mensajes.js"></script>
     <!--    <script type="text/javascript">
