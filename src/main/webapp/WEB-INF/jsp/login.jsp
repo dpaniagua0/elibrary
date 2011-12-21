@@ -23,9 +23,9 @@
     <script type="text/javascript" src="${rutaContexto}/js/jquery/ui/jquery-ui.js"></script>
     <link rel="stylesheet" href="${rutaContexto}/js/jquery/themes/start/jquery-ui-start.css" type="text/css" />
     <script type="text/javascript" src="${rutaContexto}/js/mensajes.js"></script>
+    <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-alerts.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-buttons.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-modal.js"></script>
-    <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-alerts.js"></script>
     <!--    <script type="text/javascript">
           $(UVAQ.eLibrary.mostrarMensaje(formaRegistro));
         </script> -->
@@ -39,7 +39,6 @@
           <c:url var="url" value="/inicio" />
           <a href="${url}" class="logo brand">
             Elibrary
-<!--            <img src="${rutaContexto}/images/elibrary.png"/>-->
           </a>
           <form action="j_security_check" method="POST"  class="pull-right">
             <input id="username" class="input-medium " name="j_username" type="text" value="${param['j_username']}" placeholder="${i18n['etiquetas.correoElectronico']}"/>
@@ -107,55 +106,6 @@
                   </div>
                 </div>
               </fieldset>
-              <!--              <div style="display: table;">
-                              <div style="display: table-row-group;">
-                                <div style="display: table-row;">
-                                  <div style="display: table-cell;">
-                                    <h2>
-              ${i18n['login.etiquetas.registrate']}
-            </h2>
-          </div>
-        </div>
-        <div style="display: table-row;">
-          <div style="display: table-cell;">
-            <label for="nombre">${i18n['etiquetas.nombre']}:</label>
-          </div>
-          <div style="display: table-cell;">
-            <input name="nombre" id="nombre"  value="${formaRegsitro.nombre}" type="text" />
-          </div>
-        </div>
-        <div style="display: table-row;">
-          <div style="display: table-cell;">
-            <label for="apellidos">${i18n['etiquetas.apellidos']}:</label>
-          </div>
-          <div style="display: table-cell;">
-            <input name="apellidos" id="apellidos" type="text" value="${formaRegsitro.apellidos}" />
-          </div>
-        </div>
-        <div style="display: table-row;">
-          <div style="display: table-cell;">
-            <label for="correoElectronico">${i18n['login.etiquetas.correoElectronico']}:</label>
-          </div>
-          <div style="display: table-cell;">
-            <input name="correoElectronico" id="correo-electronico" type="text" value="${formaRegsitro.correoElectronico}" />
-          </div>
-        </div>
-        <div style="display: table-row;">
-          <div style="display: table-cell;">
-            <label for="contraseña">${i18n['etiquetas.contraseña']}:</label>
-          </div>
-          <div style="display: table-cell;">
-            <input name="password" id="contrasena" type="password" value="${formaRegsitro.contrasena}" />
-          </div>
-        </div>
-        <div style="display: table-row;">
-          <div style="display: table-cell;"></div>
-          <div style="display: table-cell; text-align: right; padding-top: 5px;">
-            <input class="btn success" type="submit" value="${i18n['login.etiquetas.registrar']}"/>
-          </div>
-        </div>
-      </div>
-    </div>-->
             </form>
             <c:if test="${not empty formaRegistro.mensajes['exito-registro']}">
               <script type="text/javascript">

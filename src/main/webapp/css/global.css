@@ -126,15 +126,15 @@ th.columna-checkbox, td.columna-checkbox {
 }
 
 .fila-par {
-  background-color: #EAF2D3;
+  background-color:  #e5f4f4;
 }
 
 .fila-seleccionada {
-  background-color: #c8d998;
+  background-color: #96d1cf;
 }
 
 .fila-cursor {
-  background-color: #D0F5A9;
+  background-color: #e5f4f4;
 }
 
 /*ul, li{
@@ -248,4 +248,8 @@ input[name=autor],input[name=titulo],input[name=editorial],input[name=categoria]
 
 .ui-progressbar-value {
   background-image: url(/elibrary/images/pb-fill.png);
+}
+
+body {
+  padding-top: 60px;
 }

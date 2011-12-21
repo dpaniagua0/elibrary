@@ -72,7 +72,7 @@ UVAQ.eLibrary.generarTooltips = function(config) {
         at: 'top center'
       },
       style: {
-        classes: 'ui-tooltip-shadow ui-tooltip-yellow ui-tooltip-rounded'
+        classes: 'ui-tooltip-shadow ui-tooltip-dark  ui-tooltip-tipsy ui-tooltip-rounded'
 
       },
       events: {
