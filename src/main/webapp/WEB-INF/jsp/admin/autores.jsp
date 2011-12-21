@@ -30,8 +30,6 @@
     <script type="text/javascript" src="${rutaContexto}/js/jquery/plugins/qtip/jquery.qtip.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/utilidades.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/libros.js"></script>
-    <script type="text/javascript" src="${rutaContexto}/js/modal-form.js"></script>
-    <script type="text/javascript" src="${rutaContexto}/js/combo-box.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-modal.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-dropdown.js"></script>
     <script type="text/javascript">
@@ -52,25 +50,25 @@
     <div class="container-fluid">
       <div class="sidebar">
         <div class="well">
-          <h5>Acciones</h5>
+          <h5>${i18n['libros.acciones']}</h5>
           <ul>
             <li>
               <a id="agregar-autor-link" href="#" title="${i18n['libros.agregarAutor']}">
-                Agregar autor
+                ${i18n['libros.agregarAutor']}
                 <c:url var="url" value="/images/plus-circle-frame.png" />
                 <img src="${url}" alt="[plus-circle-frama.png]" />
               </a>
             </li>
             <li>
               <a id="editar-autor-link" href="#" title="${i18n['libros.editarAutor']}">
-                Editar autor
+                ${i18n['libros.editarAutor']}
                 <c:url var="url" value="/images/pencil.png" />
                 <img src="${url}" alt="[pencil.png]"/>
               </a>
             </li>
             <li>
               <a id="eliminar-autor-link" href="#" title="${i18n['libros.eliminarAutor']}">
-                Eliminar autor
+                ${i18n['libros.eliminarAutor']}
                 <c:url var="url" value="/images/minus-circle-frame.png" />
                 <img src="${url}" alt="[minus-circle-frame.png]" />
               </a>

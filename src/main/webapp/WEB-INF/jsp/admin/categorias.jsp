@@ -22,18 +22,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href='${rutaContexto}/images/logo.png' rel='shortcut icon' />
     <link rel="stylesheet" href="${rutaContexto}/css/global.css" type="text/css" />
-    <link rel="stylesheet" href="${rutaContexto}/css/usuarios.css" type="text/css" />
     <link rel="stylesheet" href="${rutaContexto}/css/bootstrap.css" type="text/css" />
     <link rel="stylesheet" href="${rutaContexto}/js/jquery/plugins/qtip/jquery.qtip.css" type="text/css" />
-    <link rel="stylesheet" href="${rutaContexto}/css/libros.css" type="text/css" />
     <script type="text/javascript" src="${rutaContexto}/js/jquery/jquery.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/jquery/ui/jquery-ui.js"></script>
     <link rel="stylesheet" href="${rutaContexto}/js/jquery/themes/start/jquery-ui-start.css" type="text/css" /><link rel="stylesheet" href="${rutaContexto}/css/global.css" type="text/css" />
     <script type="text/javascript" src="${rutaContexto}/js/jquery/plugins/qtip/jquery.qtip.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/utilidades.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/libros.js"></script>
-    <script type="text/javascript" src="${rutaContexto}/js/modal-form.js"></script>
-    <script type="text/javascript" src="${rutaContexto}/js/combo-box.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-dropdown.js"></script>
     <script type="text/javascript">
       $(function() {
@@ -50,45 +46,80 @@
     <jsp:include page="/WEB-INF/jspf/encabezadoAdministracion.jspf">
       <jsp:param name="encabezado" value="${encabezadoUsuarios}" />
     </jsp:include>
-    <div id="cuerpo">
-      <form id="formulario-busqueda" action="/inicio">
-        <table>
-          <tbody>
-            <tr>
-              <td class="tamano-completo">
-                <input class="busqueda" id="busqueda" name="busqueda" type="text"/>
-              </td>
-              <td>
-                <input id="buscar" name="buscar" value="${i18n['etiquetas.buscar']}" type="submit" />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
-      <div id="acciones">
-        <table>
-          <tr>
-            <td>${i18n['libros.acciones']}:</td>
-            <td>
+    <div class="container-fluid">
+      <div class="sidebar">
+        <div class="well">
+          <h5>${i18n['libros.acciones']}</h5>
+          <ul>
+            <li>
               <a id="agregar-categoria-link" href="#" title="${i18n['libros.agregarCategoria']}" onclick="UVAQ.eLibrary.libros.mostrarFormularioCategoria('nuevo')">
+                ${i18n['libros.agregarCategoria']}
                 <c:url var="url" value="/images/plus-circle-frame.png" />
                 <img src="${url}" alt="[plus-circle-frama.png]" />
               </a>
-            </td>
-            <td>
+            </li>
+            <li>
               <a id="editar-categoria-link" href="#" title="${i18n['libros.editarCategoria']}" onclick="UVAQ.eLibrary.libros.mostrarFormularioCategoria('editar')">
+                ${i18n['libros.editarCategoria']}
                 <c:url var="url" value="/images/pencil.png" />
                 <img src="${url}" alt="[pencil.png]"/>
               </a>
-            </td>
-            <td>
+            </li>
+            <li>
               <a id="eliminar-categoria-link" href="#" title="${i18n['libros.eliminarCategoria']}">
+                ${i18n['libros.eliminarCategoria']}
                 <c:url var="url" value="/images/minus-circle-frame.png" />
                 <img src="${url}" alt="[minus-circle-frame.png]" />
               </a>
-            </td>
-          </tr>
-        </table>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="content">
+        <!-- Main hero unit for a primary marketing message or call to action -->
+        <div class="hero-unit">
+          <h2>${i18n['libros.categorias']}</h2>
+          <div class="row" style="text-align: center;">
+            <div class="span12">
+              <form>
+                <fieldset>
+                  <div class="span14 clearfix">
+                    <input class="xxlarge busqueda" id="busqueda" name="busqueda" type="text"/>
+                    <input class="small" name="buscar" value="${i18n['etiquetas.buscar']}" type="submit" />
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+          <c:choose>
+            <c:when test="${not empty categoriasForma.categorias}">
+              <table class="tabla-datos bordered-table">
+                <thead>
+                  <tr>
+                    <th class="columna-checkbox"><input type="checkbox"/></th>
+                    <th class="columna-id">ID</th>
+                    <th>
+                      Categoria
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <c:forEach items="${categoriasForma.categorias}" var="categoria">
+                    <tr class="alt">
+                      <td class="columna-checkbox"><input  id="checkbox" type="checkbox" /></td>
+                      <td class="columna-id">${categoria.id}</td>
+                      <td>${categoria.nombre}</td>
+                    </tr>
+                  </c:forEach>
+                </tbody>
+              </table>
+            </c:when>
+            <c:otherwise>
+              <div>
+              </div>
+            </c:otherwise>
+          </c:choose>
+        </div>
       </div>
       <div>
         <div id="info-categoria" title="Nueva categoria" class="ui-helper-hidden">
@@ -138,34 +169,6 @@
               </form>
             </div>
           </div>
-          <c:choose>
-            <c:when test="${not empty categoriasForma.categorias}">
-              <table id="tabla-categorias" class="tabla-datos">
-                <thead>
-                  <tr>
-                    <th class="columna-checkbox"><input type="checkbox"/></th>
-                    <th class="columna-id">ID</th>
-                    <th>
-                      Categoria
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <c:forEach items="${categoriasForma.categorias}" var="categoria">
-                    <tr class="alt">
-                      <td class="columna-checkbox"><input  id="checkbox" type="checkbox" /></td>
-                      <td class="columna-id">${categoria.id}</td>
-                      <td>${categoria.nombre}</td>
-                    </tr>
-                  </c:forEach>
-                </tbody>
-              </table>
-            </c:when>
-            <c:otherwise>
-              <div>
-              </div>
-            </c:otherwise>
-          </c:choose>
         </div>
         <div id="seleccion-invalida" class="ui-helper-hidden" title="${i18n['libros.mensaje.info']}">
           ${i18n['libros.mensaje.seleccionInvalida']}
