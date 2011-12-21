@@ -8,32 +8,36 @@
 <c:set var="i18n" value="${bundle.resourceBundle}" />
 <c:set var="nombreContexto" value="${pageContext.servletContext.contextPath}" />
 
-<div id="encabezado" class="encabezado">
-  <c:url var="url" value="/inicio" />
-  <a href="${url}" class="logo">
-    <img src="${nombreContexto}/images/elibrary.png" alt="logo.png" />
-  </a>
-  <span class="detalles-usuario">
-    <span class="usuario">${pageContext.request.remoteUser}</span>
-    <br/>
-    <span>
-      <c:url var="urlInicio" value="/inicio" />
-      <c:url var="urlUsuario" value="/admin/usuarios" />
-      <c:url var="urlCategoria" value="/admin/categorias" />
-      <c:url var="urlAutor" value="/admin/autores" />
-      <c:url var="urlEditorial" value="/admin/editoriales" />
-      <c:url var="urlSesion" value="/inicio/cerrar-sesion" />
-      <a tabindex="0" href="#menu-items" class="fg-button fg-button-icon-right ui-widget ui-state-default ui-corner-all" id="flat"><span class="ui-icon ui-icon-triangle-1-s"></span>${i18n['etiquetas.navegar']}</a>
-      <div id="menu-items" class="hidden">
-        <ul>
-          <li><a href="${urlInicio}">${i18n['libros.encabezado']}</a></li>
-          <li><a href="${urlUsuario}">${i18n['usuarios.encabezado']}</a></li>
-          <li><a href="${urlCategoria}">${i18n['libros.categorias']}</a></li>
-          <li><a href="${urlAutor}">${i18n['libros.autores']}</a></li>
-          <li><a href="${urlEditorial}">${i18n['libros.editoriales']}</a></li>
-          <li><a href="${urlSesion}">${i18n['etiquetas.cerrarSesion']}</a></li>
+<c:url var="urlInicio" value="/inicio" />
+<c:url var="urlUsuario" value="/admin/usuarios" />
+<c:url var="urlCategoria" value="/admin/categorias" />
+<c:url var="urlAutor" value="/admin/autores" />
+<c:url var="urlEditorial" value="/admin/editoriales" />
+<c:url var="urlSesion" value="/inicio/cerrar-sesion" />
+<div class="topbar">
+  <div id="topbar-example" class="topbar" data-dropdown="dropdown">
+    <div class="topbar fill">
+      <div class="container">
+        <h3>
+          <a href="${urlInicio}">Elibrary</a>
+        </h3>
+        <ul class="nav secondary-nav">
+          <li>
+            <a id="menu" class="menu">
+              <span class="span1 ">${pageContext.request.remoteUser}</span>   
+            </a>
+            <ul class="menu-dropdown">
+              <li><a href="${urlInicio}">${i18n['libros.encabezado']}</a></li>
+              <li><a href="${urlUsuario}">${i18n['usuarios.encabezado']}</a></li>
+              <li><a href="${urlCategoria}">${i18n['libros.categorias']}</a></li>
+              <li><a href="${urlAutor}">${i18n['libros.autores']}</a></li>
+              <li><a href="${urlEditorial}">${i18n['libros.editoriales']}</a></li>
+              <li class="divider"/>
+              <li><a href="${urlSesion}">${i18n['etiquetas.cerrarSesion']}</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
-    </span>
-  </span>
+    </div>
+  </div>
 </div>

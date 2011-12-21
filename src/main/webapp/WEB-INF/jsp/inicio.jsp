@@ -24,7 +24,6 @@
     <link href='${rutaContexto}/images/logo.png' rel='shortcut icon' />
     <link rel="stylesheet" href="${rutaContexto}/js/jquery/plugins/qtip/jquery.qtip.css" type="text/css" />
     <link rel="stylesheet" href="${rutaContexto}/css/fg.menu.css" type="text/css" />
-<!--    <link rel="stylesheet" href="${rutaContexto}/js/jquery/themes/redmond/jquery-ui-redmond.css" type="text/css" /><link rel="stylesheet" href="${rutaContexto}/css/global.css" type="text/css" />-->
     <link rel="stylesheet" href="${rutaContexto}/js/jquery/themes/start/jquery-ui-start.css" type="text/css" /><link rel="stylesheet" href="${rutaContexto}/css/global.css" type="text/css" />
     <link rel="stylesheet" href="${rutaContexto}/css/usuarios.css" type="text/css" />
     <link rel="stylesheet" href="${rutaContexto}/css/libros.css" type="text/css" />

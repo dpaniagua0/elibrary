@@ -65,7 +65,6 @@
           <a href="${url}" class="logo brand">
             <img src="${rutaContexto}/images/elibrary.png"/>
           </a>
-
         </div>
         <div class="row">
           <div class="span12">
@@ -103,7 +102,7 @@
                   </div>
                 </div>
                 <div class="clearfix">
-                  <div style="text-align: center;">
+                  <div class="button-succes">
                     <input class="btn success" type="submit" value="${i18n['login.etiquetas.registrar']}"/>
                   </div>
                 </div>
