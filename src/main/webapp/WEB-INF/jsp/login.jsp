@@ -73,9 +73,6 @@
             </h2>
             <form id="forma-registro" action="${url}" method="POST">
               <fieldset>
-                <!--                <h2>
-                ${i18n['login.etiquetas.registrate']}
-              </h2>-->
                 <div class="clearfix">
                   <label class="xlarge" for="nombre">${i18n['etiquetas.nombre']}:</label>
                   <div class="input">
