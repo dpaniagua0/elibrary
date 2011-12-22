@@ -27,11 +27,11 @@
               <span class="span1 ">${pageContext.request.remoteUser}</span>   
             </a>
             <ul class="menu-dropdown">
+              <li><a href="${urlAutor}">${i18n['libros.autores']}</a></li>
+              <li><a href="${urlCategoria}">${i18n['libros.categorias']}</a></li>
+              <li><a href="${urlEditorial}">${i18n['libros.editoriales']}</a></li>
               <li><a href="${urlInicio}">${i18n['libros.encabezado']}</a></li>
               <li><a href="${urlUsuario}">${i18n['usuarios.encabezado']}</a></li>
-              <li><a href="${urlCategoria}">${i18n['libros.categorias']}</a></li>
-              <li><a href="${urlAutor}">${i18n['libros.autores']}</a></li>
-              <li><a href="${urlEditorial}">${i18n['libros.editoriales']}</a></li>
               <li class="divider"/>
               <li><a href="${urlSesion}">${i18n['etiquetas.cerrarSesion']}</a></li>
             </ul>

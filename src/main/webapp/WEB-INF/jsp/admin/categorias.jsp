@@ -41,8 +41,6 @@
     <title>${i18n['login.encabezado']}</title>
   </head>
   <body>
-    <fmt:message key="login.encabezado" var="encabezadoInicio" />
-    <fmt:message key="usuarios.encabezado" var="encabezadoUsuarios" />
     <jsp:include page="/WEB-INF/jspf/encabezadoAdministracion.jspf">
       <jsp:param name="encabezado" value="${encabezadoUsuarios}" />
     </jsp:include>
