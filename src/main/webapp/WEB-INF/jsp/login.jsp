@@ -21,11 +21,11 @@
     <link rel="stylesheet" href="${rutaContexto}/css/login.css" type="text/css" />
     <script type="text/javascript" src="${rutacontexto}/js/jquery/jquery.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/jquery/ui/jquery-ui.js"></script>
-    <link rel="stylesheet" href="${rutaContexto}/js/jquery/themes/start/jquery-ui-start.css" type="text/css" />
+    <link rel="stylesheet" href="${rutaContexto}/js/jquery/themes/redmond/jquery-ui-redmond.css" type="text/css" />
     <script type="text/javascript" src="${rutaContexto}/js/mensajes.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-alerts.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-buttons.js"></script>
-    <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-modal.js"></script>
+    <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-modals.js"></script>
     <!--    <script type="text/javascript">
           $(UVAQ.eLibrary.mostrarMensaje(formaRegistro));
         </script> -->
@@ -107,14 +107,19 @@
             <c:if test="${not empty formaRegistro.mensajes['exito-registro']}">
               <script type="text/javascript">
                 $(function() {
-                  $( "#exito-registro" ).dialog({
+                  //                  $( "#exito-registro" ).dialog({
+                  //                    modal: true,
+                  //                    hide: "explode",
+                  //                    buttons: {
+                  //                      Ok: function() {
+                  //                        $( this ).dialog( "close" );
+                  //                      }
+                  //                    }
+                  //                  });
+                  $('#exito-registro').modal({
+                    keyboard: true,
                     modal: true,
-                    hide: "explode",
-                    buttons: {
-                      Ok: function() {
-                        $( this ).dialog( "close" );
-                      }
-                    }
+                    backdrop: true
                   });
                 });
               </script>
@@ -125,14 +130,19 @@
             <c:if test="${not empty formaRegistro.mensajes['exito-activacion']}">
               <script type="text/javascript">
                 $(function() {
-                  $( "#exito-activacion" ).dialog({
+//                  $( "#exito-activacion" ).dialog({
+//                    modal: true,
+//                    hide: "explode",
+//                    buttons: {
+//                      Ok: function() {
+//                        $( this ).dialog( "close" );
+//                      }
+//                    }
+//                  });
+                   $('#exito-activacion').modal({
+                    keyboard: true,
                     modal: true,
-                    hide: "explode",
-                    buttons: {
-                      Ok: function() {
-                        $( this ).dialog( "close" );
-                      }
-                    }
+                    backdrop: true
                   });
                 });
               </script>

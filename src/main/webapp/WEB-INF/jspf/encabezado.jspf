@@ -8,21 +8,25 @@
 <c:set var="i18n" value="${bundle.resourceBundle}" />
 <c:set var="nombreContexto" value="${pageContext.servletContext.contextPath}" />
 
-<div class="encabezado">
-  <c:url var="urlSesion" value="/inicio/cerrar-sesion" />
-  <a href="${url}" class="logo">
-    <img src="${nombreContexto}/images/elibrary.png" alt="logo.png" />
-  </a>
-  <span class="detalles-usuario">
-    <span class="usuario">${pageContext.request.remoteUser}</span>
-    <br/>
-    <span>
-     <a tabindex="0" href="#menu-items" class="fg-button fg-button-icon-right ui-widget ui-state-default ui-corner-all" id="flat"><span class="ui-icon ui-icon-triangle-1-s"></span>${i18n['etiquetas.navegar']}</a>
-      <div id="menu-items" class="hidden">
-        <ul>
-          <li><a href="${urlSesion}">${i18n['etiquetas.cerrarSesion']}</a></li>
+<c:url var="urlSesion" value="/inicio/cerrar-sesion" />
+<div class="topbar">
+  <div id="topbar-example" class="topbar" data-dropdown="dropdown">
+    <div class="topbar fill">
+      <div class="container">
+        <h3>
+          <a href="${urlInicio}">Elibrary</a>
+        </h3>
+        <ul class="nav secondary-nav">
+          <li>
+            <a id="menu" class="menu">
+              <span class="span1 ">${pageContext.request.remoteUser}</span>   
+            </a>
+            <ul class="menu-dropdown">
+              <li><a href="${urlSesion}">${i18n['etiquetas.cerrarSesion']}</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
-    </span>
-  </span>
+    </div>
+  </div>
 </div>
