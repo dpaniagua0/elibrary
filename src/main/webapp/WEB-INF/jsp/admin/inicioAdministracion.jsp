@@ -38,6 +38,11 @@
         UVAQ.eLibrary.estilizarTabla();
         UVAQ.eLibrary.generarTooltips();
         UVAQ.eLibrary.usarQtips();
+//        $("info-libro").modal({
+//          modal: true,
+//          backdrop: true,
+//          keyboard: true
+//        });
       });
     </script>
     <title>${i18n['login.encabezado']}</title>
@@ -96,14 +101,15 @@
                   </div>
                 </fieldset>
               </form>    
-              <div id="info-libro" class="ui-widget ui-corner-all ui-helper-hidden" style="text-align: center;">
+<!--                  class="ui-widget ui-corner-all ui-helper-hidden" -->
+              <div id="info-libro" style="text-align: center;" class="modal hide fade in">
                 <!-- Ese frame se utiliza para que la carga de archivo se cargue en él y no se tenga que cambiar de archivo. -->
                 <!--        <iframe id='target_upload' name='target_upload' src='' style="width: 0px; height: 0px"></iframe>-->
-                <div id="info-libro-header-nuevo" class="ui-widget-header">Nuevo libro</div>
-                <div id="info-libro-header-editar" class="ui-widget-header ui-helper-hidden">Editar libro</div>
-                <div class="ui-widget-content">
+                <div id="info-libro-header-nuevo" class="modal-header"><a href='#' class='close'>×</a>Nuevo libro</div>
+                <div id="info-libro-header-editar" class="modal-header"><a href='#' class='close'>×</a>Editar libro</div>
+                <div class="modal-body">
                   <c:url var="url" value="/admin/controlador-carga-libro" />
-                  <form action="${url}" method="POST" enctype="multipart/form-data" target="target_upload" class="ui-widget-content">
+                  <form action="${url}" method="POST" enctype="multipart/form-data" target="target_upload" >
                     <input name="id" type="hidden" />
                     <table class="tamano-completo">
                       <caption>* Los campos en negrita son requeridos</caption>
@@ -148,10 +154,10 @@
                         </tr>
                       </tbody>
                     </table>
-                    <div class="panel-botones">
-                      <button id="boton-nuevo-libro" name="accion" value="nuevo-libro" type="submit">Nuevo</button>
-                      <button id="boton-editar-libro" class="ui-helper-hidden" name="accion" value="guardar-libro" type="submit">Guardar</button>
-                      <button id="boton-cancelar" type="button">Cancelar</button>
+                    <div class="panel-botones modal-footer">
+                      <button id="boton-nuevo-libro" class="btn primary" name="accion" value="nuevo-libro" type="submit">Nuevo</button>
+                      <button id="boton-editar-libro" class="btn primary" name="accion" value="guardar-libro" type="submit">Guardar</button>
+                      <button id="boton-cancelar" class="btn error" type="button">Cancelar</button>
                     </div>
                   </form>
                 </div>

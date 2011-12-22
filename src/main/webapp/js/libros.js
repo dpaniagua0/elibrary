@@ -12,20 +12,26 @@ UVAQ.eLibrary.libros.mostrarFormularioLibro = function(modo) {
   
   if (modo === 'nuevo') {
     // Limpiar el formulario de libro.
+    
     $('#info-libro form').each(function() {
       this.reset();
     });
   }
   
   // Mostrar el header correspondiente al modo.
-  $('#info-libro .ui-widget-header').hide();
+  $('#info-libro .modal-header').hide();
   $('#info-libro-header-' + modo).show();
   
   // Mostrar el boton correspondiente al modo.
   $('.panel-botones button[name=accion]').hide();
   $('.panel-botones #boton-' + modo + '-libro').show();
   
-  $('#info-libro').show('fold');
+  //  $('#info-libro').show('fold');
+  $("#info-libro").modal({
+    modal: true,
+    backdrop: true,
+    keyboard: true
+  });
 };
 
 UVAQ.eLibrary.libros.cargarFormularioEdicion = function() {
@@ -121,9 +127,9 @@ $(function() {
   
   $('.panel-botones button').button();
    
-  $('#boton-cancelar').click(function() {
-    $('#info-libro').hide('unfold');
-  });
+//  $('#boton-cancelar').click(function() {
+//    $('#info-libro').hide('unfold');
+//  });
     
   $.datepicker.setDefaults( $.datepicker.regional['es'] );
   $('#fecha-publicacion').datepicker({

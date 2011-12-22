@@ -25,7 +25,7 @@
     <script type="text/javascript" src="${rutaContexto}/js/mensajes.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-alerts.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-buttons.js"></script>
-    <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-modals.js"></script>
+    <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-modal.js"></script>
     <!--    <script type="text/javascript">
           $(UVAQ.eLibrary.mostrarMensaje(formaRegistro));
         </script> -->
