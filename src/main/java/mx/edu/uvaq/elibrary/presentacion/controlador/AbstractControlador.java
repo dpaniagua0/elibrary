@@ -5,7 +5,10 @@
 package mx.edu.uvaq.elibrary.presentacion.controlador;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +26,7 @@ public abstract class AbstractControlador extends HttpServlet {
   private HttpServletResponse response;
   private String accion;
   private Map<String, Mensaje> mensajes;
-  
+
   /** 
    * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
    * @param request servlet request
@@ -85,22 +88,22 @@ public abstract class AbstractControlador extends HttpServlet {
   protected HttpServletResponse getResponse() {
     return response;
   }
-  
+
   protected void desplegarVista(String vista, Map modelo) {
     request.setAttribute("modelo", modelo);
     request.setAttribute("mensajes", mensajes);
     RequestDispatcher rd = getServletContext().getNamedDispatcher(vista);
     try {
       rd.forward(request, response);
-    } catch (Exception ex) {
+    } catch (Exception e) {
       // TODO: Implementar manejo de excepción en el despliegue.
     }
   }
-  
+
   protected void accionNoEncontrada() {
     getResponse().setStatus(HttpServletResponse.SC_NOT_FOUND);
   }
-  
+
   protected Map<String, Mensaje> getMensajes() {
     return mensajes;
   }
@@ -110,5 +113,6 @@ public abstract class AbstractControlador extends HttpServlet {
   }
 
   public abstract void ejecutarAccion(String accion);
+
   public abstract void ejecutarAccionDefecto();
 }
