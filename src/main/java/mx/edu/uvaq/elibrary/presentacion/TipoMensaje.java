@@ -9,8 +9,8 @@ package mx.edu.uvaq.elibrary.presentacion;
  * @author daniel
  */
 public enum TipoMensaje {
-
-    INFO,
-    WARNING,
-    ERROR
+  SUCCESS,
+  INFO,
+  WARNING,
+  ERROR
 }

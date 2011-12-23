@@ -5,16 +5,15 @@
 package mx.edu.uvaq.elibrary.presentacion.controlador;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mx.edu.uvaq.elibrary.presentacion.Mensaje;
+import org.apache.commons.lang.StringUtils;
 
 /**
  *
@@ -22,11 +21,12 @@ import mx.edu.uvaq.elibrary.presentacion.Mensaje;
  */
 public abstract class AbstractControlador extends HttpServlet {
 
+  // TODO: Quitar estado mutable para que el servlet sea thread-safe.
   private HttpServletRequest request;
   private HttpServletResponse response;
   private String accion;
-  private Map<String, Mensaje> mensajes;
-
+  private Map<String, Mensaje> mensajes = new HashMap<String, Mensaje>();
+  
   /** 
    * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
    * @param request servlet request
@@ -39,7 +39,7 @@ public abstract class AbstractControlador extends HttpServlet {
     this.request = request;
     this.response = response;
     this.accion = getAccion(request);
-    if (accion != null) {
+    if (StringUtils.isNotBlank(accion)) {
       ejecutarAccion(this.accion);
     } else {
       ejecutarAccionDefecto();
@@ -74,7 +74,8 @@ public abstract class AbstractControlador extends HttpServlet {
   }
 
   private String getAccion(HttpServletRequest request) {
-    return request.getParameter("accion");
+    String accion = request.getParameter("accion");
+    return StringUtils.deleteWhitespace(accion);
   }
 
   protected String getAccion() {
@@ -88,22 +89,22 @@ public abstract class AbstractControlador extends HttpServlet {
   protected HttpServletResponse getResponse() {
     return response;
   }
-
+  
   protected void desplegarVista(String vista, Map modelo) {
-    request.setAttribute("modelo", modelo);
-    request.setAttribute("mensajes", mensajes);
-    RequestDispatcher rd = getServletContext().getNamedDispatcher(vista);
-    try {
-      rd.forward(request, response);
-    } catch (Exception e) {
-      // TODO: Implementar manejo de excepción en el despliegue.
-    }
+      request.setAttribute("modelo", modelo);
+      request.setAttribute("mensajes", mensajes);
+      RequestDispatcher rd = getServletContext().getNamedDispatcher(vista);
+      try {
+        rd.forward(request, response);
+      } catch(Exception e){
+        // TODO: Implementar manejo de excepción en el despliegue.
+      } 
   }
-
+  
   protected void accionNoEncontrada() {
     getResponse().setStatus(HttpServletResponse.SC_NOT_FOUND);
   }
-
+  
   protected Map<String, Mensaje> getMensajes() {
     return mensajes;
   }
@@ -113,6 +114,5 @@ public abstract class AbstractControlador extends HttpServlet {
   }
 
   public abstract void ejecutarAccion(String accion);
-
   public abstract void ejecutarAccionDefecto();
 }

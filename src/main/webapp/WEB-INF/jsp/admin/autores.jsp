@@ -51,7 +51,8 @@
           <h5>${i18n['libros.acciones']}</h5>
           <ul>
             <li>
-              <a id="agregar-autor-link" href="#" title="${i18n['libros.agregarAutor']}">
+              <c:url var="url" value="/admin/autores?accion=crear" />
+              <a id="agregar-autor-link" href="${url}" title="${i18n['libros.agregarAutor']}">
                 ${i18n['libros.agregarAutor']}
                 <c:url var="url" value="/images/plus-circle-frame.png" />
                 <img src="${url}" alt="[plus-circle-frama.png]" />

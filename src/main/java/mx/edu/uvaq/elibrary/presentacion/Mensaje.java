@@ -63,6 +63,10 @@ public class Mensaje {
     public TipoMensaje getSeveridad() {
         return severidad;
     }
+    
+    public String getClaseMensaje() {
+      return getSeveridad().name().toLowerCase();
+    }
 
     public void setSeveridad(TipoMensaje severidad) {
         this.severidad = severidad;

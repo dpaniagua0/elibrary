@@ -170,27 +170,27 @@ $(function(){
   });
 });
 
-$(function() {
-  $( "#info-autores" ).dialog({
-    autoOpen: false,
-    height: 200,
-    width: 360,
-    modal: true
-  });
-  $( "#agregar-autor-link" ).click(function() {
-    $( "#info-autores" ).dialog( "open" );
-  });
-
-  $( "#edicion-autores" ).dialog({
-    autoOpen: false,
-    height: 180,
-    width: 350,
-    modal: true
-  });
-  $( "#editar-autor-link" ).click(function() {
-    $( "#edicion-autores" ).dialog( "open" );
-  });
-});
+//$(function() {
+//  $( "#info-autores" ).dialog({
+//    autoOpen: false,
+//    height: 200,
+//    width: 360,
+//    modal: true
+//  });
+//  $( "#agregar-autor-link" ).click(function() {
+//    $( "#info-autores" ).dialog( "open" );
+//  });
+//
+//  $( "#edicion-autores" ).dialog({
+//    autoOpen: false,
+//    height: 180,
+//    width: 350,
+//    modal: true
+//  });
+//  $( "#editar-autor-link" ).click(function() {
+//    $( "#edicion-autores" ).dialog( "open" );
+//  });
+//});
 
 $(function() {
   $( "#info-editoriales" ).dialog({

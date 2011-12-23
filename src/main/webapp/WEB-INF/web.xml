@@ -43,6 +43,10 @@
     <jsp-file>/WEB-INF/jsp/admin/autores.jsp</jsp-file>
   </servlet>
   <servlet>
+    <servlet-name>vista-crear-autor</servlet-name>
+    <jsp-file>/WEB-INF/jsp/admin/autores/crear.jsp</jsp-file>
+  </servlet>
+  <servlet>
     <servlet-name>vista-editoriales</servlet-name>
     <jsp-file>/WEB-INF/jsp/admin/editoriales.jsp</jsp-file>
   </servlet>
