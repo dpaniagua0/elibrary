@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import mx.edu.uvaq.elibrary.modelo.entidades.Autor;
 import mx.edu.uvaq.elibrary.modelo.negocio.servicio.AutoresServicio;
@@ -63,21 +61,18 @@ public class AutoresControlador extends AbstractControlador {
   }
 
   private void crearAutor() {
-    System.out.println("crearAutor");
     Map<String, Object> modelo = new HashMap<String, Object>();
     modelo.put("autor", new Autor());
     desplegarVista(VISTA_CREAR_AUTOR, modelo);
   }
 
   private void salvarAutor() {
-    System.out.println("salvarAutor");
     Autor autor = new Autor();
     autor.setNombre(getRequest().getParameter("nombre"));
     autor.setApellidos(getRequest().getParameter("apellidos"));
     if (autoresServicio.registrarAutor(autor)) {
       String mensajeAutorSalvado = String.format("El autor %s, ha sido guardado con éxito.", autor.getNombreCompleto());
-      agregarMensaje("autor-salvar-resultado", Mensaje.crearMensajeInformacion(null, mensajeAutorSalvado));
-      System.out.println("mensajeAutorSalvado");
+      agregarMensaje("autor-salvar-resultado", Mensaje.crearMensajeExito(null, mensajeAutorSalvado));
     } else {
       String mensajeErrorSalvar = String.format("No se pudo guaradar al autor %s.", autor.getNombreCompleto());
       agregarMensaje("autor-salvar-resultado", Mensaje.crearMensajeError(null, mensajeErrorSalvar));

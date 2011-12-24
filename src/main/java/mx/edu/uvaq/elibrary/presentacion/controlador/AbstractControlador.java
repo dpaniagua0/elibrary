@@ -24,9 +24,7 @@ public abstract class AbstractControlador extends HttpServlet {
   // TODO: Quitar estado mutable para que el servlet sea thread-safe.
   private HttpServletRequest request;
   private HttpServletResponse response;
-  private String accion;
-  private Map<String, Mensaje> mensajes = new HashMap<String, Mensaje>();
-  
+
   /** 
    * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
    * @param request servlet request
@@ -36,11 +34,13 @@ public abstract class AbstractControlador extends HttpServlet {
    */
   private void processRequest(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
+    request.setAttribute("mensajes", new HashMap<String, Mensaje>());
     this.request = request;
     this.response = response;
-    this.accion = getAccion(request);
+    String accion = getAccion(request);
     if (StringUtils.isNotBlank(accion)) {
-      ejecutarAccion(this.accion);
+      request.setAttribute("accion", accion);
+      ejecutarAccion(accion);
     } else {
       ejecutarAccionDefecto();
     }
@@ -79,7 +79,7 @@ public abstract class AbstractControlador extends HttpServlet {
   }
 
   protected String getAccion() {
-    return accion;
+    return request.getAttribute("accion").toString();
   }
 
   protected HttpServletRequest getRequest() {
@@ -89,30 +89,31 @@ public abstract class AbstractControlador extends HttpServlet {
   protected HttpServletResponse getResponse() {
     return response;
   }
-  
+
   protected void desplegarVista(String vista, Map modelo) {
-      request.setAttribute("modelo", modelo);
-      request.setAttribute("mensajes", mensajes);
-      RequestDispatcher rd = getServletContext().getNamedDispatcher(vista);
-      try {
-        rd.forward(request, response);
-      } catch(Exception e){
-        // TODO: Implementar manejo de excepción en el despliegue.
-      } 
+    request.setAttribute("modelo", modelo);
+    RequestDispatcher rd = getServletContext().getNamedDispatcher(vista);
+    try {
+      rd.forward(request, response);
+    } catch (Exception e) {
+      // TODO: Implementar manejo de excepción en el despliegue.
+    }
   }
-  
+
   protected void accionNoEncontrada() {
     getResponse().setStatus(HttpServletResponse.SC_NOT_FOUND);
   }
-  
+
   protected Map<String, Mensaje> getMensajes() {
-    return mensajes;
+    return (Map<String, Mensaje>) request.getAttribute("mensajes");
   }
 
   protected void agregarMensaje(String clave, Mensaje mensaje) {
+    Map<String, Mensaje> mensajes = (Map<String, Mensaje>) request.getAttribute("mensajes");
     mensajes.put(clave, mensaje);
   }
 
   public abstract void ejecutarAccion(String accion);
+
   public abstract void ejecutarAccionDefecto();
 }

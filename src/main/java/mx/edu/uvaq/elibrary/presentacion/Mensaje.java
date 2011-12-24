@@ -10,65 +10,76 @@ package mx.edu.uvaq.elibrary.presentacion;
  */
 public class Mensaje {
 
-    private String resumen;
-    private String detalle;
-    private TipoMensaje severidad;
+  private String resumen;
+  private String detalle;
+  private TipoMensaje severidad;
 
-    private Mensaje() {
-    }
+  private Mensaje() {
+  }
 
-    public static Mensaje getWarningMessage(String summary, String message) {
-        Mensaje warningMessage = new Mensaje();
-        warningMessage.setSeveridad(TipoMensaje.WARNING);
-        warningMessage.setResumen(summary);
-        warningMessage.setDetalle(message);
+  public static Mensaje getWarningmensaje(String resumen, String mensaje) {
+    Mensaje warningmensaje = new Mensaje();
+    warningmensaje.setSeveridad(TipoMensaje.WARNING);
+    warningmensaje.setResumen(resumen);
+    warningmensaje.setDetalle(mensaje);
 
-        return warningMessage;
-    }
+    return warningmensaje;
+  }
 
-    public static Mensaje crearMensajeError(String summary, String message) {
-        Mensaje errorMessage = new Mensaje();
-        errorMessage.setSeveridad(TipoMensaje.ERROR);
-        errorMessage.setResumen(summary);
-        errorMessage.setDetalle(message);
+  public static Mensaje crearMensajeError(String resumen, String mensaje) {
+    Mensaje mensajeError = crearMensaje(resumen, mensaje);
+    mensajeError.setSeveridad(TipoMensaje.ERROR);
 
-        return errorMessage;
-    }
+    return mensajeError;
+  }
 
-    public static Mensaje crearMensajeInformacion(String summary, String message) {
-        Mensaje infoMessage = new Mensaje();
-        infoMessage.setSeveridad(TipoMensaje.INFO);
-        infoMessage.setResumen(summary);
-        infoMessage.setDetalle(message);
+  public static Mensaje crearMensajeInformacion(String resumen, String mensaje) {
+    Mensaje mensajeInformacion = crearMensaje(resumen, mensaje);
+    mensajeInformacion.setSeveridad(TipoMensaje.INFO);
 
-        return infoMessage;
-    }
+    return mensajeInformacion;
+  }
 
-    public String getDetalle() {
-        return detalle;
-    }
+  public static Mensaje crearMensajeExito(String resumen, String mensaje) {
+    Mensaje mensajeExito = crearMensaje(resumen, mensaje);
+    mensajeExito.setSeveridad(TipoMensaje.SUCCESS);
 
-    public void setDetalle(String detalle) {
-        this.detalle = detalle;
-    }
+    return mensajeExito;
+  }
 
-    public String getResumen() {
-        return resumen;
-    }
+  private static Mensaje crearMensaje(String resumen, String detalle) {
+    Mensaje successmensaje = new Mensaje();
+    successmensaje.setResumen(resumen);
+    successmensaje.setDetalle(detalle);
 
-    public void setResumen(String resumen) {
-        this.resumen = resumen;
-    }
+    return successmensaje;
+  }
 
-    public TipoMensaje getSeveridad() {
-        return severidad;
-    }
-    
-    public String getClaseMensaje() {
-      return getSeveridad().name().toLowerCase();
-    }
+  public String getDetalle() {
+    return detalle;
+  }
 
-    public void setSeveridad(TipoMensaje severidad) {
-        this.severidad = severidad;
-    }
+  public void setDetalle(String detalle) {
+    this.detalle = detalle;
+  }
+
+  public String getResumen() {
+    return resumen;
+  }
+
+  public void setResumen(String resumen) {
+    this.resumen = resumen;
+  }
+
+  public TipoMensaje getSeveridad() {
+    return severidad;
+  }
+
+  public String getClaseMensaje() {
+    return getSeveridad().name().toLowerCase();
+  }
+
+  public void setSeveridad(TipoMensaje severidad) {
+    this.severidad = severidad;
+  }
 }
