@@ -69,4 +69,11 @@ public class JdbcAutorDao extends QuerysNamedParameterJdbcDaoSupport implements 
     queryParams.put("apellidos", autor.getApellidos());
     getNamedParameterJdbcTemplate().update(query, queryParams);
   }
+
+  public void eliminarAutor(Long idAutor) {
+    String query = querys.get("autores.query.eliminarAutor");
+    Map<String, Object> queryParams = new HashMap<String, Object>();
+    queryParams.put("id", idAutor);
+    getNamedParameterJdbcTemplate().update(query, queryParams);
+  }
 }

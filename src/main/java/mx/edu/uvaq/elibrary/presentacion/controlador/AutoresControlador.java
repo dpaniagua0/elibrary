@@ -48,6 +48,8 @@ public class AutoresControlador extends AbstractControlador {
       salvarAutor();
     } else if ("editar".equals(accion)) {
       editarAutor();
+    } else if ("eliminar".equals(accion)) {
+      eliminarAutores();
     }
   }
 
@@ -97,15 +99,23 @@ public class AutoresControlador extends AbstractControlador {
   }
 
   private void editarAutor() {
-    System.out.println("Accion editar");
     Long idAutor = Long.valueOf(getRequest().getParameter("id"));
-    System.out.println(idAutor);
     Autor autor = autoresServicio.getAutorPorId(idAutor);
-    System.out.println(autor);
     if (autor != null) {
       Map<String, Object> modelo = new HashMap<String, Object>();
       modelo.put("autor", autor);
       desplegarVista(VISTA_CREAR_AUTOR, modelo);
     }
+  }
+
+  private void eliminarAutores() {
+    String[] idsAutores = getRequest().getParameterValues("id");
+    for(String idAutor : idsAutores) {
+      Long id = Long.valueOf(idAutor);
+      autoresServicio.borrarAutor(id);
+    }
+    String mensajeErrorSalvar = String.format("Los autores han sido eliminados.");
+    agregarMensaje("autor-eliminar-resultado", Mensaje.crearMensajeExito(null, mensajeErrorSalvar));
+    listarAutores();
   }
 }

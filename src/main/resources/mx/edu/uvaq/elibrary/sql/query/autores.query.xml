@@ -40,4 +40,9 @@
      UPDATE Autor SET nombre = :nombre, apellidos = :apellidos WHERE `id` = :id
     ]]>
   </entry>
+  <entry key="autores.query.eliminarAutor">
+    <![CDATA[
+     DELETE FROM Autor WHERE `id` = :id
+    ]]>
+  </entry>
 </properties>

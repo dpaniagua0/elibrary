@@ -22,4 +22,6 @@ public interface AutorDao {
   public void insertarAutor(Autor autor);
 
   public void actualizarAutor(Autor autor);
+
+  public void eliminarAutor(Long idAutor);
 }

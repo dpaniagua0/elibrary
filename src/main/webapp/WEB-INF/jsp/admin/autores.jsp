@@ -68,7 +68,8 @@
               </a>
             </li>
             <li>
-              <a id="eliminar-autor-link" href="#" title="${i18n['libros.eliminarAutor']}">
+              <c:url var="url" value="/admin/autores?accion=eliminar" />
+              <a id="eliminar-autor-link" href="${url}" title="${i18n['libros.eliminarAutor']}">
                 ${i18n['libros.eliminarAutor']}
                 <c:url var="url" value="/images/minus-circle-frame.png" />
                 <img src="${url}" alt="[minus-circle-frame.png]" />
@@ -84,6 +85,12 @@
             <div class="alert-message ${mensajes['autor-salvar-resultado'].claseMensaje} ">
               <a class="close" href="#">×</a>
               ${mensajes['autor-salvar-resultado'].detalle}
+            </div>
+          </c:if>
+          <c:if test="${not empty mensajes['autor-eliminar-resultado']}">
+            <div class="alert-message ${mensajes['autor-eliminar-resultado'].claseMensaje} ">
+              <a class="close" href="#">×</a>
+              ${mensajes['autor-eliminar-resultado'].detalle}
             </div>
           </c:if>
           <h2>${i18n['libros.autores']}</h2>

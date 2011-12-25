@@ -55,4 +55,9 @@ public class AutoresServicioImpl implements AutoresServicio {
     autorDao.actualizarAutor(autor);
     return true;
   }
+
+  public boolean borrarAutor(Long idAutor) {
+    autorDao.eliminarAutor(idAutor);
+    return true;
+  }
 }

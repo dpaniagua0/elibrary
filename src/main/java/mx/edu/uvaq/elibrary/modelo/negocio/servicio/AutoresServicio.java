@@ -20,4 +20,6 @@ public interface AutoresServicio {
   public boolean registrarAutor(Autor autor);
   
   public boolean modificarAutor(Autor autor);
+
+  public boolean borrarAutor(Long idAutor);
 }
