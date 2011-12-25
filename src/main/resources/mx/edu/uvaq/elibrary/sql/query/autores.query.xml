@@ -32,7 +32,12 @@
   </entry>
   <entry key="autores.query.encontrarAutor">
     <![CDATA[
-     SELECT a.nombre, a.apellidos FROM Autor a WHERE a.`nombre` = :nombre ORDER BY a.nombre
+     SELECT a.nombre, a.apellidos FROM Autor a WHERE a.`id` = :id
+    ]]>
+  </entry>
+  <entry key="autores.query.actualizarAutor">
+    <![CDATA[
+     UPDATE Autor SET nombre = :nombre, apellidos = :apellidos WHERE `id` = :id
     ]]>
   </entry>
 </properties>

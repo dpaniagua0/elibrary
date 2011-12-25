@@ -17,7 +17,9 @@ public interface AutorDao {
 
   List<Autor> encontrarAutores();
 
-  public Autor encontrarAutor(String nombre);
+  public Autor encontrarAutorPorId(Long idAutor);
 
-  public void insertatAutor(Autor autor);
+  public void insertarAutor(Autor autor);
+
+  public void actualizarAutor(Autor autor);
 }

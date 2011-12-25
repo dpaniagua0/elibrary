@@ -89,7 +89,7 @@
                 <td><label for="autor">Autor</label></td>
                 <td>
                   <input id="autor" name="nombre" type="text" value="${modelo.autor.nombre}"/>
-                  <input name="id_autor" type="hidden"/>
+                  <input name="id" type="hidden" value="${modelo.autor.id}"/>
                 </td>
               </tr>
               <tr>

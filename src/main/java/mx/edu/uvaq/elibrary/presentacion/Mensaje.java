@@ -17,22 +17,6 @@ public class Mensaje {
   private Mensaje() {
   }
 
-  public static Mensaje getWarningmensaje(String resumen, String mensaje) {
-    Mensaje warningmensaje = new Mensaje();
-    warningmensaje.setSeveridad(TipoMensaje.WARNING);
-    warningmensaje.setResumen(resumen);
-    warningmensaje.setDetalle(mensaje);
-
-    return warningmensaje;
-  }
-
-  public static Mensaje crearMensajeError(String resumen, String mensaje) {
-    Mensaje mensajeError = crearMensaje(resumen, mensaje);
-    mensajeError.setSeveridad(TipoMensaje.ERROR);
-
-    return mensajeError;
-  }
-
   public static Mensaje crearMensajeInformacion(String resumen, String mensaje) {
     Mensaje mensajeInformacion = crearMensaje(resumen, mensaje);
     mensajeInformacion.setSeveridad(TipoMensaje.INFO);
@@ -53,6 +37,20 @@ public class Mensaje {
     successmensaje.setDetalle(detalle);
 
     return successmensaje;
+  }
+  
+  public static Mensaje crearMensajeAdvertencia(String resumen, String mensaje) {
+    Mensaje mensajeAdvertencia = crearMensaje(resumen, mensaje);
+    mensajeAdvertencia.setSeveridad(TipoMensaje.WARNING);
+
+    return mensajeAdvertencia;
+  }
+
+  public static Mensaje crearMensajeError(String resumen, String mensaje) {
+    Mensaje mensajeError = crearMensaje(resumen, mensaje);
+    mensajeError.setSeveridad(TipoMensaje.ERROR);
+
+    return mensajeError;
   }
 
   public String getDetalle() {

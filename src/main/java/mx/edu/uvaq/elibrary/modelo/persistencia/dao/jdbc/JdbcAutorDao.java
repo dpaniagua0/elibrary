@@ -40,21 +40,31 @@ public class JdbcAutorDao extends QuerysNamedParameterJdbcDaoSupport implements 
     return autores;
   }
 
-  public Autor encontrarAutor(String nombre) {
+  public Autor encontrarAutorPorId(Long idAutor) {
     String query = querys.get("autores.query.encontrarAutor");
     Map<String, Object> queryParams = new HashMap<String, Object>();
-    queryParams.put("nombre", nombre);
+    queryParams.put("id", idAutor);
     Autor autor = null;
     try {
       autor = (Autor) getNamedParameterJdbcTemplate().queryForObject(query, queryParams, autorRowMapper);
+      autor.setId(idAutor.intValue());
     } catch (EmptyResultDataAccessException dae) {
     }
     return autor;
   }
 
-  public void insertatAutor(Autor autor) {
+  public void insertarAutor(Autor autor) {
     String query = querys.get("autores.query.insertarAutor");
     Map<String, Object> queryParams = new HashMap<String, Object>();
+    queryParams.put("nombre", autor.getNombre());
+    queryParams.put("apellidos", autor.getApellidos());
+    getNamedParameterJdbcTemplate().update(query, queryParams);
+  }
+
+  public void actualizarAutor(Autor autor) {
+    String query = querys.get("autores.query.actualizarAutor");
+    Map<String, Object> queryParams = new HashMap<String, Object>();
+    queryParams.put("id", autor.getId());
     queryParams.put("nombre", autor.getNombre());
     queryParams.put("apellidos", autor.getApellidos());
     getNamedParameterJdbcTemplate().update(query, queryParams);

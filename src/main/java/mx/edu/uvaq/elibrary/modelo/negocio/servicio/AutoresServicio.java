@@ -13,9 +13,11 @@ import mx.edu.uvaq.elibrary.modelo.entidades.Autor;
  */
 public interface AutoresServicio {
 
-  List<Autor> encontrarAutores();
+  List<Autor> getAutores();
 
-  public Autor encontrarAutor();
+  public Autor getAutorPorId(Long idAutor);
 
   public boolean registrarAutor(Autor autor);
+  
+  public boolean modificarAutor(Autor autor);
 }

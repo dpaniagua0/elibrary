@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import mx.edu.uvaq.elibrary.modelo.entidades.Autor;
 import mx.edu.uvaq.elibrary.modelo.negocio.servicio.AutoresServicio;
 import mx.edu.uvaq.elibrary.presentacion.Mensaje;
+import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
@@ -41,20 +42,22 @@ public class AutoresControlador extends AbstractControlador {
   public void ejecutarAccion(String accion) {
     if ("listar".equals(accion)) {
       listarAutores();
-    } else if ("crear".equals(accion)){
+    } else if ("crear".equals(accion)) {
       crearAutor();
     } else if ("salvar".equals(accion)) {
       salvarAutor();
+    } else if ("editar".equals(accion)) {
+      editarAutor();
     }
   }
-  
+
   @Override
   public void ejecutarAccionDefecto() {
     listarAutores();
   }
 
   private void listarAutores() {
-    List<Autor> autores = autoresServicio.encontrarAutores();
+    List<Autor> autores = autoresServicio.getAutores();
     Map<String, Object> modelo = new HashMap<String, Object>();
     modelo.put("autores", autores);
     desplegarVista(VISTA_AUTORES, modelo);
@@ -70,13 +73,39 @@ public class AutoresControlador extends AbstractControlador {
     Autor autor = new Autor();
     autor.setNombre(getRequest().getParameter("nombre"));
     autor.setApellidos(getRequest().getParameter("apellidos"));
-    if (autoresServicio.registrarAutor(autor)) {
-      String mensajeAutorSalvado = String.format("El autor %s, ha sido guardado con éxito.", autor.getNombreCompleto());
-      agregarMensaje("autor-salvar-resultado", Mensaje.crearMensajeExito(null, mensajeAutorSalvado));
+    Long idAutor = NumberUtils.toLong(getRequest().getParameter("id"));
+    if (idAutor > 0) {
+      autor.setId(idAutor.intValue());
+      if (autoresServicio.modificarAutor(autor)) {
+        String mensajeAutorSalvado = String.format("El autor %s, ha sido modificado con éxito.", autor.getNombreCompleto());
+        agregarMensaje("autor-salvar-resultado", Mensaje.crearMensajeExito(null, mensajeAutorSalvado));
+      } else {
+        String mensajeErrorSalvar = String.format("No se pudo modificar al autor %s.", autor.getNombreCompleto());
+        agregarMensaje("autor-salvar-resultado", Mensaje.crearMensajeError(null, mensajeErrorSalvar));
+      }
+      listarAutores();
     } else {
-      String mensajeErrorSalvar = String.format("No se pudo guaradar al autor %s.", autor.getNombreCompleto());
-      agregarMensaje("autor-salvar-resultado", Mensaje.crearMensajeError(null, mensajeErrorSalvar));
+      if (autoresServicio.registrarAutor(autor)) {
+        String mensajeAutorSalvado = String.format("El autor %s, ha sido registrado con éxito.", autor.getNombreCompleto());
+        agregarMensaje("autor-salvar-resultado", Mensaje.crearMensajeExito(null, mensajeAutorSalvado));
+      } else {
+        String mensajeErrorSalvar = String.format("No se pudo registrar al autor %s.", autor.getNombreCompleto());
+        agregarMensaje("autor-salvar-resultado", Mensaje.crearMensajeError(null, mensajeErrorSalvar));
+      }
+      crearAutor();
     }
-    crearAutor();
+  }
+
+  private void editarAutor() {
+    System.out.println("Accion editar");
+    Long idAutor = Long.valueOf(getRequest().getParameter("id"));
+    System.out.println(idAutor);
+    Autor autor = autoresServicio.getAutorPorId(idAutor);
+    System.out.println(autor);
+    if (autor != null) {
+      Map<String, Object> modelo = new HashMap<String, Object>();
+      modelo.put("autor", autor);
+      desplegarVista(VISTA_CREAR_AUTOR, modelo);
+    }
   }
 }

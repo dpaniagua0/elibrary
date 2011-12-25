@@ -25,29 +25,34 @@ public class AutoresServicioImpl implements AutoresServicio {
     this.autorDao = autorDao;
   }
 
-  public List<Autor> encontrarAutores() {
+  public List<Autor> getAutores() {
     return autorDao.encontrarAutores();
   }
 
-  public Autor encontrarAutor() {
-    throw new UnsupportedOperationException("Not supported yet.");
+  public Autor getAutorPorId(Long idAutor) {
+    return autorDao.encontrarAutorPorId(idAutor);
   }
 
   public boolean registrarAutor(Autor nuevoAutor) {
     if (validarNuevoUsuario(nuevoAutor)) {
-      autorDao.insertatAutor(nuevoAutor);
+      autorDao.insertarAutor(nuevoAutor);
       return true;
     }
     return false;
   }
 
   public boolean existeUsuario(Autor autor) {
-    Autor usuario = autorDao.encontrarAutor(autor.getNombre());
+    Autor usuario = autorDao.encontrarAutorPorId(null);
 
     return usuario != null;
   }
 
   private boolean validarNuevoUsuario(Autor nuevoUsuario) {
     return !existeUsuario(nuevoUsuario);
+  }
+
+  public boolean modificarAutor(Autor autor) {
+    autorDao.actualizarAutor(autor);
+    return true;
   }
 }
