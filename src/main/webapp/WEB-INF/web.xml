@@ -6,6 +6,7 @@
             classpath:/mx/edu/uvaq/elibrary/spring/application-beans.xml
             classpath:/mx/edu/uvaq/elibrary/spring/application-dao.xml
             classpath:/mx/edu/uvaq/elibrary/spring/application-service.xml
+            classpath:/mx/edu/uvaq/elibrary/spring/application-web.xml
     </param-value>
     </context-param>
     <!--    <context-param>
@@ -37,14 +38,6 @@
     <servlet>
         <servlet-name>vista-usuarios</servlet-name>
         <jsp-file>/WEB-INF/jsp/admin/usuarios.jsp</jsp-file>
-    </servlet>
-    <servlet>
-        <servlet-name>vista-autores</servlet-name>
-        <jsp-file>/WEB-INF/jsp/admin/autores.jsp</jsp-file>
-    </servlet>
-    <servlet>
-        <servlet-name>vista-crear-autor</servlet-name>
-        <jsp-file>/WEB-INF/jsp/admin/autores/crear.jsp</jsp-file>
     </servlet>
     <servlet>
         <servlet-name>vista-editoriales</servlet-name>
@@ -99,14 +92,6 @@
         <url-pattern>/inicio</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>controlador-autores</servlet-name>
-        <servlet-class>mx.edu.uvaq.elibrary.presentacion.controlador.AutoresController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>controlador-autores</servlet-name>
-        <url-pattern>/admin/autores</url-pattern>
-    </servlet-mapping>
-    <servlet>
         <servlet-name>controlador-categorias</servlet-name>
         <servlet-class>mx.edu.uvaq.elibrary.presentacion.controlador.CategoriasControlador</servlet-class>
     </servlet>
@@ -144,7 +129,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ElibraryFrontController</servlet-name>
-        <url-pattern>/admin/autores</url-pattern>
+        <url-pattern>/admin/autores/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

@@ -1,7 +1,7 @@
 <%-- 
-    Document   : crear
-    Created on : Dec 23, 2011, 1:58:24 PM
-    Author     : arcesino
+    Document   : autores
+    Created on : Jun 5, 2011, 9:46:10 PM
+    Author     : daniel
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -32,6 +32,7 @@
     <script type="text/javascript" src="${rutaContexto}/js/libros.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-modal.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-dropdown.js"></script>
+    <script type="text/javascript" src="${rutaContexto}/js/autores.js"></script>
     <script type="text/javascript">
       $(function() {
         UVAQ.eLibrary.estilizarTabla();
@@ -51,21 +52,24 @@
           <h5>${i18n['libros.acciones']}</h5>
           <ul>
             <li>
-              <a id="agregar-autor-link" href="#" title="${i18n['libros.agregarAutor']}">
+              <c:url var="url" value="/admin/autores/crear" />
+              <a id="agregar-autor-link" href="${url}" title="${i18n['libros.agregarAutor']}">
                 ${i18n['libros.agregarAutor']}
                 <c:url var="url" value="/images/plus-circle-frame.png" />
                 <img src="${url}" alt="[plus-circle-frama.png]" />
               </a>
             </li>
             <li>
-              <a id="editar-autor-link" href="#" title="${i18n['libros.editarAutor']}">
+              <c:url var="url" value="/admin/autores/editar" />
+              <a id="editar-autor-link" href="${url}" title="${i18n['libros.editarAutor']}">
                 ${i18n['libros.editarAutor']}
                 <c:url var="url" value="/images/pencil.png" />
                 <img src="${url}" alt="[pencil.png]"/>
               </a>
             </li>
             <li>
-              <a id="eliminar-autor-link" href="#" title="${i18n['libros.eliminarAutor']}">
+              <c:url var="url" value="/admin/autores/eliminar" />
+              <a id="eliminar-autor-link" href="${url}" title="${i18n['libros.eliminarAutor']}">
                 ${i18n['libros.eliminarAutor']}
                 <c:url var="url" value="/images/minus-circle-frame.png" />
                 <img src="${url}" alt="[minus-circle-frame.png]" />
@@ -74,22 +78,85 @@
           </ul>
         </div>
       </div>
-      <div class="content hero-unit">
-        <c:if test="${not empty mensajes['autor-salvar-resultado']}">
-          <div class="alert-message ${mensajes['autor-salvar-resultado'].claseMensaje} ">
-            <a class="close" href="#">×</a>
-            ${mensajes['autor-salvar-resultado'].detalle}
+      <div class="content">
+        <!-- Main hero unit for a primary marketing message or call to action -->
+        <div class="hero-unit">
+          <c:if test="${not empty mensajes['autor-salvar-resultado']}">
+            <div class="alert-message ${mensajes['autor-salvar-resultado'].claseMensaje} ">
+              <a class="close" href="#">×</a>
+              ${mensajes['autor-salvar-resultado'].detalle}
+            </div>
+          </c:if>
+          <c:if test="${not empty mensajes['autor-eliminar-resultado']}">
+            <div class="alert-message ${mensajes['autor-eliminar-resultado'].claseMensaje} ">
+              <a class="close" href="#">×</a>
+              ${mensajes['autor-eliminar-resultado'].detalle}
+            </div>
+          </c:if>
+          <h2>${i18n['libros.autores']}</h2>
+          <div class="row" style="text-align: center;">
+            <div class="span12">
+              <form>
+                <fieldset>
+                  <div class="span14 clearfix">
+                    <select class="small" name="criterio">
+                      <option value="1">${i18n['etiquetas.nombre']}</option>
+                      <option value="2">${i18n['etiquetas.apellidos']}</option>
+                    </select>
+                    <input class="xxlarge busqueda" id="busqueda" name="busqueda" type="text"/>
+                    <input class="small"  name="buscar" value="${i18n['etiquetas.buscar']}" type="submit" />
+                  </div>
+                </fieldset>
+              </form>    
+            </div>
           </div>
-        </c:if>
+          <c:choose>
+            <c:when test="${not empty autores}">
+              <table  class="tabla-datos bordered-table">
+                <thead>
+                  <tr>
+                    <th class="columna-checkbox"><input type="checkbox"/></th>
+                    <th class="columna-id">ID</th>
+                    <th>
+                      Autor
+                    </th>
+                    <th>
+                      Apellidos
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <c:forEach items="${autores}" var="autor">
+                    <tr class="alt">
+                      <td class="columna-checkbox"><input type="checkbox" /></td>
+                      <td class="columna-id">${autor.id}</td>
+                      <td>${autor.nombre}</td>
+                      <td>${autor.apellidos}</td>
+                    </tr>
+                  </c:forEach>
+                </tbody>
+              </table>
+            </c:when>
+            <c:otherwise>
+              <div>
+                ${i18n['libros.mensajes.noHayAutores']}
+              </div>
+            </c:otherwise>
+          </c:choose>
+        </div>
+      </div>
+    </div>
+    <c:if test="${not empty modelo.autor}">
+      <div id="info-autores" title="Nuevo autor" class="ui-helper-hidden">
         <c:url var="url" value="/admin/autores" />
-        <form action="${url}" method="POST">
+        <form action="${url}">
           <table id="autores">
             <tbody>
               <tr>
                 <td><label for="autor">Autor</label></td>
                 <td>
                   <input id="autor" name="nombre" type="text" value="${modelo.autor.nombre}"/>
-                  <input name="id" type="hidden" value="${modelo.autor.id}"/>
+                  <input name="id_autor" type="hidden"/>
                 </td>
               </tr>
               <tr>
@@ -102,12 +169,11 @@
           </table>
           <div id="borde"></div>
           <div class="panel-botones" id="autores-botones">
-            <button id="boton-nuevo-autor" name="accion" value="salvar" type="submit">Agregar</button>
-            <button id="boton-cancelar" name="accion" value="" type="submit">Cancelar</button>
+            <button id="boton-nuevo-autor" name="accion" value="agregar" type="submit">Agregar</button>
+            <button id="boton-cancelar" type="button">Cancelar</button>
           </div>
         </form>
       </div>
-    </div>
+    </c:if>
   </body>
 </html>
-

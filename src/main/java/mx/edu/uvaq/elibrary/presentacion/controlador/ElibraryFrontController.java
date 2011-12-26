@@ -6,8 +6,6 @@ package mx.edu.uvaq.elibrary.presentacion.controlador;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -83,9 +81,10 @@ public class ElibraryFrontController extends HttpServlet {
   }
   
   private AbstractController getController(String controllerURL, HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Object controllerBean = WebApplicationContextUtils.getWebApplicationContext(getServletContext()).getBean(controllerURL);
+    String controllerId = controllerURL.replace('/', '_');
+    Object controllerBean = WebApplicationContextUtils.getWebApplicationContext(getServletContext()).getBean(controllerId);
     if (controllerBean == null) {
-      response.sendError(HttpServletResponse.SC_NOT_FOUND);
+      response.sendError(HttpServletResponse.SC_NOT_FOUND, "Controlador no encontrado!");
     }
     if (!(controllerBean instanceof AbstractController)) {
       throw new RuntimeException("Matched object is not a valid controller class! " + controllerBean.getClass().getName());
@@ -102,8 +101,9 @@ public class ElibraryFrontController extends HttpServlet {
   
   private String extractControllerURL(HttpServletRequest request) {
     String uri = request.getRequestURI();
-    int lastSlashIndex = uri.lastIndexOf('/');
-    return uri.substring(0, lastSlashIndex);
+    String resourceUrl = uri.replace("/elibrary", "");
+    int lastSlashIndex = resourceUrl.lastIndexOf('/');
+    return resourceUrl.substring(0, lastSlashIndex);
   }
 
   private void executeAction(AbstractController controller, String action) {
@@ -116,7 +116,7 @@ public class ElibraryFrontController extends HttpServlet {
     Method actionMethod = ReflectionUtils.findMethod(controllerClass, action);
     if (actionMethod == null) {
       try {
-        controller.getResponse().sendError(HttpServletResponse.SC_NOT_FOUND);
+        controller.getResponse().sendError(HttpServletResponse.SC_NOT_FOUND, "Accion no encontrada!");
       } catch (IOException ex) { }
     }
     return actionMethod;

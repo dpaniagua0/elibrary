@@ -92,6 +92,7 @@ public abstract class AbstractController {
   protected void renderView(String view, Map<String, Object> model) {
     String viewUrl = buildViewURL(view);
     exportModelToRequest(model);
+    request.setAttribute("mensajes", messages);
     RequestDispatcher dispatcher = request.getRequestDispatcher(viewUrl);
     try {
       dispatcher.forward(request, response);
