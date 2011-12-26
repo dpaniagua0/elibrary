@@ -19,42 +19,15 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
  *
  * @author daniel
  */
-public class AutoresControlador extends AbstractControlador {
+public class AutoresController extends AbstractController {
 
   private AutoresServicio autoresServicio;
   private final String NOMBRE_FORMA = "autoresForma";
   private final String VISTA_AUTORES = "vista-autores";
   private final String VISTA_CREAR_AUTOR = "vista-crear-autor";
 
-  /**
-   * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-   * @param request servlet request
-   * @param response servlet response
-   * @throws ServletException if a servlet-specific error occurs
-   * @throws IOException if an I/O error occurs
-   */
   @Override
-  public void init() throws ServletException {
-    autoresServicio = (AutoresServicio) WebApplicationContextUtils.getWebApplicationContext(getServletContext()).getBean("autorServicio");
-  }
-
-  @Override
-  public void ejecutarAccion(String accion) {
-    if ("listar".equals(accion)) {
-      listarAutores();
-    } else if ("crear".equals(accion)) {
-      crearAutor();
-    } else if ("salvar".equals(accion)) {
-      salvarAutor();
-    } else if ("editar".equals(accion)) {
-      editarAutor();
-    } else if ("eliminar".equals(accion)) {
-      eliminarAutores();
-    }
-  }
-
-  @Override
-  public void ejecutarAccionDefecto() {
+  public void defaultAction() {
     listarAutores();
   }
 
@@ -62,13 +35,13 @@ public class AutoresControlador extends AbstractControlador {
     List<Autor> autores = autoresServicio.getAutores();
     Map<String, Object> modelo = new HashMap<String, Object>();
     modelo.put("autores", autores);
-    desplegarVista(VISTA_AUTORES, modelo);
+    renderView(VISTA_AUTORES, modelo);
   }
 
   private void crearAutor() {
     Map<String, Object> modelo = new HashMap<String, Object>();
     modelo.put("autor", new Autor());
-    desplegarVista(VISTA_CREAR_AUTOR, modelo);
+    renderView(VISTA_CREAR_AUTOR, modelo);
   }
 
   private void salvarAutor() {
@@ -80,19 +53,19 @@ public class AutoresControlador extends AbstractControlador {
       autor.setId(idAutor.intValue());
       if (autoresServicio.modificarAutor(autor)) {
         String mensajeAutorSalvado = String.format("El autor %s, ha sido modificado con éxito.", autor.getNombreCompleto());
-        agregarMensaje("autor-salvar-resultado", Mensaje.crearMensajeExito(null, mensajeAutorSalvado));
+        addMessage("autor-salvar-resultado", Mensaje.crearMensajeExito(null, mensajeAutorSalvado));
       } else {
         String mensajeErrorSalvar = String.format("No se pudo modificar al autor %s.", autor.getNombreCompleto());
-        agregarMensaje("autor-salvar-resultado", Mensaje.crearMensajeError(null, mensajeErrorSalvar));
+        addMessage("autor-salvar-resultado", Mensaje.crearMensajeError(null, mensajeErrorSalvar));
       }
       listarAutores();
     } else {
       if (autoresServicio.registrarAutor(autor)) {
         String mensajeAutorSalvado = String.format("El autor %s, ha sido registrado con éxito.", autor.getNombreCompleto());
-        agregarMensaje("autor-salvar-resultado", Mensaje.crearMensajeExito(null, mensajeAutorSalvado));
+        addMessage("autor-salvar-resultado", Mensaje.crearMensajeExito(null, mensajeAutorSalvado));
       } else {
         String mensajeErrorSalvar = String.format("No se pudo registrar al autor %s.", autor.getNombreCompleto());
-        agregarMensaje("autor-salvar-resultado", Mensaje.crearMensajeError(null, mensajeErrorSalvar));
+        addMessage("autor-salvar-resultado", Mensaje.crearMensajeError(null, mensajeErrorSalvar));
       }
       crearAutor();
     }
@@ -104,7 +77,7 @@ public class AutoresControlador extends AbstractControlador {
     if (autor != null) {
       Map<String, Object> modelo = new HashMap<String, Object>();
       modelo.put("autor", autor);
-      desplegarVista(VISTA_CREAR_AUTOR, modelo);
+      renderView(VISTA_CREAR_AUTOR, modelo);
     }
   }
 
@@ -115,7 +88,7 @@ public class AutoresControlador extends AbstractControlador {
       autoresServicio.borrarAutor(id);
     }
     String mensajeErrorSalvar = String.format("Los autores han sido eliminados.");
-    agregarMensaje("autor-eliminar-resultado", Mensaje.crearMensajeExito(null, mensajeErrorSalvar));
+    addMessage("autor-eliminar-resultado", Mensaje.crearMensajeExito(null, mensajeErrorSalvar));
     listarAutores();
   }
 }
