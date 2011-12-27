@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+import mx.edu.uvaq.elibrary.presentacion.FlashScope;
 
 /**
  *
@@ -51,9 +52,9 @@ public class FlashScopeFilter implements Filter {
       Enumeration e = httpRequest.getAttributeNames();
       while (e.hasMoreElements()) {
         String paramName = (String) e.nextElement();
-        if (paramName.startsWith("flash.")) {
+        if (paramName.startsWith(FlashScope.FLASH_ATTRIBUTE_PREFIX)) {
           Object value = request.getAttribute(paramName);
-          paramName = paramName.substring(6, paramName.length());
+          paramName = paramName.substring(FlashScope.FLASH_ATTRIBUTE_PREFIX.length());
           flashParams.put(paramName, value);
         }
       }

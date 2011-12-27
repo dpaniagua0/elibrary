@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import mx.edu.uvaq.elibrary.presentacion.FlashScope;
 import mx.edu.uvaq.elibrary.presentacion.Mensaje;
 
 /**
@@ -20,6 +21,15 @@ public abstract class AbstractController {
 
   protected HttpServletRequest request;
   protected HttpServletResponse response;
+  protected FlashScope flash;
+
+  public FlashScope getFlash() {
+    return flash;
+  }
+
+  public void setFlash(FlashScope flash) {
+    this.flash = flash;
+  }
   
   private Map<String, Mensaje> messages;
   

@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import mx.edu.uvaq.elibrary.presentacion.FlashScope;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -96,6 +97,7 @@ public class ElibraryFrontController extends HttpServlet {
   private AbstractController initController(AbstractController controller, HttpServletRequest request, HttpServletResponse response) {
     controller.setRequest(request);
     controller.setResponse(response);
+    controller.setFlash(new FlashScope(request));
     return controller;
   }
   
