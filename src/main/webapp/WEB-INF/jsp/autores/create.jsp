@@ -51,20 +51,23 @@
           <h5>${i18n['libros.acciones']}</h5>
           <ul>
             <li>
-              <a id="agregar-autor-link" href="#" title="${i18n['libros.agregarAutor']}">
+              <c:url var="url" value="/admin/autores/crear"/>
+              <a id="agregar-autor-link" href="${url}" title="${i18n['libros.agregarAutor']}">
                 ${i18n['libros.agregarAutor']}
                 <c:url var="url" value="/images/plus-circle-frame.png" />
                 <img src="${url}" alt="[plus-circle-frama.png]" />
               </a>
             </li>
             <li>
-              <a id="editar-autor-link" href="#" title="${i18n['libros.editarAutor']}">
+              <c:url var="url" value="/admin/autores/editar"/>
+              <a id="editar-autor-link" href="${url}" title="${i18n['libros.editarAutor']}">
                 ${i18n['libros.editarAutor']}
                 <c:url var="url" value="/images/pencil.png" />
                 <img src="${url}" alt="[pencil.png]"/>
               </a>
             </li>
             <li>
+              <c:url var="url" value="/admin/autores/eliminar"/>
               <a id="eliminar-autor-link" href="#" title="${i18n['libros.eliminarAutor']}">
                 ${i18n['libros.eliminarAutor']}
                 <c:url var="url" value="/images/minus-circle-frame.png" />

@@ -51,21 +51,24 @@
           <h5>${i18n['libros.acciones']}</h5>
           <ul>
             <li>
-              <a id="agregar-editorial-link" href="#" title="${i18n['libros.agregarEditorial']}">
+              <c:url var="url" value="/admin/editoriales/crear"/>
+              <a id="agregar-editorial-link" href="${url}" title="${i18n['libros.agregarEditorial']}">
                 ${i18n['libros.agregarEditorial']}
                 <c:url var="url" value="/images/plus-circle-frame.png" />
                 <img src="${url}" alt="[plus-circle-frama.png]" />
               </a>
             </li>
             <li>
-              <a id="editar-editorial-link" href="#" title="${i18n['libros.editarEditorial']}">
+              <c:url var="url" value="/admin/editoriales/editar"/>
+              <a id="editar-editorial-link" href="${url}" title="${i18n['libros.editarEditorial']}">
                 ${i18n['libros.editarEditorial']}
                 <c:url var="url" value="/images/pencil.png" />
                 <img src="${url}" alt="[pencil.png]"/>
               </a>
             </li>
             <li>
-              <a id="eliminar-editorial-link" href="#" title="${i18n['libros.eliminarEditorial']}">
+              <c:url var="url" value="/admin/editoriales/eliminar"/>
+              <a id="eliminar-editorial-link" href="${url}" title="${i18n['libros.eliminarEditorial']}">
                 ${i18n['libros.eliminarEditorial']}
                 <c:url var="url" value="/images/minus-circle-frame.png" />
                 <img src="${url}" alt="[minus-circle-frame.png]" />
