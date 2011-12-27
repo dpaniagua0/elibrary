@@ -7,11 +7,15 @@ package mx.edu.uvaq.elibrary.presentacion.controlador;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mx.edu.uvaq.elibrary.presentacion.FlashScope;
 import mx.edu.uvaq.elibrary.presentacion.Mensaje;
+import mx.edu.uvaq.elibrary.presentacion.exception.RedirectIOException;
+import mx.edu.uvaq.elibrary.presentacion.exception.RenderIOException;
 
 /**
  *
@@ -30,17 +34,17 @@ public abstract class AbstractController {
   public void setFlash(FlashScope flash) {
     this.flash = flash;
   }
-  
   private Map<String, Mensaje> messages;
-  
-  public AbstractController () {
+
+  public AbstractController() {
     messages = new HashMap<String, Mensaje>();
   }
-  
+
   protected void defaultAction() {
     try {
       response.getWriter().println("I'm the default action. Overwrite me!");
-    } catch (IOException ex) {}
+    } catch (IOException ex) {
+    }
   }
 
   public HttpServletRequest getRequest() {
@@ -66,39 +70,39 @@ public abstract class AbstractController {
   protected void addMessage(String key, Mensaje message) {
     messages.put(key, message);
   }
-  
+
   protected void addSuccessMessage(String key, String message) {
     addSuccessMessage(key, null, message);
   }
-  
+
   protected void addSuccessMessage(String key, String summary, String detail) {
     messages.put(key, Mensaje.crearMensajeExito(summary, detail));
   }
-  
+
   protected void addInfoMessage(String key, String message) {
     addInfoMessage(key, null, message);
   }
-  
+
   protected void addInfoMessage(String key, String summary, String detail) {
     messages.put(key, Mensaje.crearMensajeInformacion(summary, detail));
   }
-  
+
   protected void addWarningMessage(String key, String message) {
     addWarninigMessage(key, null, message);
   }
-  
+
   protected void addWarninigMessage(String key, String summary, String detail) {
     messages.put(key, Mensaje.crearMensajeAdvertencia(summary, detail));
   }
-  
+
   protected void addErrorMessage(String key, String message) {
     addErrorMessage(key, null, message);
   }
-  
+
   protected void addErrorMessage(String key, String summary, String detail) {
     messages.put(key, Mensaje.crearMensajeError(summary, detail));
   }
-  
+
   protected void renderView(String view, Map<String, Object> model) {
     String viewUrl = buildViewURL(view);
     exportModelToRequest(model);
@@ -126,8 +130,25 @@ public abstract class AbstractController {
   }
 
   private void exportModelToRequest(Map<String, Object> model) {
-    for(Map.Entry<String, Object> entry : model.entrySet()) {
+    for (Map.Entry<String, Object> entry : model.entrySet()) {
       request.setAttribute(entry.getKey(), entry.getValue());
     }
+  }
+
+  protected void redirect(String url) {
+    try {
+      response.sendRedirect(request.getContextPath() + "/dummy/action2");
+    } catch (IOException ex) {
+      throw new RedirectIOException();
+    }
+  }
+
+  protected void render(Object content) {
+    try {
+      response.getWriter().println(content.toString());
+    } catch (IOException ex) {
+     throw new RenderIOException();
+     }
+
   }
 }
