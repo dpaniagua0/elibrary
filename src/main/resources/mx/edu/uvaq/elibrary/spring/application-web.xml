@@ -7,4 +7,7 @@
   <bean id="_admin_autores" class="mx.edu.uvaq.elibrary.presentacion.controlador.AutoresController" scope="prototype">
     <property name="autoresServicio" ref="autorServicio"/>
   </bean>
+   <bean id="_admin_editoriales" class="mx.edu.uvaq.elibrary.presentacion.controlador.EditorialesController" scope="prototype">
+    <property name="editorialesServicio" ref="editorialServicio"/>
+  </bean>
 </beans>

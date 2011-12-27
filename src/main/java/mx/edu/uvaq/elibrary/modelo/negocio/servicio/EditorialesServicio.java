@@ -13,7 +13,13 @@ import mx.edu.uvaq.elibrary.modelo.entidades.Editorial;
  */
 public interface EditorialesServicio {
 
-  List<Editorial> encontrarEditoriales();
+  List<Editorial> getEditoriales();
 
   public boolean registrarEditorial(Editorial editorial);
+
+  public Editorial getEditorialPorId(Long ideditorial);
+
+  public boolean borrarEditorial(Long id);
+
+  public boolean modificarEditorial(Editorial editorial);
 }

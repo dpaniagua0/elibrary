@@ -11,8 +11,8 @@
 <c:url var="urlInicio" value="/inicio" />
 <c:url var="urlUsuario" value="/admin/usuarios" />
 <c:url var="urlCategoria" value="/admin/categorias" />
-<c:url var="urlAutor" value="/admin/autores" />
-<c:url var="urlEditorial" value="/admin/editoriales" />
+<c:url var="urlAutor" value="/admin/autores/listar" />
+<c:url var="urlEditorial" value="/admin/editoriales/listar" />
 <c:url var="urlSesion" value="/inicio/cerrar-sesion" />
 <div class="topbar">
   <div id="topbar-example" class="topbar" data-dropdown="dropdown">

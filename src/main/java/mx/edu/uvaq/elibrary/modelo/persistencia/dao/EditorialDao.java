@@ -19,6 +19,10 @@ public interface EditorialDao {
   List<Editorial> encontrarEditoriales();
 
   public void insertarEditorial(Editorial editorial);
+  
+  public void actualizarEditorial(Editorial editorial);
+  
+  public void eliminarEditorial(Long idEditorial);
 
-  public Editorial encontrarEditorial(String nombre);
+  public Editorial encontrarEditorialPorId(Long idEditorial);
 }

@@ -27,14 +27,22 @@
   </entry>
   <entry key="editoriales.query.insertarEditorial">
     <![CDATA[
-      INSERT INTO
-        Editorial (nombre)
-      VALUES (:nombre)
+      INSERT INTO Editorial (nombre) VALUES (:nombre)
     ]]>
   </entry>
   <entry key="editoriales.query.encontrarEditorial">
     <![CDATA[
-    SELECT e.id,e.nombre FROM Editorial e WHERE e.nombre = :nombre ORDER BY e.nombre
+    SELECT e.id, e.nombre FROM Editorial e WHERE e.`id` = :id
+    ]]>
+  </entry>
+  <entry key="autores.query.actualizarAutor">
+    <![CDATA[
+     UPDATE Editorial SET nombre = :nombre WHERE `id` = :id
+    ]]>
+  </entry>
+  <entry key="editoriales.query.eliminarEditorial">
+    <![CDATA[
+      DELETE FROM Editoriales where `id` = :id 
     ]]>
   </entry>
 </properties>

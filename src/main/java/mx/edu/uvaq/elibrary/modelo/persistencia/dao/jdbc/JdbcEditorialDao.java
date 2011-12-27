@@ -47,13 +47,29 @@ public class JdbcEditorialDao extends QuerysNamedParameterJdbcDaoSupport impleme
     getNamedParameterJdbcTemplate().update(query, queryParams);
   }
 
-  public Editorial encontrarEditorial(String nombre) {
+  public void actualizarEditorial(Editorial editorial) {
+    String query = querys.get("editoriales.query.actualizarEditorial");
+    Map<String, Object> queryParams = new HashMap<String, Object>();
+    queryParams.put("id", editorial.getId());
+    queryParams.put("nombre", editorial.getNombre());
+    getNamedParameterJdbcTemplate().update(query, queryParams);
+  }
+
+  public void eliminarEditorial(Long idEditorial) {
+    String query = querys.get("editoriales.query.eliminarEditorial");
+    Map<String, Object> queryParams = new HashMap<String, Object>();
+    queryParams.put("id", idEditorial);
+    getNamedParameterJdbcTemplate().update(query, queryParams);
+  }
+
+  public Editorial encontrarEditorialPorId(Long idEditorial) {
     String query = querys.get("editoriales.query.encontrarEditorial");
     Map<String, Object> queryParams = new HashMap<String, Object>();
-    queryParams.put("nombre", nombre);
+    queryParams.put("id", idEditorial);
     Editorial editorial = null;
     try {
       editorial = (Editorial) getNamedParameterJdbcTemplate().queryForObject(query, queryParams, editorialRowMapper);
+      editorial.setId(idEditorial.intValue());
     } catch (EmptyResultDataAccessException dae) {
     }
     return editorial;

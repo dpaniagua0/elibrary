@@ -25,7 +25,7 @@ public class EditorialesServicioImpl implements EditorialesServicio {
     this.editorialDao = editorialDao;
   }
 
-  public List<Editorial> encontrarEditoriales() {
+  public List<Editorial> getEditoriales() {
     return editorialDao.encontrarEditoriales();
   }
 
@@ -38,11 +38,25 @@ public class EditorialesServicioImpl implements EditorialesServicio {
   }
 
   public boolean existeEditorial(Editorial nuevaEditorial) {
-    Editorial editorial = editorialDao.encontrarEditorial(nuevaEditorial.getNombre());
+    Editorial editorial = editorialDao.encontrarEditorialPorId(null);
     return editorial != null;
   }
 
   private boolean validarNuevaEditorial(Editorial nuevaEditorial) {
     return !existeEditorial(nuevaEditorial);
+  }
+
+  public Editorial getEditorialPorId(Long idEditorial) {
+    return editorialDao.encontrarEditorialPorId(idEditorial);
+  }
+
+  public boolean borrarEditorial(Long idEditorial) {
+    editorialDao.eliminarEditorial(idEditorial);
+    return true;
+  }
+
+  public boolean modificarEditorial(Editorial editorial) {
+    editorialDao.actualizarEditorial(editorial);
+    return true;
   }
 }
