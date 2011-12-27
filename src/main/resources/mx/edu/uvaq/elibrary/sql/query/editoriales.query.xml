@@ -42,7 +42,7 @@
   </entry>
   <entry key="editoriales.query.eliminarEditorial">
     <![CDATA[
-      DELETE FROM Editoriales where `id` = :id 
+      DELETE FROM Editorial where `id` = :id 
     ]]>
   </entry>
 </properties>

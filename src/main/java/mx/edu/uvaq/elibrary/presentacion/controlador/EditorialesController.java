@@ -49,8 +49,8 @@ public class EditorialesController extends AbstractController {
     if (ideditorial > 0) {
       editorial.setId(ideditorial.intValue());
       if (editorialesServicio.modificarEditorial(editorial)) {
-        String mensajeeditorialSalvado = String.format("El editorial %s, ha sido modificado con éxito.", editorial.getNombre());
-        addMessage("editorial-salvar-resultado", Mensaje.crearMensajeExito(null, mensajeeditorialSalvado));
+        String mensajeEditorialSalvado = String.format("El editorial %s, ha sido modificado con éxito.", editorial.getNombre());
+        addMessage("editorial-salvar-resultado", Mensaje.crearMensajeExito(null, mensajeEditorialSalvado));
       } else {
         String mensajeErrorSalvar = String.format("No se pudo modificar al editorial %s.", editorial.getNombre());
         addMessage("editorial-salvar-resultado", Mensaje.crearMensajeError(null, mensajeErrorSalvar));
@@ -58,8 +58,8 @@ public class EditorialesController extends AbstractController {
       listar();
     } else {
       if (editorialesServicio.registrarEditorial(editorial)) {
-        String mensajeeditorialSalvado = String.format("El editorial %s, ha sido registrado con éxito.", editorial.getNombre());
-        addMessage("editorial-salvar-resultado", Mensaje.crearMensajeExito(null, mensajeeditorialSalvado));
+        String mensajeEditorialSalvado = String.format("El editorial %s, ha sido registrado con éxito.", editorial.getNombre());
+        addMessage("editorial-salvar-resultado", Mensaje.crearMensajeExito(null, mensajeEditorialSalvado));
       } else {
         String mensajeErrorSalvar = String.format("No se pudo registrar al editorial %s.", editorial.getNombre());
         addMessage("editorial-salvar-resultado", Mensaje.crearMensajeError(null, mensajeErrorSalvar));
@@ -79,9 +79,9 @@ public class EditorialesController extends AbstractController {
   }
 
   public void eliminar() {
-    String[] idseditoriales = getRequest().getParameterValues("id");
-    for(String ideditorial : idseditoriales) {
-      Long id = Long.valueOf(ideditorial);
+    String[] idsEditoriales = getRequest().getParameterValues("id");
+    for(String idEditorial : idsEditoriales) {
+      Long id = Long.valueOf(idEditorial);
       editorialesServicio.borrarEditorial(id);
     }
     String mensajeErrorSalvar = String.format("Los editoriales han sido eliminados.");
