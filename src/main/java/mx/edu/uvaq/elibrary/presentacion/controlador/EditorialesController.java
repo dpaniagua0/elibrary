@@ -74,7 +74,7 @@ public class EditorialesController extends AbstractController {
     if (editorial != null) {
       Map<String, Object> modelo = new HashMap<String, Object>();
       modelo.put("editorial", editorial);
-      renderView("crear", modelo);
+      renderView("create", modelo);
     }
   }
 

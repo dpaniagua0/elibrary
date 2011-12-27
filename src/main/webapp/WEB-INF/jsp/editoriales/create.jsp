@@ -91,8 +91,8 @@
               <tr>
                 <td><label for="editorial">editorial</label></td>
                 <td>
-                  <input id="editorial" name="nombre" type="text" value="${modelo.editorial.nombre}"/>
-                  <input name="id" type="hidden" value="${modelo.editorial.id}"/>
+                  <input id="editorial" name="nombre" type="text" value="${editorial.nombre}"/>
+                  <input name="id" type="hidden" value="${editorial.id}"/>
                 </td>
               </tr>
             </tbody>

@@ -88,10 +88,10 @@
       <div class="content">
         <!-- Main hero unit for a primary marketing message or call to action -->
         <div class="hero-unit">
-          <c:if test="${not empty mensajes['editorial-salvar-resultado']}">
-            <div class="alert-message ${mensajes['editorial-salvar-resultado'].claseMensaje} ">
+          <c:if test="${not empty mensajes['editorial-eliminar-resultado']}">
+            <div class="alert-message ${mensajes['editorial-eliminar-resultado'].claseMensaje} ">
               <a class="close" href="#">×</a>
-              ${mensajes['editorial-salvar-resultado'].detalle}
+              ${mensajes['editorial-eliminar-resultado'].detalle}
             </div>
           </c:if>
           <h2>${i18n['libros.editoriales']}</h2>

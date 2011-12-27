@@ -126,9 +126,6 @@
   <servlet-mapping>
     <servlet-name>ElibraryFrontController</servlet-name>
     <url-pattern>/admin/autores/*</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ElibraryFrontController</servlet-name>
     <url-pattern>/admin/editoriales/*</url-pattern>
   </servlet-mapping>
   <session-config>

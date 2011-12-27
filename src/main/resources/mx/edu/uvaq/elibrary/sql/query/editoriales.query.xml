@@ -35,7 +35,7 @@
     SELECT e.id, e.nombre FROM Editorial e WHERE e.`id` = :id
     ]]>
   </entry>
-  <entry key="autores.query.actualizarAutor">
+  <entry key="editoriales.query.actualizarEditorial">
     <![CDATA[
      UPDATE Editorial SET nombre = :nombre WHERE `id` = :id
     ]]>
