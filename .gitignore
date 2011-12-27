@@ -4,3 +4,5 @@ target/
 .classpath
 .project
 .settings
+nb-configuration.xml
+src/main/resources/rebel.xml
