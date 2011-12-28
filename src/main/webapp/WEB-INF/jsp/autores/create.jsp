@@ -16,22 +16,7 @@
 
 <html>
   <head>
-    <meta http-equiv="Cache-Control" content="no-cache"/>
-    <meta http-equiv="Pragma" content="no-cache"/>
-    <meta http-equiv="Expires" content="0"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href='${rutaContexto}/images/logo.png' rel='shortcut icon' />
-    <link rel="stylesheet" href="${rutaContexto}/css/global.css" type="text/css" />
-    <link rel="stylesheet" href="${rutaContexto}/css/bootstrap.css" type="text/css" />
-    <link rel="stylesheet" href="${rutaContexto}/js/jquery/plugins/qtip/jquery.qtip.css" type="text/css" />
-    <script type="text/javascript" src="${rutaContexto}/js/jquery/jquery.js"></script>
-    <script type="text/javascript" src="${rutaContexto}/js/jquery/ui/jquery-ui.js"></script>
-    <link rel="stylesheet" href="${rutaContexto}/js/jquery/themes/start/jquery-ui-start.css" type="text/css" /><link rel="stylesheet" href="${rutaContexto}/css/global.css" type="text/css" />
-    <script type="text/javascript" src="${rutaContexto}/js/jquery/plugins/qtip/jquery.qtip.js"></script>
-    <script type="text/javascript" src="${rutaContexto}/js/utilidades.js"></script>
-    <script type="text/javascript" src="${rutaContexto}/js/libros.js"></script>
-    <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-modal.js"></script>
-    <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-dropdown.js"></script>
+    <jsp:include page="/WEB-INF/jspf/headDefault.jspf"/>
     <script type="text/javascript">
       $(function() {
         UVAQ.eLibrary.estilizarTabla();
@@ -105,9 +90,9 @@
           </table>
           <div id="borde"></div>
           <div class="panel-botones" id="autores-botones">
-            <button id="boton-nuevo-autor" type="submit">Agregar</button>
+            <button id="boton-nuevo-autor" class="btn primary" type="submit">Agregar</button>
               <c:url var="url" value="/admin/autores/listar"/>
-              <a href="${url}">Cancelar</a>
+              <a href="${url}" class="btn error">Cancelar</a>
           </div>
         </form>
       </div>
