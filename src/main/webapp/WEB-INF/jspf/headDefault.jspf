@@ -1,0 +1,22 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="rutaContexto" value="${pageContext.servletContext.contextPath}" />
+
+<meta http-equiv="Cache-Control" content="no-cache"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<link href='${rutaContexto}/images/logo.png' rel='shortcut icon' />
+<link rel="stylesheet" href="${rutaContexto}/css/bootstrap.css" type="text/css" />
+<link rel="stylesheet" href="${rutaContexto}/js/jquery/plugins/qtip/jquery.qtip.css" type="text/css" />
+<link rel="stylesheet" href="${rutaContexto}/css/global.css" type="text/css" />
+<script type="text/javascript" src="${rutaContexto}/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="${rutaContexto}/js/jquery/ui/jquery-ui.js"></script>
+<script type="text/javascript" src="${rutaContexto}/js/jquery/plugins/qtip/jquery.qtip.js"></script>
+<script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-modal.js"></script>
+<script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-dropdown.js"></script>
+<script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-alerts.js"></script>
+<script type="text/javascript" src="${rutaContexto}/js/utilidades.js"></script>
