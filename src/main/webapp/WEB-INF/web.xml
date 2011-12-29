@@ -1,38 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
-            classpath:/mx/edu/uvaq/elibrary/spring/application-beans.xml
-            classpath:/mx/edu/uvaq/elibrary/spring/application-dao.xml
-            classpath:/mx/edu/uvaq/elibrary/spring/application-service.xml
-            classpath:/mx/edu/uvaq/elibrary/spring/application-web.xml
+      classpath:/mx/edu/uvaq/elibrary/spring/application-beans.xml
+      classpath:/mx/edu/uvaq/elibrary/spring/application-dao.xml
+      classpath:/mx/edu/uvaq/elibrary/spring/application-service.xml
+      classpath:/mx/edu/uvaq/elibrary/spring/application-web.xml
     </param-value>
   </context-param>
-    <!--    <context-param>
-        <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
-        <param-value>mx.edu.uvaq.elibrary.i18n.MensajesELibrary</param-value>
-    </context-param>-->
+  <!--    <context-param>
+      <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+      <param-value>mx.edu.uvaq.elibrary.i18n.MensajesELibrary</param-value>
+  </context-param>-->
   <context-param>
     <param-name>db.tcpServer</param-name>
     <param-value>-tcpAllowOthers</param-value>
   </context-param>
-  <filter>
-    <filter-name>FlashScopeFilter</filter-name>
-    <filter-class>mx.edu.uvaq.elibrary.presentacion.filtro.FlashScopeFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>FlashScopeFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
-  <filter>
-    <filter-name>LibroFormaFiltro</filter-name>
-    <filter-class>mx.edu.uvaq.elibrary.presentacion.filtro.LibroFormaFiltro</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>LibroFormaFiltro</filter-name>
-    <servlet-name>controlador-carga-libro</servlet-name>
-  </filter-mapping>
   <listener>
     <listener-class>org.h2.server.web.DbStarter</listener-class>
   </listener>
@@ -40,8 +25,24 @@
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
   <listener>
-    <listener-class>mx.edu.uvaq.elibrary.presentacion.listener.SpringWebApplicationContextListener</listener-class>
+    <listener-class>mx.edu.uvaq.elibrary.web.listener.SpringWebApplicationContextListener</listener-class>
   </listener>
+  <filter>
+    <filter-name>FlashScopeFilter</filter-name>
+    <filter-class>mx.edu.uvaq.elibrary.web.filter.FlashScopeFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>FlashScopeFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>BookFormFilter</filter-name>
+    <filter-class>mx.edu.uvaq.elibrary.web.filter.BookFormFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>BookFormFilter</filter-name>
+    <servlet-name>controlador-carga-libro</servlet-name>
+  </filter-mapping>
   <servlet>
     <servlet-name>vista-registro</servlet-name>
     <jsp-file>/WEB-INF/jsp/login.jsp</jsp-file>
@@ -64,19 +65,19 @@
   </servlet>
   <servlet>
     <servlet-name>controlador-registro</servlet-name>
-    <servlet-class>mx.edu.uvaq.elibrary.presentacion.controlador.RegistroControlador</servlet-class>
+    <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.RegistroControlador</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>controlador-cerrar-sesion</servlet-name>
-    <servlet-class>mx.edu.uvaq.elibrary.presentacion.controlador.CerrarSesionControlador</servlet-class>
+    <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.CerrarSesionControlador</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>controlador-carga-libro</servlet-name>
-    <servlet-class>mx.edu.uvaq.elibrary.presentacion.controlador.CargaLibroControlador</servlet-class>
+    <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.CargaLibroControlador</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>ElibraryFrontController</servlet-name>
-    <servlet-class>mx.edu.uvaq.elibrary.presentacion.controlador.ElibraryFrontController</servlet-class>
+    <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.ElibraryFrontController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>controlador-registro</servlet-name>
@@ -84,7 +85,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>controlador-usuarios</servlet-name>
-    <servlet-class>mx.edu.uvaq.elibrary.presentacion.controlador.UsuariosControlador</servlet-class>
+    <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.UsuariosControlador</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>controlador-usuarios</servlet-name>
@@ -92,28 +93,20 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>controlador-libros</servlet-name>
-    <servlet-class>mx.edu.uvaq.elibrary.presentacion.controlador.LibrosControlador</servlet-class>
+    <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.LibrosControlador</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>controlador-libros</servlet-name>
     <url-pattern>/inicio</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <servlet-name>controlador-categorias</servlet-name>
-    <servlet-class>mx.edu.uvaq.elibrary.presentacion.controlador.CategoriasController</servlet-class>
+  <!--    <servlet>
+      <servlet-name>controlador-inicio</servlet-name>
+      <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.InicioControlador</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>controlador-categorias</servlet-name>
-    <url-pattern>/admin/categorias</url-pattern>
-  </servlet-mapping>
-    <!--    <servlet>
-        <servlet-name>controlador-inicio</servlet-name>
-        <servlet-class>mx.edu.uvaq.elibrary.presentacion.controlador.InicioControlador</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>controlador-inicio</servlet-name>
-        <url-pattern>/inicio</url-pattern>
-    </servlet-mapping>-->
+      <servlet-name>controlador-inicio</servlet-name>
+      <url-pattern>/inicio</url-pattern>
+  </servlet-mapping>-->
   <servlet-mapping>
     <servlet-name>jsp</servlet-name>
     <url-pattern>*.jspf</url-pattern>
@@ -130,6 +123,7 @@
     <servlet-name>ElibraryFrontController</servlet-name>
     <url-pattern>/admin/autores/*</url-pattern>
     <url-pattern>/admin/editoriales/*</url-pattern>
+    <url-pattern>/admin/categorias</url-pattern>
   </servlet-mapping>
   <session-config>
     <session-timeout>30</session-timeout>
