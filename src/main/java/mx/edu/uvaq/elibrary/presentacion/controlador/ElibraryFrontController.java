@@ -10,6 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -66,20 +68,60 @@ public class ElibraryFrontController extends HttpServlet {
   public String getServletInfo() {
     return "Short description";
   }// </editor-fold>
-  
+
+  private String getFixedPathInfo(HttpServletRequest request) {
+    String pathInfo = request.getPathInfo();
+    if (StringUtils.isNotEmpty(pathInfo)) {
+      pathInfo = pathInfo.substring(1);
+      if (pathInfo.endsWith("/")) {
+        pathInfo = pathInfo.substring(0, pathInfo.length() - 1);
+      }
+    }
+    return pathInfo;
+  }
+
   private void routeRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String action = getAction(request);
-    String controllerURL = extractControllerURL(request);
-    AbstractController controller = getController(controllerURL, request, response);
+    String requestURL = getRequestURL(request);
+    String action = null;
+    String controllerURL = null;
+    AbstractController controller = null;
+    try {
+      controller = (AbstractController) WebApplicationContextUtils.getWebApplicationContext(getServletContext()).getBean(requestURL.replaceAll("/", "_"));
+    } catch(NoSuchBeanDefinitionException exc) {}
+    if (controller != null) {
+      initController(controller, request, response);
+      controllerURL = requestURL;
+      action = "defaultAction";
+    } else {
+      controllerURL = request.getServletPath();
+      action = getFixedPathInfo(request);
+      if (action.contains("/")) {
+        response.sendError(HttpServletResponse.SC_NOT_FOUND);
+      }
+    }
+    if (controller == null) {
+      System.out.println("Getting controller");
+      controller = getController(controllerURL, request, response);
+    }
     executeAction(controller, action);
   }
-  
-  private String getAction(HttpServletRequest request) {
-    String uri = request.getRequestURI();
-    int lastSlashIndex = uri.lastIndexOf('/');
-    return uri.substring(lastSlashIndex + 1);
+
+  private String getRequestURL(HttpServletRequest request) {
+    String servletPath = request.getServletPath();
+    String pathInfo = request.getPathInfo();
+    String requestURL = StringUtils.defaultString(servletPath) + StringUtils.defaultString(pathInfo);
+    if (requestURL.endsWith("/")) {
+      requestURL = requestURL.substring(0, requestURL.length() - 1);
+    }
+    return requestURL;
   }
-  
+
+  private String getAction(HttpServletRequest request) {
+    String requestURL = getRequestURL(request);
+    int lastSlashIndex = requestURL.lastIndexOf('/');
+    return requestURL.substring(lastSlashIndex + 1);
+  }
+
   private AbstractController getController(String controllerURL, HttpServletRequest request, HttpServletResponse response) throws IOException {
     String controllerId = controllerURL.replace('/', '_');
     Object controllerBean = WebApplicationContextUtils.getWebApplicationContext(getServletContext()).getBean(controllerId);
@@ -92,32 +134,32 @@ public class ElibraryFrontController extends HttpServlet {
     AbstractController controller = (AbstractController) controllerBean;
     return initController(controller, request, response);
   }
-  
+
   private AbstractController initController(AbstractController controller, HttpServletRequest request, HttpServletResponse response) {
     controller.setRequest(request);
     controller.setResponse(response);
     return controller;
   }
-  
+
   private String extractControllerURL(HttpServletRequest request) {
-    String uri = request.getRequestURI();
-    String resourceUrl = uri.replace("/elibrary", "");
-    int lastSlashIndex = resourceUrl.lastIndexOf('/');
-    return resourceUrl.substring(0, lastSlashIndex);
+    String requestURL = getRequestURL(request);
+    int lastSlashIndex = requestURL.lastIndexOf('/');
+    return requestURL.substring(0, lastSlashIndex);
   }
 
   private void executeAction(AbstractController controller, String action) {
     Method actionMethod = getActionMethod(controller, action);
     ReflectionUtils.invokeMethod(actionMethod, controller);
   }
-  
+
   private Method getActionMethod(AbstractController controller, String action) {
     Class controllerClass = controller.getClass();
     Method actionMethod = ReflectionUtils.findMethod(controllerClass, action);
     if (actionMethod == null) {
       try {
         controller.getResponse().sendError(HttpServletResponse.SC_NOT_FOUND, "Accion no encontrada!");
-      } catch (IOException ex) { }
+      } catch (IOException ex) {
+      }
     }
     return actionMethod;
   }
