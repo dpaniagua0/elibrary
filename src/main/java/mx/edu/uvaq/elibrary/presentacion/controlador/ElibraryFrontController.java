@@ -11,8 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mx.edu.uvaq.elibrary.presentacion.FlashScope;
+import mx.edu.uvaq.elibrary.presentacion.SpringWebApplicationContext;
+import mx.edu.uvaq.elibrary.presentacion.URLMapper;
+import mx.edu.uvaq.elibrary.presentacion.URLMapping;
+import mx.edu.uvaq.elibrary.presentacion.exception.WebResourceNotFoundException;
 import org.springframework.util.ReflectionUtils;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
  *
@@ -29,7 +32,12 @@ public class ElibraryFrontController extends HttpServlet {
    */
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    routeRequest(request, response);
+    try {
+      URLMapping urlMapping = URLMapper.mapRequest(request);
+      routeRequest(urlMapping, request, response);
+    } catch (WebResourceNotFoundException exc) {
+      response.sendError(HttpServletResponse.SC_NOT_FOUND, request.getRequestURI());
+    }
   }
 
   // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -67,59 +75,39 @@ public class ElibraryFrontController extends HttpServlet {
   public String getServletInfo() {
     return "Short description";
   }// </editor-fold>
-  
-  private void routeRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String action = getAction(request);
-    String controllerURL = extractControllerURL(request);
-    AbstractController controller = getController(controllerURL, request, response);
-    executeAction(controller, action);
+
+  private void routeRequest(URLMapping urlMapping, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    AbstractController controller = getController(urlMapping.getController(), request, response);
+    executeAction(controller, urlMapping.getAction());
   }
-  
-  private String getAction(HttpServletRequest request) {
-    String uri = request.getRequestURI();
-    int lastSlashIndex = uri.lastIndexOf('/');
-    return uri.substring(lastSlashIndex + 1);
-  }
-  
-  private AbstractController getController(String controllerURL, HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+  private AbstractController getController(String controllerURL, HttpServletRequest request, HttpServletResponse response) {
     String controllerId = controllerURL.replace('/', '_');
-    Object controllerBean = WebApplicationContextUtils.getWebApplicationContext(getServletContext()).getBean(controllerId);
-    if (controllerBean == null) {
-      response.sendError(HttpServletResponse.SC_NOT_FOUND, "Controlador no encontrado!");
-    }
+    Object controllerBean = SpringWebApplicationContext.getBean(controllerId);
     if (!(controllerBean instanceof AbstractController)) {
-      throw new RuntimeException("Matched object is not a valid controller class! " + controllerBean.getClass().getName());
+      throw new WebResourceNotFoundException();
     }
     AbstractController controller = (AbstractController) controllerBean;
     return initController(controller, request, response);
   }
-  
+
   private AbstractController initController(AbstractController controller, HttpServletRequest request, HttpServletResponse response) {
     controller.setRequest(request);
     controller.setResponse(response);
     controller.setFlash(new FlashScope(request));
     return controller;
   }
-  
-  private String extractControllerURL(HttpServletRequest request) {
-    String uri = request.getRequestURI();
-    String resourceUrl = uri.replace("/elibrary", "");
-    int lastSlashIndex = resourceUrl.lastIndexOf('/');
-    return resourceUrl.substring(0, lastSlashIndex);
-  }
 
   private void executeAction(AbstractController controller, String action) {
     Method actionMethod = getActionMethod(controller, action);
     ReflectionUtils.invokeMethod(actionMethod, controller);
   }
-  
+
   private Method getActionMethod(AbstractController controller, String action) {
     Class controllerClass = controller.getClass();
     Method actionMethod = ReflectionUtils.findMethod(controllerClass, action);
     if (actionMethod == null) {
-      try {
-        controller.getResponse().sendError(HttpServletResponse.SC_NOT_FOUND, "Accion no encontrada!");
-      } catch (IOException ex) { }
+      throw new WebResourceNotFoundException();
     }
     return actionMethod;
   }

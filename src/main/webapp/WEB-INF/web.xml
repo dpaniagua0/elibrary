@@ -39,6 +39,9 @@
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  <listener>
+    <listener-class>mx.edu.uvaq.elibrary.presentacion.listener.SpringWebApplicationContextListener</listener-class>
+  </listener>
   <servlet>
     <servlet-name>vista-registro</servlet-name>
     <jsp-file>/WEB-INF/jsp/login.jsp</jsp-file>
