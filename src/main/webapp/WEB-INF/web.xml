@@ -123,7 +123,7 @@
     <servlet-name>ElibraryFrontController</servlet-name>
     <url-pattern>/admin/autores/*</url-pattern>
     <url-pattern>/admin/editoriales/*</url-pattern>
-    <url-pattern>/admin/categorias</url-pattern>
+    <url-pattern>/admin/categorias/*</url-pattern>
   </servlet-mapping>
   <session-config>
     <session-timeout>30</session-timeout>

@@ -11,7 +11,7 @@
     <property name="password" value="${jdbc.password}" />
   </bean>
   
-  <bean id="querysLibro" class="mx.edu.uvaq.elibrary.modelo.persistencia.dao.jdbc.query.QueryCollection">
+  <bean id="querysLibro" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.query.QueryCollection">
     <property name="querys">
       <bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="location" value="classpath:mx/edu/uvaq/elibrary/sql/query/libros.query.xml" />
@@ -19,7 +19,7 @@
     </property>
   </bean>
   
-  <bean id="querysUsuario" class="mx.edu.uvaq.elibrary.modelo.persistencia.dao.jdbc.query.QueryCollection">
+  <bean id="querysUsuario" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.query.QueryCollection">
     <property name="querys">
       <bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="location" value="classpath:mx/edu/uvaq/elibrary/sql/query/usuarios.query.xml" />
@@ -27,7 +27,7 @@
     </property>
   </bean>
   
-  <bean id="querysCategoria" class="mx.edu.uvaq.elibrary.modelo.persistencia.dao.jdbc.query.QueryCollection">
+  <bean id="querysCategoria" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.query.QueryCollection">
     <property name="querys">
       <bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="location" value="classpath:mx/edu/uvaq/elibrary/sql/query/categorias.query.xml" />
@@ -35,7 +35,7 @@
     </property>
   </bean>
   
-  <bean id="querysAutor" class="mx.edu.uvaq.elibrary.modelo.persistencia.dao.jdbc.query.QueryCollection">
+  <bean id="querysAutor" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.query.QueryCollection">
     <property name="querys">
       <bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="location" value="classpath:mx/edu/uvaq/elibrary/sql/query/autores.query.xml" />
@@ -43,7 +43,7 @@
     </property>
   </bean>
   
-  <bean id="querysEditorial" class="mx.edu.uvaq.elibrary.modelo.persistencia.dao.jdbc.query.QueryCollection">
+  <bean id="querysEditorial" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.query.QueryCollection">
     <property name="querys">
       <bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="location" value="classpath:mx/edu/uvaq/elibrary/sql/query/editoriales.query.xml" />
@@ -51,7 +51,7 @@
     </property>
   </bean>
   
-  <bean id="querysSerie" class="mx.edu.uvaq.elibrary.modelo.persistencia.dao.jdbc.query.QueryCollection">
+  <bean id="querysSerie" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.query.QueryCollection">
     <property name="querys">
       <bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="location" value="classpath:mx/edu/uvaq/elibrary/sql/query/series.query.xml" />
@@ -59,32 +59,32 @@
     </property>
   </bean>
 
-  <bean id="usuarioDao" class="mx.edu.uvaq.elibrary.modelo.persistencia.dao.jdbc.JdbcUsuarioDao">
+  <bean id="usuarioDao" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.JdbcUsuarioDao">
     <property name="dataSource" ref="dataSource" />
     <property name="querys" ref="querysUsuario" />
   </bean>
 
-  <bean id="libroDao" class="mx.edu.uvaq.elibrary.modelo.persistencia.dao.jdbc.JdbcLibroDao">
+  <bean id="libroDao" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.JdbcLibroDao">
     <property name="dataSource" ref="dataSource" />
     <property name="querys" ref="querysLibro" />
   </bean>
     
-  <bean id="categoriaDao" class="mx.edu.uvaq.elibrary.modelo.persistencia.dao.jdbc.JdbcCategoriaDao">
+  <bean id="categoriaDao" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.JdbcCategoriaDao">
     <property name="dataSource" ref="dataSource" />
     <property name="querys" ref="querysCategoria" />
   </bean>
     
-  <bean id="autorDao" class="mx.edu.uvaq.elibrary.modelo.persistencia.dao.jdbc.JdbcAutorDao">
+  <bean id="autorDao" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.JdbcAutorDao">
     <property name="dataSource" ref="dataSource" />
     <property name="querys" ref="querysAutor" />
   </bean>
     
-  <bean id="editorialDao" class="mx.edu.uvaq.elibrary.modelo.persistencia.dao.jdbc.JdbcEditorialDao">
+  <bean id="editorialDao" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.JdbcEditorialDao">
     <property name="dataSource" ref="dataSource" />
     <property name="querys" ref="querysEditorial" />
   </bean>
     
-  <bean id="serieDao" class="mx.edu.uvaq.elibrary.modelo.persistencia.dao.jdbc.JdbcSerieDao">
+  <bean id="serieDao" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.JdbcSerieDao">
     <property name="dataSource" ref="dataSource" />
     <property name="querys" ref="querysSerie" />
   </bean>

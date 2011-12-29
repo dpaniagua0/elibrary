@@ -4,10 +4,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
        default-autowire="byName">
 
-  <bean id="_admin_autores" class="mx.edu.uvaq.elibrary.presentacion.controlador.AutoresController" scope="prototype">
+  <bean id="_admin_autores" class="mx.edu.uvaq.elibrary.presentation.controller.AutoresController" scope="prototype">
     <property name="autoresServicio" ref="autorServicio"/>
   </bean>
-   <bean id="_admin_editoriales" class="mx.edu.uvaq.elibrary.presentacion.controlador.EditorialesController" scope="prototype">
+   <bean id="_admin_editoriales" class="mx.edu.uvaq.elibrary.presentation.controller.EditorialesController" scope="prototype">
     <property name="editorialesServicio" ref="editorialServicio"/>
   </bean>
 </beans>
