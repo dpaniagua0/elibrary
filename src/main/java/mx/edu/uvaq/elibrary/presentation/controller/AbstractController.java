@@ -4,19 +4,19 @@
  */
 package mx.edu.uvaq.elibrary.presentation.controller;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import mx.edu.uvaq.elibrary.presentation.Message;
+import mx.edu.uvaq.elibrary.presentation.exception.RedirectIOException;
+import mx.edu.uvaq.elibrary.presentation.exception.RenderIOException;
+import mx.edu.uvaq.elibrary.web.FlashScope;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import mx.edu.uvaq.elibrary.presentation.FlashScope;
-import mx.edu.uvaq.elibrary.presentation.Mensaje;
-import mx.edu.uvaq.elibrary.presentation.exception.RedirectIOException;
-import mx.edu.uvaq.elibrary.presentation.exception.RenderIOException;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- *
  * @author arcesino
  */
 public abstract class AbstractController {
@@ -32,10 +32,11 @@ public abstract class AbstractController {
   public void setFlash(FlashScope flash) {
     this.flash = flash;
   }
-  private Map<String, Mensaje> messages;
+
+  private Map<String, Message> messages;
 
   public AbstractController() {
-    messages = new HashMap<String, Mensaje>();
+    messages = new HashMap<String, Message>();
   }
 
   protected void defaultAction() {
@@ -61,11 +62,11 @@ public abstract class AbstractController {
     this.response = response;
   }
 
-  protected Map<String, Mensaje> getMessages() {
+  protected Map<String, Message> getMessages() {
     return messages;
   }
 
-  protected void addMessage(String key, Mensaje message) {
+  protected void addMessage(String key, Message message) {
     messages.put(key, message);
   }
 
@@ -74,7 +75,7 @@ public abstract class AbstractController {
   }
 
   protected void addSuccessMessage(String key, String summary, String detail) {
-    messages.put(key, Mensaje.crearMensajeExito(summary, detail));
+    messages.put(key, Message.createSuccessMessage(summary, detail));
   }
 
   protected void addInfoMessage(String key, String message) {
@@ -82,7 +83,7 @@ public abstract class AbstractController {
   }
 
   protected void addInfoMessage(String key, String summary, String detail) {
-    messages.put(key, Mensaje.crearMensajeInformacion(summary, detail));
+    messages.put(key, Message.createInformationMessage(summary, detail));
   }
 
   protected void addWarningMessage(String key, String message) {
@@ -90,7 +91,7 @@ public abstract class AbstractController {
   }
 
   protected void addWarninigMessage(String key, String summary, String detail) {
-    messages.put(key, Mensaje.crearMensajeAdvertencia(summary, detail));
+    messages.put(key, Message.createWarningMessage(summary, detail));
   }
 
   protected void addErrorMessage(String key, String message) {
@@ -98,7 +99,7 @@ public abstract class AbstractController {
   }
 
   protected void addErrorMessage(String key, String summary, String detail) {
-    messages.put(key, Mensaje.crearMensajeError(summary, detail));
+    messages.put(key, Message.createErrorMessage(summary, detail));
   }
 
   protected void renderView(String view, Map<String, Object> model) {
@@ -145,8 +146,8 @@ public abstract class AbstractController {
     try {
       response.getWriter().println(content.toString());
     } catch (IOException ex) {
-     throw new RenderIOException();
-     }
+      throw new RenderIOException();
+    }
 
   }
 }

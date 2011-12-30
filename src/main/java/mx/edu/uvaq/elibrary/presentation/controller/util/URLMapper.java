@@ -2,18 +2,19 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.edu.uvaq.elibrary.presentation;
+package mx.edu.uvaq.elibrary.presentation.controller.util;
 
-import javax.servlet.http.HttpServletRequest;
 import mx.edu.uvaq.elibrary.presentation.exception.WebResourceNotFoundException;
+import mx.edu.uvaq.elibrary.web.SpringWebApplicationContext;
 import org.apache.commons.lang.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
- *
  * @author arcesino
  */
 public class URLMapper {
-  
+
   public static URLMapping mapRequest(HttpServletRequest request) {
     String requestURL = getRequestURL(request);
     String action = null;
@@ -30,7 +31,7 @@ public class URLMapper {
     }
     return new URLMapping(controllerURL, action);
   }
-  
+
   private static String getRequestURL(HttpServletRequest request) {
     String servletPath = request.getServletPath();
     String pathInfo = request.getPathInfo();
@@ -40,12 +41,12 @@ public class URLMapper {
     }
     return requestURL;
   }
-  
+
   private static boolean existControllerForURL(String controllerURL) {
     String controllerId = controllerURL.replace('/', '_');
     return SpringWebApplicationContext.containsBean(controllerId);
   }
-  
+
   private static String getFixedPathInfo(HttpServletRequest request) {
     String pathInfo = request.getPathInfo();
     if (StringUtils.isNotEmpty(pathInfo)) {

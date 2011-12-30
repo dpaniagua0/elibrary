@@ -65,15 +65,15 @@
   </servlet>
   <servlet>
     <servlet-name>controlador-registro</servlet-name>
-    <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.RegistroControlador</servlet-class>
+    <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.RegisterController</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>controlador-cerrar-sesion</servlet-name>
-    <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.CerrarSesionControlador</servlet-class>
+    <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.LogoutController</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>controlador-carga-book</servlet-name>
-    <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.CargaLibroControlador</servlet-class>
+    <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.BookLoadController</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>ElibraryFrontController</servlet-name>
@@ -85,7 +85,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>controlador-users</servlet-name>
-    <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.UsuariosControlador</servlet-class>
+    <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.UsersController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>controlador-users</servlet-name>
@@ -93,7 +93,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>controlador-books</servlet-name>
-    <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.LibrosControlador</servlet-class>
+    <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.BooksController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>controlador-books</servlet-name>
@@ -101,7 +101,7 @@
   </servlet-mapping>
   <!--    <servlet>
       <servlet-name>controlador-inicio</servlet-name>
-      <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.InicioControlador</servlet-class>
+      <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.HomeControllerervlet-class>
   </servlet>
   <servlet-mapping>
       <servlet-name>controlador-inicio</servlet-name>

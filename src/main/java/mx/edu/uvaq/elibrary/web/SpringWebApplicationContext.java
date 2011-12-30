@@ -2,14 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.edu.uvaq.elibrary.presentation;
+package mx.edu.uvaq.elibrary.web;
 
-import javax.servlet.ServletContext;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import javax.servlet.ServletContext;
+
 /**
- *
  * @author arcesino
  */
 public class SpringWebApplicationContext {
@@ -26,15 +26,15 @@ public class SpringWebApplicationContext {
     }
     webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
   }
-  
+
   public static Object getBean(String id) {
     return webApplicationContext.getBean(id);
   }
-  
+
   public static <T> T getBean(String id, Class<T> type) {
     return webApplicationContext.getBean(id, type);
   }
-  
+
   public static boolean containsBean(String id) {
     return webApplicationContext.containsBean(id);
   }

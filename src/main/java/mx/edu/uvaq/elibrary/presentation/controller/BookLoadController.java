@@ -6,7 +6,7 @@ package mx.edu.uvaq.elibrary.presentation.controller;
 
 import mx.edu.uvaq.elibrary.model.business.service.BookService;
 import mx.edu.uvaq.elibrary.model.business.service.ServiceException;
-import mx.edu.uvaq.elibrary.presentation.Mensaje;
+import mx.edu.uvaq.elibrary.presentation.Message;
 import mx.edu.uvaq.elibrary.presentation.command.BookForm;
 import mx.edu.uvaq.elibrary.presentation.upload.FileUploadListener;
 import net.sf.json.JSONSerializer;
@@ -24,9 +24,9 @@ import java.io.IOException;
 /**
  * @author arcesino
  */
-public class CargaLibroControlador extends HttpServlet {
+public class BookLoadController extends HttpServlet {
 
-  public static final String NOMBRE_FORMA = "libroForma";
+  public static final String FORM_NAME = "libroForma";
   private BookService bookService;
 
   @Override
@@ -44,14 +44,14 @@ public class CargaLibroControlador extends HttpServlet {
    */
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    BookForm bookForma = (BookForm) request.getAttribute(NOMBRE_FORMA);
-    String accion = bookForma.getAction();
-    if ("nuevo-libro".equals(accion)) {
-      procesarAccionNuevoLibro(request, response);
-    } else if ("editar-libro".equals(accion)) {
-      procesarAccionEditarLibro(request, response);
+    BookForm bookForm = (BookForm) request.getAttribute(FORM_NAME);
+    String action = bookForm.getAction();
+    if ("nuevo-libro".equals(action)) {
+      newBook(request, response);
+    } else if ("editar-libro".equals(action)) {
+      editBook(request, response);
     } else {
-      procesarAccionPorDefecto(request, response);
+      defaultAction(request, response);
     }
   }
 
@@ -95,32 +95,32 @@ public class CargaLibroControlador extends HttpServlet {
     return "Short description";
   }// </editor-fold>
 
-  private void procesarAccionNuevoLibro(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-    BookForm bookForma = (BookForm) request.getAttribute(NOMBRE_FORMA);
-    byte[] archivo = obtenerBytesAchivo(bookForma.getFileStream());
-    byte[] imagen = obtenerBytesAchivo(bookForma.getImageStream());
+  private void newBook(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    BookForm bookForm = (BookForm) request.getAttribute(FORM_NAME);
+    byte[] fileBytes = getFileBytes(bookForm.getFileStream());
+    byte[] imageBytes = getFileBytes(bookForm.getImageStream());
     try {
-      bookService.createBook(bookForma.getBook(), archivo, imagen);
-      bookForma.addMessage("libro-creado", Mensaje.crearMensajeInformacion("Libro creado", "El libro ha sido creado exitosamente."));
+      bookService.createBook(bookForm.getBook(), fileBytes, imageBytes);
+      bookForm.addMessage("libro-creado", Message.createInformationMessage("Libro creado", "El libro ha sido creado exitosamente."));
     } catch (ServiceException se) {
-      bookForma.addMessage("error-libro", Mensaje.crearMensajeError("Error", "Hubo un error al crear el libro."));
+      bookForm.addMessage("error-libro", Message.createErrorMessage("Error", "Hubo un error al crear el libro."));
     }
     RequestDispatcher dispatcher = getServletContext().getNamedDispatcher("controlador-libros");
     dispatcher.forward(request, response);
   }
 
-  private byte[] obtenerBytesAchivo(FileItemStream itemStream) throws IOException {
-    byte[] bytesArchivo = null;
+  private byte[] getFileBytes(FileItemStream itemStream) throws IOException {
+    byte[] fileBytes = null;
     if (itemStream != null) {
-      bytesArchivo = IOUtils.toByteArray(itemStream.openStream());
+      fileBytes = IOUtils.toByteArray(itemStream.openStream());
     }
-    return bytesArchivo;
+    return fileBytes;
   }
 
-  private void procesarAccionEditarLibro(HttpServletRequest request, HttpServletResponse response) {
+  private void editBook(HttpServletRequest request, HttpServletResponse response) {
   }
 
-  private void procesarAccionPorDefecto(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  private void defaultAction(HttpServletRequest request, HttpServletResponse response) throws IOException {
     FileUploadListener uploadListener = (FileUploadListener) request.getSession(false).getAttribute("uploadListener");
     FileUploadListener.FileUploadStats uploadStats = null;
     if (uploadListener != null) {

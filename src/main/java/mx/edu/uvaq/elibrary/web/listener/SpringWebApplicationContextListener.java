@@ -4,12 +4,12 @@
  */
 package mx.edu.uvaq.elibrary.web.listener;
 
+import mx.edu.uvaq.elibrary.web.SpringWebApplicationContext;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import mx.edu.uvaq.elibrary.presentation.SpringWebApplicationContext;
 
 /**
- *
  * @author arcesino
  */
 public class SpringWebApplicationContextListener implements ServletContextListener {
@@ -18,5 +18,6 @@ public class SpringWebApplicationContextListener implements ServletContextListen
     SpringWebApplicationContext.initialize(sce.getServletContext());
   }
 
-  public void contextDestroyed(ServletContextEvent sce) { }
+  public void contextDestroyed(ServletContextEvent sce) {
+  }
 }

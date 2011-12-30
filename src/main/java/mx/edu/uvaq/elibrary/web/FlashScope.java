@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package mx.edu.uvaq.elibrary.presentation;
+package mx.edu.uvaq.elibrary.web;
 
-import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
- *
  * @author daniel
  */
 public class FlashScope {

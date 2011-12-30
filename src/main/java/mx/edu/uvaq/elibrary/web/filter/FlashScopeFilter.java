@@ -4,6 +4,8 @@
  */
 package mx.edu.uvaq.elibrary.web.filter;
 
+import mx.edu.uvaq.elibrary.web.FlashScope;
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,10 +13,8 @@ import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-import mx.edu.uvaq.elibrary.presentation.FlashScope;
 
 /**
- *
  * @author daniel
  */
 public class FlashScopeFilter implements Filter {
@@ -23,7 +23,7 @@ public class FlashScopeFilter implements Filter {
 
   @SuppressWarnings("unchecked")
   public void doFilter(ServletRequest request, ServletResponse response,
-          FilterChain chain) throws IOException, ServletException {
+                       FilterChain chain) throws IOException, ServletException {
 
     //reinstate any flash scoped params from the users session
     //and clear the session

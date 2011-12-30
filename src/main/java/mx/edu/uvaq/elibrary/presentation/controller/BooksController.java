@@ -6,8 +6,8 @@ package mx.edu.uvaq.elibrary.presentation.controller;
 
 import mx.edu.uvaq.elibrary.domain.Book;
 import mx.edu.uvaq.elibrary.model.business.service.BookService;
-import mx.edu.uvaq.elibrary.presentation.UtilidadesControlador;
 import mx.edu.uvaq.elibrary.presentation.command.BooksForm;
+import mx.edu.uvaq.elibrary.presentation.controller.util.ControllerUtils;
 import net.sf.json.JSONSerializer;
 import net.sf.json.JsonConfig;
 import net.sf.json.processors.JsDateJsonBeanProcessor;
@@ -25,10 +25,10 @@ import java.util.List;
 /**
  * @author daniel
  */
-public class LibrosControlador extends HttpServlet {
+public class BooksController extends HttpServlet {
 
-  private static final String VISTA_INICIO = "vista-inicio";
-  private static final String NOMBRE_FORMA = "librosForma";
+  private static final String HOME_VIEW = "vista-inicio";
+  private static final String FORM_NAME = "librosForma";
 
   private BookService bookService;
 
@@ -47,13 +47,13 @@ public class LibrosControlador extends HttpServlet {
    */
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    BooksForm booksForma = UtilidadesControlador.obtenerForm(BooksForm.class, request);
-    request.setAttribute(NOMBRE_FORMA, booksForma);
+    BooksForm booksForm = ControllerUtils.getForm(BooksForm.class, request);
+    request.setAttribute(FORM_NAME, booksForm);
 
-    String vistaSiguiente = ejecutarAccion(request, response);
+    String nextView = executeAction(request, response);
 
-    if (vistaSiguiente != null) {
-      RequestDispatcher rd = getServletContext().getNamedDispatcher(vistaSiguiente);
+    if (nextView != null) {
+      RequestDispatcher rd = getServletContext().getNamedDispatcher(nextView);
       rd.forward(request, response);
     }
   }
@@ -98,40 +98,40 @@ public class LibrosControlador extends HttpServlet {
     return "Short description";
   }// </editor-fold>
 
-  private String ejecutarAccion(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String vistaSiguiente = null;
-    BooksForm booksForma = (BooksForm) request.getAttribute(NOMBRE_FORMA);
-    String accion = booksForma.getAction();
-    if ("defecto".equals(accion)) {
-      vistaSiguiente = ejecutarAccionDefecto(request, response);
-    } else if ("buscar-libro".equals(accion)) {
-      vistaSiguiente = ejecutarAccionBuscarLibro(request, response);
+  private String executeAction(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String nextView = null;
+    BooksForm booksForm = (BooksForm) request.getAttribute(FORM_NAME);
+    String action = booksForm.getAction();
+    if ("defecto".equals(action)) {
+      nextView = defaultAction(request, response);
+    } else if ("buscar-libro".equals(action)) {
+      nextView = findBook(request, response);
     }
 
-    return vistaSiguiente;
+    return nextView;
   }
 
-  private String ejecutarAccionDefecto(HttpServletRequest request, HttpServletResponse response) {
-    String vistaSiguiente = VISTA_INICIO;
+  private String defaultAction(HttpServletRequest request, HttpServletResponse response) {
+    String nextView = HOME_VIEW;
     if (request.isUserInRole("administrador")) {
-      vistaSiguiente = "vista-inicio-administracion";
+      nextView = "vista-inicio-administracion";
     }
-    BooksForm booksForma = (BooksForm) request.getAttribute(NOMBRE_FORMA);
-    List<Book> libros = bookService.getBooks();
-    booksForma.setBooks(libros);
-    return vistaSiguiente;
+    BooksForm booksForm = (BooksForm) request.getAttribute(FORM_NAME);
+    List<Book> books = bookService.getBooks();
+    booksForm.setBooks(books);
+    return nextView;
   }
 
-  private String ejecutarAccionBuscarLibro(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    BooksForm booksForma = (BooksForm) request.getAttribute(NOMBRE_FORMA);
-    int id = booksForma.getId();
+  private String findBook(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    BooksForm booksForm = (BooksForm) request.getAttribute(FORM_NAME);
+    int id = booksForm.getId();
 
-    Book libro = bookService.getBookById(id);
+    Book book = bookService.getBookById(id);
     JsonConfig config = new JsonConfig();
     config.registerJsonBeanProcessor(Date.class, new JsDateJsonBeanProcessor());
 
     response.setContentType("application/json");
-    response.getWriter().write(JSONSerializer.toJSON(libro, config).toString());
+    response.getWriter().write(JSONSerializer.toJSON(book, config).toString());
     response.flushBuffer();
 
     return null;

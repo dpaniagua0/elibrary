@@ -4,10 +4,10 @@
  */
 package mx.edu.uvaq.elibrary.web.filter;
 
-import mx.edu.uvaq.elibrary.presentation.UtilidadesControlador;
 import mx.edu.uvaq.elibrary.presentation.command.BookForm;
-import mx.edu.uvaq.elibrary.presentation.controller.CargaLibroControlador;
-import mx.edu.uvaq.elibrary.presentation.controller.LibrosControlador;
+import mx.edu.uvaq.elibrary.presentation.controller.BookLoadController;
+import mx.edu.uvaq.elibrary.presentation.controller.BooksController;
+import mx.edu.uvaq.elibrary.presentation.controller.util.ControllerUtils;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
@@ -88,12 +88,12 @@ public class BookFormFilter implements Filter {
       } catch (InvocationTargetException ex) {
         Logger.getLogger(BookFormFilter.class.getName()).log(Level.SEVERE, null, ex);
       } catch (FileUploadException ex) {
-        Logger.getLogger(LibrosControlador.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(BooksController.class.getName()).log(Level.SEVERE, null, ex);
       }
     } else {
-      bookForma = UtilidadesControlador.obtenerForm(BookForm.class, httpRequest);
+      bookForma = ControllerUtils.getForm(BookForm.class, httpRequest);
     }
-    request.setAttribute(CargaLibroControlador.NOMBRE_FORMA, bookForma);
+    request.setAttribute(BookLoadController.FORM_NAME, bookForma);
   }
 
   private void doAfterProcessing(ServletRequest request, ServletResponse response)

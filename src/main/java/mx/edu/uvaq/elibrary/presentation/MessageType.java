@@ -5,10 +5,9 @@
 package mx.edu.uvaq.elibrary.presentation;
 
 /**
- *
  * @author daniel
  */
-public enum TipoMensaje {
+public enum MessageType {
   SUCCESS,
   INFO,
   WARNING,
