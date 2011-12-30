@@ -4,32 +4,32 @@
  */
 package mx.edu.uvaq.elibrary.model.business.service.impl;
 
-import java.util.List;
 import mx.edu.uvaq.elibrary.domain.User;
 import mx.edu.uvaq.elibrary.model.business.service.UserService;
-import mx.edu.uvaq.elibrary.model.persistence.dao.UsuarioDao;
+import mx.edu.uvaq.elibrary.model.persistence.dao.UserDao;
+
+import java.util.List;
 
 /**
- *
  * @author arcesino
  */
 public class UserServiceImpl implements UserService {
 
-  private UsuarioDao usuarioDao;
+  private UserDao userDao;
 
-  public UsuarioDao getUsuarioDao() {
-    return usuarioDao;
+  public UserDao getUserDao() {
+    return userDao;
   }
 
-  public void setUsuarioDao(UsuarioDao usuarioDao) {
-    this.usuarioDao = usuarioDao;
+  public void setUserDao(UserDao userDao) {
+    this.userDao = userDao;
   }
 
   public List<User> getUsers() {
-    return usuarioDao.encontrarUsuarios();
+    return userDao.findUsers();
   }
 
   public void addRole(User user, String role) {
-    usuarioDao.asignarRolUsuario(user, role);
+    userDao.assignRoleToUser(user, role);
   }
 }

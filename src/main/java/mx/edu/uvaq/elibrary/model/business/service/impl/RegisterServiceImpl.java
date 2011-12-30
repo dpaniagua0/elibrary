@@ -4,25 +4,25 @@
  */
 package mx.edu.uvaq.elibrary.model.business.service.impl;
 
-import java.util.Date;
-import mx.edu.uvaq.elibrary.model.business.service.RegisterService;
 import mx.edu.uvaq.elibrary.domain.User;
 import mx.edu.uvaq.elibrary.model.business.service.EmailService;
-import mx.edu.uvaq.elibrary.model.persistence.dao.UsuarioDao;
+import mx.edu.uvaq.elibrary.model.business.service.RegisterService;
+import mx.edu.uvaq.elibrary.model.persistence.dao.UserDao;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
 
+import java.util.Date;
+
 /**
- *
  * @author daniel
  */
 public class RegisterServiceImpl implements RegisterService {
 
-  private UsuarioDao usuarioDao;
+  private UserDao userDao;
   private EmailService emailService;
 
-  public void setUsuarioDao(UsuarioDao usuarioDao) {
-    this.usuarioDao = usuarioDao;
+  public void setUserDao(UserDao userDao) {
+    this.userDao = userDao;
   }
 
   public void setEmailService(EmailService emailService) {
@@ -33,7 +33,7 @@ public class RegisterServiceImpl implements RegisterService {
     if (validateNewUser(user)) {
       String activationCode = generateActivationCode(user);
       user.setActivationCode(activationCode);
-      usuarioDao.insertarUsuario(user);
+      userDao.insertUser(user);
       emailService.sendAccountActivationMail(user, activationURL);
       return true;
     }
@@ -41,7 +41,7 @@ public class RegisterServiceImpl implements RegisterService {
   }
 
   public boolean userExists(User user) {
-    User existingUser = usuarioDao.encontrarUsuario(user.getEmail());
+    User existingUser = userDao.findUser(user.getEmail());
 
     return existingUser != null;
   }
@@ -52,7 +52,7 @@ public class RegisterServiceImpl implements RegisterService {
 
   public String generateActivationCode(User user) {
     String data = String.format("%s%s%s%s", user.getEmail(), user.getName(),
-            user.getLastName(), new Date().getTime());
+        user.getLastName(), new Date().getTime());
 
     byte[] activationCode = DigestUtils.sha256(data);
 
@@ -61,8 +61,8 @@ public class RegisterServiceImpl implements RegisterService {
 
   public boolean activateUser(User user) {
     if (!validateNewUser(user)) {
-      usuarioDao.actualizarUsuario(user.getEmail());
-      usuarioDao.asignarRolUsuario(user, "estudiante");
+      userDao.updateUser(user.getEmail());
+      userDao.assignRoleToUser(user, "estudiante");
       return true;
     }
     return false;

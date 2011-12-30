@@ -4,45 +4,45 @@
  */
 package mx.edu.uvaq.elibrary.model.business.service.impl;
 
-import java.util.List;
 import mx.edu.uvaq.elibrary.domain.Author;
 import mx.edu.uvaq.elibrary.model.business.service.AuthorService;
-import mx.edu.uvaq.elibrary.model.persistence.dao.AutorDao;
+import mx.edu.uvaq.elibrary.model.persistence.dao.AuthorDao;
+
+import java.util.List;
 
 /**
- *
  * @author daniel
  */
 public class AuthorServiceImpl implements AuthorService {
 
-  private AutorDao autorDao;
+  private AuthorDao authorDao;
 
-  public AutorDao getAutorDao() {
-    return autorDao;
+  public AuthorDao getAuthorDao() {
+    return authorDao;
   }
 
-  public void setAutorDao(AutorDao autorDao) {
-    this.autorDao = autorDao;
+  public void setAuthorDao(AuthorDao authorDao) {
+    this.authorDao = authorDao;
   }
 
   public List<Author> getAuthors() {
-    return autorDao.encontrarAutores();
+    return authorDao.findAuthors();
   }
 
   public Author getAuthorById(Long authorId) {
-    return autorDao.encontrarAutorPorId(authorId);
+    return authorDao.findAuthorById(authorId);
   }
 
   public boolean registerAuthor(Author author) {
     if (validateNewUser(author)) {
-      autorDao.insertarAutor(author);
+      authorDao.insertAuthor(author);
       return true;
     }
     return false;
   }
 
   public boolean authorExists(Author author) {
-    Author existingAuthor = autorDao.encontrarAutorPorId(Long.valueOf(author.getId()));
+    Author existingAuthor = authorDao.findAuthorById(Long.valueOf(author.getId()));
 
     return existingAuthor != null;
   }
@@ -52,12 +52,12 @@ public class AuthorServiceImpl implements AuthorService {
   }
 
   public boolean editAuthor(Author author) {
-    autorDao.actualizarAutor(author);
+    authorDao.updateAuthor(author);
     return true;
   }
 
   public boolean removeAuthor(Long id) {
-    autorDao.eliminarAutor(id);
+    authorDao.deleteAuthor(id);
     return true;
   }
 }

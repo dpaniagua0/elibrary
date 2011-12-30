@@ -5,13 +5,17 @@
 package mx.edu.uvaq.elibrary.model.persistence.dao;
 
 import mx.edu.uvaq.elibrary.domain.Book;
-import mx.edu.uvaq.elibrary.domain.BookSeries;
+
+import java.util.List;
 
 /**
- *
- * @author arcesino
+ * @author daniel
  */
-public interface SerieDao {
+public interface BookDao {
 
-  BookSeries encontrarSerieDeLibro(Book libro);
+  public List<Book> findBooks();
+
+  public Number insertBook(Book book);
+
+  public Book findBookBId(int id);
 }

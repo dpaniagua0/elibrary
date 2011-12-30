@@ -4,65 +4,60 @@
  */
 package mx.edu.uvaq.elibrary.model.business.service.impl;
 
+import mx.edu.uvaq.elibrary.domain.Book;
 import mx.edu.uvaq.elibrary.model.business.service.BookService;
-import mx.edu.uvaq.elibrary.model.persistence.dao.EditorialDao;
-import mx.edu.uvaq.elibrary.model.persistence.dao.SerieDao;
-import mx.edu.uvaq.elibrary.model.persistence.dao.CategoriaDao;
-import mx.edu.uvaq.elibrary.model.persistence.dao.AutorDao;
+import mx.edu.uvaq.elibrary.model.persistence.dao.*;
+
 import java.util.List;
 
-import mx.edu.uvaq.elibrary.domain.Book;
-import mx.edu.uvaq.elibrary.model.persistence.dao.LibroDao;
-
 /**
- *
  * @author daniel
  */
 public class BookServiceImpl implements BookService {
 
-  private LibroDao libroDao;
-  private AutorDao autorDao;
-  private CategoriaDao categoriaDao;
-  private EditorialDao editorialDao;
-  private SerieDao serieDao;
+  private BookDao bookDao;
+  private AuthorDao authorDao;
+  private CategoryDao categoryDao;
+  private PublisherDao publisherDao;
+  private BookSeriesDao bookSeriesDao;
 
-  public void setSerieDao(SerieDao serieDao) {
-    this.serieDao = serieDao;
+  public void setBookSeriesDao(BookSeriesDao bookSeriesDao) {
+    this.bookSeriesDao = bookSeriesDao;
   }
 
-  public void setEditorialDao(EditorialDao editorialDao) {
-    this.editorialDao = editorialDao;
+  public void setPublisherDao(PublisherDao publisherDao) {
+    this.publisherDao = publisherDao;
   }
 
-  public void setCategoriaDao(CategoriaDao categoriaDao) {
-    this.categoriaDao = categoriaDao;
+  public void setCategoryDao(CategoryDao categoryDao) {
+    this.categoryDao = categoryDao;
   }
 
-  public void setAutorDao(AutorDao autorDao) {
-    this.autorDao = autorDao;
+  public void setAuthorDao(AuthorDao authorDao) {
+    this.authorDao = authorDao;
   }
 
-  public void setLibroDao(LibroDao libroDao) {
-    this.libroDao = libroDao;
+  public void setBookDao(BookDao bookDao) {
+    this.bookDao = bookDao;
   }
 
   public List<Book> getBooks() {
-    return libroDao.encontrarLibros();
+    return bookDao.findBooks();
   }
 
   public Book getBookById(int id) {
-    Book book = libroDao.encontrarLibroPorId(id);
+    Book book = bookDao.findBookBId(id);
     book = completeBookInformation(book);
 
     return book;
   }
 
   private Book completeBookInformation(Book book) {
-    book.setAuthors(autorDao.encontrarAutoresDeLibro(book));
-    book.setCategories(categoriaDao.encontrarCategoriasDeLibro(book));
-    book.setPublishers(editorialDao.encontrarEditorialesDeLibro(book));
-    book.setBookSeries(serieDao.encontrarSerieDeLibro(book));
-    
+    book.setAuthors(authorDao.findAuthorsOfBook(book));
+    book.setCategories(categoryDao.findCategoriesOfBook(book));
+    book.setPublishers(publisherDao.findPublishersOfBook(book));
+    book.setBookSeries(bookSeriesDao.findBookSeriesOfBook(book));
+
     return book;
   }
 
@@ -70,10 +65,10 @@ public class BookServiceImpl implements BookService {
     // TODO: Validaciones de book.
     book.setFile(file);
     book.setImage(image);
-    Number id = libroDao.insertarLibro(book);
-    
+    Number id = bookDao.insertBook(book);
+
     // TODO: Insercion de autores, editoriales y categorias.
-    
+
     return id;
   }
 }

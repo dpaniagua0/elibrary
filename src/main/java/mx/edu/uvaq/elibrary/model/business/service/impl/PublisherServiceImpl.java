@@ -4,41 +4,41 @@
  */
 package mx.edu.uvaq.elibrary.model.business.service.impl;
 
-import java.util.List;
 import mx.edu.uvaq.elibrary.domain.Publisher;
 import mx.edu.uvaq.elibrary.model.business.service.PublisherService;
-import mx.edu.uvaq.elibrary.model.persistence.dao.EditorialDao;
+import mx.edu.uvaq.elibrary.model.persistence.dao.PublisherDao;
+
+import java.util.List;
 
 /**
- *
  * @author daniel
  */
 public class PublisherServiceImpl implements PublisherService {
 
-  private EditorialDao editorialDao;
+  private PublisherDao publisherDao;
 
-  public EditorialDao getEditorialDao() {
-    return editorialDao;
+  public PublisherDao getPublisherDao() {
+    return publisherDao;
   }
 
-  public void setEditorialDao(EditorialDao editorialDao) {
-    this.editorialDao = editorialDao;
+  public void setPublisherDao(PublisherDao publisherDao) {
+    this.publisherDao = publisherDao;
   }
 
   public List<Publisher> getPublishers() {
-    return editorialDao.encontrarEditoriales();
+    return publisherDao.findPublishers();
   }
 
   public boolean registerPublisher(Publisher publishers) {
     if (validateNewPublisher(publishers)) {
-      editorialDao.insertarEditorial(publishers);
+      publisherDao.insertPublishers(publishers);
       return true;
     }
     return false;
   }
 
   public boolean publisherExists(Publisher publisher) {
-    Publisher existingPublisher = editorialDao.encontrarEditorialPorId(null);
+    Publisher existingPublisher = publisherDao.findPublisherById(null);
     return existingPublisher != null;
   }
 
@@ -47,16 +47,16 @@ public class PublisherServiceImpl implements PublisherService {
   }
 
   public Publisher getPublisherById(Long id) {
-    return editorialDao.encontrarEditorialPorId(id);
+    return publisherDao.findPublisherById(id);
   }
 
   public boolean removePublisher(Long idEditorial) {
-    editorialDao.eliminarEditorial(idEditorial);
+    publisherDao.deletePublisher(idEditorial);
     return true;
   }
 
   public boolean editPublisher(Publisher publisher) {
-    editorialDao.actualizarEditorial(publisher);
+    publisherDao.updatePublisher(publisher);
     return true;
   }
 }
