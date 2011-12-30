@@ -46,7 +46,7 @@ public class BookServiceImpl implements BookService {
   }
 
   public Book getBookById(int id) {
-    Book book = bookDao.findBookBId(id);
+    Book book = bookDao.findBookById(id);
     book = completeBookInformation(book);
 
     return book;

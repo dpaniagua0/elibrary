@@ -6,37 +6,37 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"
        xmlns:aop="http://www.springframework.org/schema/aop">
 
-  <bean id="usuariosServicio" class="mx.edu.uvaq.elibrary.model.business.service.impl.UserServiceImpl">
-    <property name="userDao" ref="usuarioDao"/>
+  <bean id="userService" class="mx.edu.uvaq.elibrary.model.business.service.impl.UserServiceImpl">
+    <property name="userDao" ref="userDao"/>
   </bean>
 
-  <bean id="correoServicio" class="mx.edu.uvaq.elibrary.model.business.service.impl.EmailServiceImpl">
+  <bean id="emailService" class="mx.edu.uvaq.elibrary.model.business.service.impl.EmailServiceImpl">
     <property name="mailSender" ref="enviadorCorreos"/>
     <property name="velocityEngine" ref="motorVelocity"/>
   </bean>
 
-  <bean id="registroServicio" class="mx.edu.uvaq.elibrary.model.business.service.impl.RegisterServiceImpl">
-    <property name="userDao" ref="usuarioDao"/>
-    <property name="emailService" ref="correoServicio"/>
+  <bean id="registerService" class="mx.edu.uvaq.elibrary.model.business.service.impl.RegisterServiceImpl">
+    <property name="userDao" ref="userDao"/>
+    <property name="emailService" ref="emailService"/>
   </bean>
 
-  <bean id="librosServicio" class="mx.edu.uvaq.elibrary.model.business.service.impl.BookServiceImpl">
-    <property name="bookDao" ref="libroDao"/>
-    <property name="authorDao" ref="autorDao"/>
-    <property name="categoryDao" ref="categoriaDao"/>
-    <property name="publisherDao" ref="editorialDao"/>
-    <property name="bookSeriesDao" ref="serieDao"/>
+  <bean id="bookService" class="mx.edu.uvaq.elibrary.model.business.service.impl.BookServiceImpl">
+    <property name="bookDao" ref="bookDao"/>
+    <property name="authorDao" ref="authorDao"/>
+    <property name="categoryDao" ref="categoryDao"/>
+    <property name="publisherDao" ref="publisherDao"/>
+    <property name="bookSeriesDao" ref="bookSeriesDao"/>
   </bean>
 
-  <bean id="categoriaServicio" class="mx.edu.uvaq.elibrary.model.business.service.impl.CategoryServiceImpl">
-    <property name="categoryDao" ref="categoriaDao"/>
+  <bean id="categoryService" class="mx.edu.uvaq.elibrary.model.business.service.impl.CategoryServiceImpl">
+    <property name="categoryDao" ref="categoryDao"/>
   </bean>
 
-  <bean id="autorServicio" class="mx.edu.uvaq.elibrary.model.business.service.impl.AuthorServiceImpl">
-    <property name="authorDao" ref="autorDao"/>
+  <bean id="authorService" class="mx.edu.uvaq.elibrary.model.business.service.impl.AuthorServiceImpl">
+    <property name="authorDao" ref="authorDao"/>
   </bean>
 
-  <bean id="editorialServicio" class="mx.edu.uvaq.elibrary.model.business.service.impl.PublisherServiceImpl">
-    <property name="publisherDao" ref="editorialDao"/>
+  <bean id="publisherService" class="mx.edu.uvaq.elibrary.model.business.service.impl.PublisherServiceImpl">
+    <property name="publisherDao" ref="publisherDao"/>
   </bean>
 </beans>

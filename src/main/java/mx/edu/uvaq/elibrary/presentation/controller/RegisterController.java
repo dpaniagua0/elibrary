@@ -29,7 +29,7 @@ public class RegisterController extends HttpServlet {
 
   @Override
   public void init() throws ServletException {
-    registerService = (RegisterService) WebApplicationContextUtils.getWebApplicationContext(getServletContext()).getBean("registroServicio");
+    registerService = (RegisterService) WebApplicationContextUtils.getWebApplicationContext(getServletContext()).getBean("registerService");
   }
 
   /**

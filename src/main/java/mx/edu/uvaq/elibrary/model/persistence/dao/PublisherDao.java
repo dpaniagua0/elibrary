@@ -18,7 +18,7 @@ public interface PublisherDao {
 
   List<Publisher> findPublishers();
 
-  public void insertPublishers(Publisher publisher);
+  public void insertPublisher(Publisher publisher);
 
   public void updatePublisher(Publisher publisher);
 

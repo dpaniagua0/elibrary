@@ -27,7 +27,7 @@ public class JdbcAuthorDao extends QuerysNamedParameterJdbcDaoSupport implements
   }
 
   public List<Author> findAuthorsOfBook(Book book) {
-    String query = querys.get("autores.query.findAuthorsOfBook");
+    String query = querys.get("authors.query.findAuthorsOfBook");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     int id = book.getId().intValue();
     queryParams.put("id", id);
@@ -35,18 +35,18 @@ public class JdbcAuthorDao extends QuerysNamedParameterJdbcDaoSupport implements
   }
 
   public List<Author> findAuthors() {
-    String query = querys.get("autores.query.findAuthors");
+    String query = querys.get("authors.query.findAuthors");
     List<Author> authors = getJdbcTemplate().query(query, authorRowMapper);
     return authors;
   }
 
   public Author findAuthorById(Long id) {
-    String query = querys.get("autores.query.encontrarAutor");
+    String query = querys.get("authors.query.findAuthor");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     queryParams.put("id", id);
     Author author = null;
     try {
-      author = (Author) getNamedParameterJdbcTemplate().queryForObject(query, queryParams, authorRowMapper);
+      author = getNamedParameterJdbcTemplate().queryForObject(query, queryParams, authorRowMapper);
       author.setId(id.intValue());
     } catch (EmptyResultDataAccessException dae) {
     }
@@ -54,7 +54,7 @@ public class JdbcAuthorDao extends QuerysNamedParameterJdbcDaoSupport implements
   }
 
   public void insertAuthor(Author author) {
-    String query = querys.get("autores.query.insertAuthor");
+    String query = querys.get("authors.query.insertAuthor");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     queryParams.put("nombre", author.getName());
     queryParams.put("apellidos", author.getLastName());
@@ -62,7 +62,7 @@ public class JdbcAuthorDao extends QuerysNamedParameterJdbcDaoSupport implements
   }
 
   public void updateAuthor(Author author) {
-    String query = querys.get("autores.query.updateAuthor");
+    String query = querys.get("authors.query.updateAuthor");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     queryParams.put("id", author.getId());
     queryParams.put("nombre", author.getName());
@@ -71,7 +71,7 @@ public class JdbcAuthorDao extends QuerysNamedParameterJdbcDaoSupport implements
   }
 
   public void deleteAuthor(Long id) {
-    String query = querys.get("autores.query.deleteAuthor");
+    String query = querys.get("authors.query.deleteAuthor");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     queryParams.put("id", id);
     getNamedParameterJdbcTemplate().update(query, queryParams);

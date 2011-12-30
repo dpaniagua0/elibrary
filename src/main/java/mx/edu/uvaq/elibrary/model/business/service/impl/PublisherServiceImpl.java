@@ -31,7 +31,7 @@ public class PublisherServiceImpl implements PublisherService {
 
   public boolean registerPublisher(Publisher publishers) {
     if (validateNewPublisher(publishers)) {
-      publisherDao.insertPublishers(publishers);
+      publisherDao.insertPublisher(publishers);
       return true;
     }
     return false;

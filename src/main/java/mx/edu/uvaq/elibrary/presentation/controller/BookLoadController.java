@@ -31,7 +31,7 @@ public class BookLoadController extends HttpServlet {
 
   @Override
   public void init() throws ServletException {
-    bookService = (BookService) WebApplicationContextUtils.getWebApplicationContext(getServletContext()).getBean("librosServicio");
+    bookService = (BookService) WebApplicationContextUtils.getWebApplicationContext(getServletContext()).getBean("bookService");
   }
 
   /**

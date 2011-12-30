@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-    Document   : series.query.xml
+    Document   : bookSeries.query.xml
     Created on : May 30, 2011, 2:54 AM
     Author     : arcesino
     Description:
@@ -11,7 +11,7 @@
 <!DOCTYPE properties SYSTEM 'http://java.sun.com/dtd/properties.dtd'>
 
 <properties>
-  <entry key="series.query.encontrarSeriesDeLibro">
+  <entry key="series.query.findBookSeriesOfBook">
     <![CDATA[
      SELECT s.id, s.name
      FROM Libro l, Serie s 

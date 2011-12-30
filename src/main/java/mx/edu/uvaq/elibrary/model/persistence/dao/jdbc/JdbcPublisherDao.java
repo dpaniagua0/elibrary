@@ -27,7 +27,7 @@ public class JdbcPublisherDao extends QuerysNamedParameterJdbcDaoSupport impleme
   }
 
   public List<Publisher> findPublishersOfBook(Book book) {
-    String query = querys.get("editoriales.query.findPublishersOfBook");
+    String query = querys.get("publishers.query.findPublishersOfBook");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     int bookId = book.getId().intValue();
     queryParams.put("id_libro", bookId);
@@ -35,20 +35,20 @@ public class JdbcPublisherDao extends QuerysNamedParameterJdbcDaoSupport impleme
   }
 
   public List<Publisher> findPublishers() {
-    String query = querys.get("editoriales.query.findPublishers");
+    String query = querys.get("publishers.query.findPublishers");
     List<Publisher> publishers = getJdbcTemplate().query(query, publisherRowMapper);
     return publishers;
   }
 
-  public void insertPublishers(Publisher publisher) {
-    String query = querys.get("editoriales.query.insertPublishers");
+  public void insertPublisher(Publisher publisher) {
+    String query = querys.get("publishers.query.insertPublisher");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     queryParams.put("nombre", publisher.getName());
     getNamedParameterJdbcTemplate().update(query, queryParams);
   }
 
   public void updatePublisher(Publisher publisher) {
-    String query = querys.get("editoriales.query.updatePublisher");
+    String query = querys.get("publishers.query.updatePublisher");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     queryParams.put("id", publisher.getId());
     queryParams.put("nombre", publisher.getName());
@@ -56,14 +56,14 @@ public class JdbcPublisherDao extends QuerysNamedParameterJdbcDaoSupport impleme
   }
 
   public void deletePublisher(Long id) {
-    String query = querys.get("editoriales.query.deletePublisher");
+    String query = querys.get("publishers.query.deletePublisher");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     queryParams.put("id", id);
     getNamedParameterJdbcTemplate().update(query, queryParams);
   }
 
   public Publisher findPublisherById(Long id) {
-    String query = querys.get("editoriales.query.encontrarEditorial");
+    String query = querys.get("publishers.query.findPublisherById");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     queryParams.put("id", id);
     Publisher publisher = null;

@@ -28,7 +28,7 @@ public class UsersController extends HttpServlet {
 
   @Override
   public void init() throws ServletException {
-    userService = (UserService) WebApplicationContextUtils.getWebApplicationContext(getServletContext()).getBean("usuariosServicio");
+    userService = (UserService) WebApplicationContextUtils.getWebApplicationContext(getServletContext()).getBean("userService");
   }
 
   /**

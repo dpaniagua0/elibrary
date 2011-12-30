@@ -17,5 +17,5 @@ public interface BookDao {
 
   public Number insertBook(Book book);
 
-  public Book findBookBId(int id);
+  public Book findBookById(int id);
 }

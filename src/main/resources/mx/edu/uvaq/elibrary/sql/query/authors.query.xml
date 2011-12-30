@@ -11,7 +11,7 @@
 <!DOCTYPE properties SYSTEM 'http://java.sun.com/dtd/properties.dtd'>
 
 <properties>
-  <entry key="authors.query.encontrarAutoresDeLibro">
+  <entry key="authors.query.findAuthorsOfBook">
     <![CDATA[
       SELECT a.id, a.name, a.lastName
       FROM Libro_Autor la 
@@ -20,27 +20,27 @@
       ORDER BY a.name
     ]]>
   </entry>
-  <entry key="authors.query.encontrarAutores">
+  <entry key="authors.query.findAuthors">
     <![CDATA[
       SELECT * FROM Autor a ORDER BY a.name
     ]]>
   </entry>
-  <entry key="authors.query.insertarAutor">
+  <entry key="authors.query.insertAuthor">
     <![CDATA[
       INSERT INTO Autor (name, lastName) VALUES(:name, :lastName)
     ]]>
   </entry>
-  <entry key="authors.query.encontrarAutor">
+  <entry key="authors.query.findAuthor">
     <![CDATA[
      SELECT a.name, a.lastName FROM Autor a WHERE a.`id` = :id
     ]]>
   </entry>
-  <entry key="authors.query.actualizarAutor">
+  <entry key="authors.query.updateAuthor">
     <![CDATA[
      UPDATE Autor SET name = :name, lastName = :lastName WHERE `id` = :id
     ]]>
   </entry>
-  <entry key="authors.query.eliminarAutor">
+  <entry key="authors.query.deleteAuthor">
     <![CDATA[
      DELETE FROM Autor WHERE `id` = :id
     ]]>

@@ -40,21 +40,21 @@ public class JdbcBookDao extends QuerysNamedParameterJdbcDaoSupport implements B
   }
 
   public List<Book> findBooks() {
-    String query = querys.get("libros.query.findBooks");
+    String query = querys.get("books.query.findBooks");
     BookRowCallbackHandler rowHandler = new BookRowCallbackHandler();
     getJdbcTemplate().query(query, rowHandler);
     return rowHandler.getBook();
   }
 
   public void deleteBook(String isbn) {
-    String query = querys.get("libros.query.deleteBook");
+    String query = querys.get("books.query.deleteBook");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     queryParams.put("isbn", isbn);
     getNamedParameterJdbcTemplate().update(query, queryParams);
   }
 
   public Number insertBook(Book book) {
-    String query = querys.get("libros.query.insertBook");
+    String query = querys.get("books.query.insertBook");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     queryParams.put("isbn", book.getIsbn());
     queryParams.put("titulo", book.getTitle());
@@ -68,8 +68,8 @@ public class JdbcBookDao extends QuerysNamedParameterJdbcDaoSupport implements B
     return key.getKey();
   }
 
-  public Book findBookBId(int id) {
-    String query = querys.get("libros.query.findBookBId");
+  public Book findBookById(int id) {
+    String query = querys.get("books.query.findBookById");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     queryParams.put("id", id);
     return getNamedParameterJdbcTemplate().queryForObject(query, queryParams, bookRowMapper);

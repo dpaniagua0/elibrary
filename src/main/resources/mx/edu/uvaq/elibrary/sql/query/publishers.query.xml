@@ -11,7 +11,7 @@
 <!DOCTYPE properties SYSTEM 'http://java.sun.com/dtd/properties.dtd'>
 
 <properties>
-  <entry key="publishers.query.encontrarEditorialesDeLibro">
+  <entry key="publishers.query.findPublishersOfBook">
     <![CDATA[
     SELECT e.id, e.name
     FROM Libro_Editorial le 
@@ -20,27 +20,27 @@
     ORDER BY e.name
     ]]>
   </entry>
-  <entry key="publishers.query.encontrarEditoriales">
+  <entry key="publishers.query.findPublishers">
     <![CDATA[
     SELECT * FROM Editorial e ORDER BY e.name
     ]]>
   </entry>
-  <entry key="publishers.query.insertarEditorial">
+  <entry key="publishers.query.insertPublisher">
     <![CDATA[
       INSERT INTO Editorial (name) VALUES (:name)
     ]]>
   </entry>
-  <entry key="publishers.query.encontrarEditorial">
+  <entry key="publishers.query.findPublisher">
     <![CDATA[
     SELECT e.id, e.name FROM Editorial e WHERE e.`id` = :id
     ]]>
   </entry>
-  <entry key="publishers.query.actualizarEditorial">
+  <entry key="publishers.query.updatePublisher">
     <![CDATA[
      UPDATE Editorial SET name = :name WHERE `id` = :id
     ]]>
   </entry>
-  <entry key="publishers.query.eliminarEditorial">
+  <entry key="publishers.query.deletePublisher">
     <![CDATA[
       DELETE FROM Editorial where `id` = :id 
     ]]>

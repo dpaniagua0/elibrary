@@ -26,7 +26,7 @@ public class JdbcBookSeriesDao extends QuerysNamedParameterJdbcDaoSupport implem
   }
 
   public BookSeries findBookSeriesOfBook(Book book) {
-    String query = querys.get("series.query.encontrarSeriesDeLibro");
+    String query = querys.get("bookSeries.query.findBookSeriesOfBook");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     int bookId = book.getId().intValue();
     queryParams.put("id_libro", bookId);

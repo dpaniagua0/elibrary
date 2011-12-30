@@ -11,7 +11,7 @@
 <!DOCTYPE properties SYSTEM 'http://java.sun.com/dtd/properties.dtd'>
 
 <properties>
-  <entry key="categories.query.encontrarCategoriasDeLibro">
+  <entry key="categories.query.findCategoriesOfBook">
     <![CDATA[
       SELECT c.id, c.name
       FROM Libro_Categoria lc 
@@ -20,17 +20,17 @@
       ORDER BY c.name
     ]]>
   </entry>
-  <entry key="categories.query.encontrarCategorias">
+  <entry key="categories.query.findCategories">
     <![CDATA[
       SELECT c.id,c.name FROM Categoria c ORDER BY c.name
     ]]>
   </entry>
-  <entry key="categories.query.encontrarCategoria">
+  <entry key="categories.query.findCategory">
     <![CDATA[
      SELECT c.name FROM Categoria c WHERE c.`name` = :name
     ]]>
   </entry>
-  <entry key="categories.query.insertarCategoria">
+  <entry key="categories.query.insertCategory">
     <![CDATA[
       INSERT INTO
         Categoria (name)

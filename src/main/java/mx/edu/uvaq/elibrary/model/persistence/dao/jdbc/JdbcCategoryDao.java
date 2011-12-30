@@ -27,7 +27,7 @@ public class JdbcCategoryDao extends QuerysNamedParameterJdbcDaoSupport implemen
   }
 
   public List<Category> findCategoriesOfBook(Book book) {
-    String query = querys.get("categorias.query.findCategoriesOfBook");
+    String query = querys.get("categories.query.findCategoriesOfBook");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     int bookId = book.getId().intValue();
     queryParams.put("id_libro", bookId);
@@ -35,13 +35,13 @@ public class JdbcCategoryDao extends QuerysNamedParameterJdbcDaoSupport implemen
   }
 
   public List<Category> findCategories() {
-    String query = querys.get("categorias.query.getCategories");
-    List<Category> categorias = getJdbcTemplate().query(query, categoryRowMapper);
-    return categorias;
+    String query = querys.get("categories.query.findCategories");
+    List<Category> categories = getJdbcTemplate().query(query, categoryRowMapper);
+    return categories;
   }
 
   public Category findCategory(String name) {
-    String query = querys.get("categorias.query.findCategory");
+    String query = querys.get("categories.query.findCategory");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     queryParams.put("name", name);
     Category category = null;
@@ -53,7 +53,7 @@ public class JdbcCategoryDao extends QuerysNamedParameterJdbcDaoSupport implemen
   }
 
   public void insertCategory(Category nuevaCategoria) {
-    String query = querys.get("categorias.query.insertCategory");
+    String query = querys.get("categories.query.insertCategory");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     queryParams.put("name", nuevaCategoria.getName());
     getNamedParameterJdbcTemplate().update(query, queryParams);

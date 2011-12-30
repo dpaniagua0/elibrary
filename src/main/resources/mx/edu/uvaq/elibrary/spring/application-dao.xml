@@ -11,81 +11,81 @@
     <property name="password" value="${jdbc.password}"/>
   </bean>
 
-  <bean id="querysLibro" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.query.QueryCollection">
+  <bean id="bookQuerys" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.query.QueryCollection">
     <property name="querys">
       <bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-        <property name="location" value="classpath:mx/edu/uvaq/elibrary/sql/query/libros.query.xml"/>
+        <property name="location" value="classpath:mx/edu/uvaq/elibrary/sql/query/books.query.xml"/>
       </bean>
     </property>
   </bean>
 
-  <bean id="querysUsuario" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.query.QueryCollection">
+  <bean id="userQuerys" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.query.QueryCollection">
     <property name="querys">
       <bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-        <property name="location" value="classpath:mx/edu/uvaq/elibrary/sql/query/usuarios.query.xml"/>
+        <property name="location" value="classpath:mx/edu/uvaq/elibrary/sql/query/users.query.xml"/>
       </bean>
     </property>
   </bean>
 
-  <bean id="querysCategoria" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.query.QueryCollection">
+  <bean id="categoryQuerys" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.query.QueryCollection">
     <property name="querys">
       <bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-        <property name="location" value="classpath:mx/edu/uvaq/elibrary/sql/query/categorias.query.xml"/>
+        <property name="location" value="classpath:mx/edu/uvaq/elibrary/sql/query/categories.query.xml"/>
       </bean>
     </property>
   </bean>
 
-  <bean id="querysAutor" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.query.QueryCollection">
+  <bean id="authorQuerys" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.query.QueryCollection">
     <property name="querys">
       <bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-        <property name="location" value="classpath:mx/edu/uvaq/elibrary/sql/query/autores.query.xml"/>
+        <property name="location" value="classpath:mx/edu/uvaq/elibrary/sql/query/authors.query.xml"/>
       </bean>
     </property>
   </bean>
 
-  <bean id="querysEditorial" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.query.QueryCollection">
+  <bean id="publisherQuerys" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.query.QueryCollection">
     <property name="querys">
       <bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-        <property name="location" value="classpath:mx/edu/uvaq/elibrary/sql/query/editoriales.query.xml"/>
+        <property name="location" value="classpath:mx/edu/uvaq/elibrary/sql/query/publishers.query.xml"/>
       </bean>
     </property>
   </bean>
 
-  <bean id="querysSerie" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.query.QueryCollection">
+  <bean id="bookSeriesQuerys" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.query.QueryCollection">
     <property name="querys">
       <bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-        <property name="location" value="classpath:mx/edu/uvaq/elibrary/sql/query/series.query.xml"/>
+        <property name="location" value="classpath:mx/edu/uvaq/elibrary/sql/query/bookSeries.query.xml"/>
       </bean>
     </property>
   </bean>
 
-  <bean id="usuarioDao" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.JdbcUserDao">
+  <bean id="userDao" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.JdbcUserDao">
     <property name="dataSource" ref="dataSource"/>
-    <property name="querys" ref="querysUsuario"/>
+    <property name="querys" ref="userQuerys"/>
   </bean>
 
-  <bean id="libroDao" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.JdbcBookDao">
+  <bean id="bookDao" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.JdbcBookDao">
     <property name="dataSource" ref="dataSource"/>
-    <property name="querys" ref="querysLibro"/>
+    <property name="querys" ref="bookQuerys"/>
   </bean>
 
-  <bean id="categoriaDao" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.JdbcCategoryDao">
+  <bean id="categoryDao" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.JdbcCategoryDao">
     <property name="dataSource" ref="dataSource"/>
-    <property name="querys" ref="querysCategoria"/>
+    <property name="querys" ref="categoryQuerys"/>
   </bean>
 
-  <bean id="autorDao" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.JdbcAuthorDao">
+  <bean id="authorDao" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.JdbcAuthorDao">
     <property name="dataSource" ref="dataSource"/>
-    <property name="querys" ref="querysAutor"/>
+    <property name="querys" ref="authorQuerys"/>
   </bean>
 
-  <bean id="editorialDao" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.JdbcPublisherDao">
+  <bean id="publisherDao" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.JdbcPublisherDao">
     <property name="dataSource" ref="dataSource"/>
-    <property name="querys" ref="querysEditorial"/>
+    <property name="querys" ref="publisherQuerys"/>
   </bean>
 
-  <bean id="serieDao" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.JdbcBookSeriesDao">
+  <bean id="bookSeriesDao" class="mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.JdbcBookSeriesDao">
     <property name="dataSource" ref="dataSource"/>
-    <property name="querys" ref="querysSerie"/>
+    <property name="querys" ref="bookSeriesQuerys"/>
   </bean>
 </beans>

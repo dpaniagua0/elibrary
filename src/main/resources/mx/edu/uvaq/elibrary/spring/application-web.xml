@@ -5,10 +5,10 @@
        default-autowire="byName">
 
   <bean id="_admin_autores" class="mx.edu.uvaq.elibrary.presentation.controller.AuthorsController" scope="prototype">
-    <property name="authorService" ref="autorServicio"/>
+    <property name="authorService" ref="authorService"/>
   </bean>
   <bean id="_admin_editoriales" class="mx.edu.uvaq.elibrary.presentation.controller.PublishersController"
         scope="prototype">
-    <property name="editorialesServicio" ref="editorialServicio"/>
+    <property name="publisherService" ref="publisherService"/>
   </bean>
 </beans>
