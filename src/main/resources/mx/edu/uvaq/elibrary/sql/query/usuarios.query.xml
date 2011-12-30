@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-    Document   : usuarios.query.xml
+    Document   : users.query.xml
     Created on : May 30, 2011, 2:54 AM
     Author     : arcesino
     Description:
@@ -11,19 +11,19 @@
 <!DOCTYPE properties SYSTEM 'http://java.sun.com/dtd/properties.dtd'>
 
 <properties>
-  <entry key="usuarios.query.insertarUsuario">
+  <entry key="users.query.insertarUsuario">
     <![CDATA[
       INSERT INTO 
         Usuario (correo_electronico ,name, lastName ,password, codigo_activacion )
       VALUES (:correo_electronico,:name,:lastName,:password, :codigo_activacion)
     ]]>
   </entry>
-  <entry key="usuarios.query.encontrarUsuario">
+  <entry key="users.query.encontrarUsuario">
     <![CDATA[
      SELECT p.correo_electronico, p.name, p.lastName, p.password, p.active  FROM Usuario p WHERE p.`correo_electronico` = :correo_electronico
     ]]>
   </entry>
-   <entry key="usuarios.query.encontrarUsuarios">
+  <entry key="users.query.encontrarUsuarios">
     <![CDATA[
      select u.correo_electronico, u.name, u.lastName, u.password, u.active, ur.rol
      from Usuario u
@@ -32,12 +32,12 @@
      order by u.correo_electronico, ur.rol
     ]]>
   </entry>
-   <entry key="usuarios.query.actualizarUsuario">
+  <entry key="users.query.actualizarUsuario">
     <![CDATA[
      UPDATE Usuario u set active = true , codigo_activacion =  null where u.correo_electronico = :correo_electronico"
     ]]>
   </entry>
-   <entry key="usuarios.query.asignarRolUsuario">
+  <entry key="users.query.asignarRolUsuario">
     <![CDATA[
      INSERT INTO Usuario_Rol (correo_electronico ,rol) VALUES (:correo_electronico,:rol)      
     ]]>

@@ -41,15 +41,15 @@
   </filter>
   <filter-mapping>
     <filter-name>BookFormFilter</filter-name>
-    <servlet-name>controlador-carga-libro</servlet-name>
+    <servlet-name>controlador-carga-book</servlet-name>
   </filter-mapping>
   <servlet>
     <servlet-name>vista-registro</servlet-name>
     <jsp-file>/WEB-INF/jsp/login.jsp</jsp-file>
   </servlet>
   <servlet>
-    <servlet-name>vista-usuarios</servlet-name>
-    <jsp-file>/WEB-INF/jsp/admin/usuarios.jsp</jsp-file>
+    <servlet-name>vista-users</servlet-name>
+    <jsp-file>/WEB-INF/jsp/admin/users.jsp</jsp-file>
   </servlet>
   <servlet>
     <servlet-name>vista-categories</servlet-name>
@@ -72,7 +72,7 @@
     <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.CerrarSesionControlador</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>controlador-carga-libro</servlet-name>
+    <servlet-name>controlador-carga-book</servlet-name>
     <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.CargaLibroControlador</servlet-class>
   </servlet>
   <servlet>
@@ -84,19 +84,19 @@
     <url-pattern>/registro</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>controlador-usuarios</servlet-name>
+    <servlet-name>controlador-users</servlet-name>
     <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.UsuariosControlador</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>controlador-usuarios</servlet-name>
-    <url-pattern>/admin/usuarios</url-pattern>
+    <servlet-name>controlador-users</servlet-name>
+    <url-pattern>/admin/users</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>controlador-libros</servlet-name>
+    <servlet-name>controlador-books</servlet-name>
     <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.LibrosControlador</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>controlador-libros</servlet-name>
+    <servlet-name>controlador-books</servlet-name>
     <url-pattern>/inicio</url-pattern>
   </servlet-mapping>
   <!--    <servlet>
@@ -116,8 +116,8 @@
     <url-pattern>/inicio/cerrar-sesion</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>controlador-carga-libro</servlet-name>
-    <url-pattern>/admin/controlador-carga-libro</url-pattern>
+    <servlet-name>controlador-carga-book</servlet-name>
+    <url-pattern>/admin/controlador-carga-book</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ElibraryFrontController</servlet-name>
@@ -143,7 +143,7 @@
   </security-role>
   <security-constraint>
     <web-resource-collection>
-      <web-resource-name>paginas-usuarios</web-resource-name>
+      <web-resource-name>paginas-users</web-resource-name>
       <description/>
       <url-pattern>/inicio</url-pattern>
       <url-pattern>/inicio/*</url-pattern>

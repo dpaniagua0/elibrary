@@ -4,6 +4,20 @@
  */
 package mx.edu.uvaq.elibrary.web.filter;
 
+import mx.edu.uvaq.elibrary.presentation.UtilidadesControlador;
+import mx.edu.uvaq.elibrary.presentation.command.BookForm;
+import mx.edu.uvaq.elibrary.presentation.controller.CargaLibroControlador;
+import mx.edu.uvaq.elibrary.presentation.controller.LibrosControlador;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.fileupload.FileItemIterator;
+import org.apache.commons.fileupload.FileItemStream;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.util.Streams;
+import org.apache.commons.lang.time.DateUtils;
+
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -14,49 +28,30 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import mx.edu.uvaq.elibrary.presentation.UtilidadesControlador;
-import mx.edu.uvaq.elibrary.presentation.controller.CargaLibroControlador;
-import mx.edu.uvaq.elibrary.presentation.controller.LibrosControlador;
-import mx.edu.uvaq.elibrary.presentation.command.LibroForma;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.fileupload.FileItemIterator;
-import org.apache.commons.fileupload.FileItemStream;
-import org.apache.commons.fileupload.util.Streams;
-import org.apache.commons.lang.time.DateUtils;
 
 /**
- *
  * @author arcesino
  */
 public class BookFormFilter implements Filter {
-  
+
   private static final boolean debug = true;
   // The filter configuration object we are associated with.  If
   // this value is null, this filter instance is not currently
   // configured. 
   private FilterConfig filterConfig = null;
-  
+
   public BookFormFilter() {
-  }  
-  
+  }
+
   private void doBeforeProcessing(ServletRequest request, ServletResponse response)
-          throws IOException, ServletException {
+      throws IOException, ServletException {
     if (debug) {
       log("LibroFormaFiltro:DoBeforeProcessing");
     }
 
-    HttpServletRequest httpRequest = (HttpServletRequest)request;
-    
-    LibroForma libroForma = null;
+    HttpServletRequest httpRequest = (HttpServletRequest) request;
+
+    BookForm bookForma = null;
     if (ServletFileUpload.isMultipartContent(httpRequest)) {
       try {
         ServletFileUpload upload = new ServletFileUpload();
@@ -75,18 +70,18 @@ public class BookFormFilter implements Filter {
         String fechaPublicacion = mapLibro.get("fecha_publicacion").toString();
         if (fechaPublicacion != null) {
           try {
-            mapLibro.put("fechaPublicacion", DateUtils.parseDate(fechaPublicacion, new String[] {"MM/dd/yyyy"}));
+            mapLibro.put("fechaPublicacion", DateUtils.parseDate(fechaPublicacion, new String[]{"MM/dd/yyyy"}));
           } catch (ParseException ex) {
             Logger.getLogger(BookFormFilter.class.getName()).log(Level.SEVERE, null, ex);
           }
         }
-        libroForma = new LibroForma();
+        bookForma = new BookForm();
         mapLibroForma.put("accion", mapLibro.remove("accion"));
-        BeanUtils.populate(libroForma.getLibro(), mapLibro);
-        BeanUtils.populate(libroForma, mapLibroForma);
+        BeanUtils.populate(bookForma.getBook(), mapLibro);
+        BeanUtils.populate(bookForma, mapLibroForma);
         Object idSerie = mapLibro.get("id_serie");
         if (idSerie != null) {
-          libroForma.getLibro().getBookSeries().setId(Integer.valueOf(idSerie.toString()));
+          bookForma.getBook().getBookSeries().setId(Integer.valueOf(idSerie.toString()));
         }
       } catch (IllegalAccessException ex) {
         Logger.getLogger(BookFormFilter.class.getName()).log(Level.SEVERE, null, ex);
@@ -96,13 +91,13 @@ public class BookFormFilter implements Filter {
         Logger.getLogger(LibrosControlador.class.getName()).log(Level.SEVERE, null, ex);
       }
     } else {
-      libroForma = UtilidadesControlador.obtenerForm(LibroForma.class, httpRequest);
+      bookForma = UtilidadesControlador.obtenerForm(BookForm.class, httpRequest);
     }
-    request.setAttribute(CargaLibroControlador.NOMBRE_FORMA, libroForma);
-  }  
-  
+    request.setAttribute(CargaLibroControlador.NOMBRE_FORMA, bookForma);
+  }
+
   private void doAfterProcessing(ServletRequest request, ServletResponse response)
-          throws IOException, ServletException {
+      throws IOException, ServletException {
     if (debug) {
       log("LibroFormaFiltro:DoAfterProcessing");
     }
@@ -112,41 +107,39 @@ public class BookFormFilter implements Filter {
 
     // For example, a logging filter might log the attributes on the
     // request object after the request has been processed. 
-	/*
-    for (Enumeration en = request.getAttributeNames(); en.hasMoreElements(); ) {
-    String name = (String)en.nextElement();
-    Object value = request.getAttribute(name);
-    log("attribute: " + name + "=" + value.toString());
-    
-    }
-     */
+    /*
+   for (Enumeration en = request.getAttributeNames(); en.hasMoreElements(); ) {
+   String name = (String)en.nextElement();
+   Object value = request.getAttribute(name);
+   log("attribute: " + name + "=" + value.toString());
+
+   }
+    */
 
     // For example, a filter might append something to the response.
-	/*
-    PrintWriter respOut = new PrintWriter(response.getWriter());
-    respOut.println("<P><B>This has been appended by an intrusive filter.</B>");
-     */
+    /*
+   PrintWriter respOut = new PrintWriter(response.getWriter());
+   respOut.println("<P><B>This has been appended by an intrusive filter.</B>");
+    */
   }
 
   /**
-   *
-   * @param request The servlet request we are processing
+   * @param request  The servlet request we are processing
    * @param response The servlet response we are creating
-   * @param chain The filter chain we are processing
-   *
-   * @exception IOException if an input/output error occurs
-   * @exception ServletException if a servlet error occurs
+   * @param chain    The filter chain we are processing
+   * @throws IOException      if an input/output error occurs
+   * @throws ServletException if a servlet error occurs
    */
   public void doFilter(ServletRequest request, ServletResponse response,
-          FilterChain chain)
-          throws IOException, ServletException {
-    
+                       FilterChain chain)
+      throws IOException, ServletException {
+
     if (debug) {
       log("LibroFormaFiltro:doFilter()");
     }
-    
+
     doBeforeProcessing(request, response);
-    
+
     Throwable problem = null;
     try {
       chain.doFilter(request, response);
@@ -157,7 +150,7 @@ public class BookFormFilter implements Filter {
       problem = t;
       t.printStackTrace();
     }
-    
+
     doAfterProcessing(request, response);
 
     // If there was a problem, we want to rethrow it if it is
@@ -190,18 +183,18 @@ public class BookFormFilter implements Filter {
   }
 
   /**
-   * Destroy method for this filter 
+   * Destroy method for this filter
    */
-  public void destroy() {    
+  public void destroy() {
   }
 
   /**
-   * Init method for this filter 
+   * Init method for this filter
    */
-  public void init(FilterConfig filterConfig) {    
+  public void init(FilterConfig filterConfig) {
     this.filterConfig = filterConfig;
     if (filterConfig != null) {
-      if (debug) {        
+      if (debug) {
         log("LibroFormaFiltro:Initializing filter");
       }
     }
@@ -220,20 +213,20 @@ public class BookFormFilter implements Filter {
     sb.append(")");
     return (sb.toString());
   }
-  
+
   private void sendProcessingError(Throwable t, ServletResponse response) {
-    String stackTrace = getStackTrace(t);    
-    
+    String stackTrace = getStackTrace(t);
+
     if (stackTrace != null && !stackTrace.equals("")) {
       try {
         response.setContentType("text/html");
         PrintStream ps = new PrintStream(response.getOutputStream());
-        PrintWriter pw = new PrintWriter(ps);        
+        PrintWriter pw = new PrintWriter(ps);
         pw.print("<html>\n<head>\n<title>Error</title>\n</head>\n<body>\n"); //NOI18N
 
         // PENDING! Localize this for next official release
-        pw.print("<h1>The resource did not process correctly</h1>\n<pre>\n");        
-        pw.print(stackTrace);        
+        pw.print("<h1>The resource did not process correctly</h1>\n<pre>\n");
+        pw.print(stackTrace);
         pw.print("</pre></body>\n</html>"); //NOI18N
         pw.close();
         ps.close();
@@ -250,7 +243,7 @@ public class BookFormFilter implements Filter {
       }
     }
   }
-  
+
   public static String getStackTrace(Throwable t) {
     String stackTrace = null;
     try {
@@ -264,8 +257,8 @@ public class BookFormFilter implements Filter {
     }
     return stackTrace;
   }
-  
+
   public void log(String msg) {
-    filterConfig.getServletContext().log(msg);    
+    filterConfig.getServletContext().log(msg);
   }
 }

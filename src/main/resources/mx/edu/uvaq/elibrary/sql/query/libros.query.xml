@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-    Document   : libros.query.xml
+    Document   : books.query.xml
     Created on : May 30, 2011, 2:54 AM
     Author     : arcesino
     Description:
@@ -11,13 +11,13 @@
 <!DOCTYPE properties SYSTEM 'http://java.sun.com/dtd/properties.dtd'>
 
 <properties>
-  <entry key="libros.query.encontrarLibros">
+  <entry key="books.query.encontrarLibros">
     <![CDATA[
       SELECT l.id, l.title, l.fecha_publicacion, l.isbn, s.id id_serie,
              s.name bookSeries, a.id id_autor, a.name autor,
              a.lastName apellidos_autor, c.id id_categoria, c.name categoria,
              e.id id_editorial, e.name editorial
-      FROM libro l
+      FROM book l
       LEFT JOIN Serie s ON s.id = l.id_serie
       LEFT JOIN Libro_Autor la ON la.id_libro = l.id
       LEFT JOIN Autor a ON a.id = la.id_autor
@@ -28,18 +28,18 @@
       ORDER by l.id, l.title
     ]]>
   </entry>
-  <entry key="libros.query.deleteBook">
+  <entry key="books.query.deleteBook">
     <![CDATA[
       DELETE FROM libreria WHERE `isbn` = :isbn
     ]]>
   </entry>
-  <entry key="libros.query.insertarLibro">
+  <entry key="books.query.insertarLibro">
     <![CDATA[
       INSERT INTO Libro (isbn, title, fecha_publicacion, id_serie, file, image)
       VALUES (:isbn,:title,:fecha_publicacion,:id_serie,:file, :image)
     ]]>
   </entry>
-  <entry key="libros.query.encontrarLibroPorId">
+  <entry key="books.query.encontrarLibroPorId">
     <![CDATA[
       SELECT * FROM Libro l WHERE l.id = :id
     ]]>
