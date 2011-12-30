@@ -5,7 +5,7 @@
 package mx.edu.uvaq.elibrary.model.business.service.impl;
 
 import java.util.List;
-import mx.edu.uvaq.elibrary.domain.Editorial;
+import mx.edu.uvaq.elibrary.domain.Publisher;
 import mx.edu.uvaq.elibrary.model.business.service.EditorialesServicio;
 import mx.edu.uvaq.elibrary.model.persistence.dao.EditorialDao;
 
@@ -25,11 +25,11 @@ public class EditorialesServicioImpl implements EditorialesServicio {
     this.editorialDao = editorialDao;
   }
 
-  public List<Editorial> getEditoriales() {
+  public List<Publisher> getEditoriales() {
     return editorialDao.encontrarEditoriales();
   }
 
-  public boolean registrarEditorial(Editorial editorial) {
+  public boolean registrarEditorial(Publisher editorial) {
     if (validarNuevaEditorial(editorial)) {
       editorialDao.insertarEditorial(editorial);
       return true;
@@ -37,16 +37,16 @@ public class EditorialesServicioImpl implements EditorialesServicio {
     return false;
   }
 
-  public boolean existeEditorial(Editorial nuevaEditorial) {
-    Editorial editorial = editorialDao.encontrarEditorialPorId(null);
+  public boolean existeEditorial(Publisher nuevaEditorial) {
+    Publisher editorial = editorialDao.encontrarEditorialPorId(null);
     return editorial != null;
   }
 
-  private boolean validarNuevaEditorial(Editorial nuevaEditorial) {
+  private boolean validarNuevaEditorial(Publisher nuevaEditorial) {
     return !existeEditorial(nuevaEditorial);
   }
 
-  public Editorial getEditorialPorId(Long idEditorial) {
+  public Publisher getEditorialPorId(Long idEditorial) {
     return editorialDao.encontrarEditorialPorId(idEditorial);
   }
 
@@ -55,7 +55,7 @@ public class EditorialesServicioImpl implements EditorialesServicio {
     return true;
   }
 
-  public boolean modificarEditorial(Editorial editorial) {
+  public boolean modificarEditorial(Publisher editorial) {
     editorialDao.actualizarEditorial(editorial);
     return true;
   }

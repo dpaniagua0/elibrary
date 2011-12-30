@@ -5,7 +5,7 @@
 package mx.edu.uvaq.elibrary.model.persistence.dao;
 
 import java.util.List;
-import mx.edu.uvaq.elibrary.domain.Libro;
+import mx.edu.uvaq.elibrary.domain.Book;
 
 /**
  *
@@ -13,9 +13,9 @@ import mx.edu.uvaq.elibrary.domain.Libro;
  */
 public interface LibroDao {
 
-  public List<Libro> encontrarLibros();
+  public List<Book> encontrarLibros();
 
-  public Number insertarLibro(Libro nuevoLibro);
+  public Number insertarLibro(Book nuevoLibro);
 
-  public Libro encontrarLibroPorId(int id);
+  public Book encontrarLibroPorId(int id);
 }

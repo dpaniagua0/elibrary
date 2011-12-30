@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import mx.edu.uvaq.elibrary.domain.Usuario;
+import mx.edu.uvaq.elibrary.domain.User;
 import mx.edu.uvaq.elibrary.model.business.service.CorreoServicio;
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -34,13 +34,13 @@ public class CorreoServicioImpl implements CorreoServicio {
     this.motorVelocity = motorVelocity;
   }
 
-  public void enviarCorreoActivacionCuenta(Usuario usuario, String urlActivacion) {
+  public void enviarCorreoActivacionCuenta(User usuario, String urlActivacion) {
     try {
       MimeMessage mensaje = enviadorCorreo.createMimeMessage();
       MimeMessageHelper mime = new MimeMessageHelper(mensaje, true);
       mime.setFrom("admin@uvaq.edu.mx");
       mime.setSubject("UVAQ [elibrary]: Activación de cuenta");
-      mime.setTo(usuario.getCorreoElectronico());
+      mime.setTo(usuario.getEmail());
       Map<String, Object> datos = new HashMap<String, Object>();
       datos.put("usuario", usuario);
       datos.put("urlActivacion", urlActivacion);

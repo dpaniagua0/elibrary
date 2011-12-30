@@ -5,8 +5,8 @@
 package mx.edu.uvaq.elibrary.model.persistence.dao;
 
 import java.util.List;
-import mx.edu.uvaq.elibrary.domain.Editorial;
-import mx.edu.uvaq.elibrary.domain.Libro;
+import mx.edu.uvaq.elibrary.domain.Publisher;
+import mx.edu.uvaq.elibrary.domain.Book;
 
 /**
  *
@@ -14,15 +14,15 @@ import mx.edu.uvaq.elibrary.domain.Libro;
  */
 public interface EditorialDao {
 
-  List<Editorial> encontrarEditorialesDeLibro(Libro libro);
+  List<Publisher> encontrarEditorialesDeLibro(Book libro);
 
-  List<Editorial> encontrarEditoriales();
+  List<Publisher> encontrarEditoriales();
 
-  public void insertarEditorial(Editorial editorial);
+  public void insertarEditorial(Publisher editorial);
   
-  public void actualizarEditorial(Editorial editorial);
+  public void actualizarEditorial(Publisher editorial);
   
   public void eliminarEditorial(Long idEditorial);
 
-  public Editorial encontrarEditorialPorId(Long idEditorial);
+  public Publisher encontrarEditorialPorId(Long idEditorial);
 }

@@ -6,7 +6,7 @@ package mx.edu.uvaq.elibrary.model.business.service.impl;
 
 import java.util.Date;
 import mx.edu.uvaq.elibrary.model.business.service.RegistroServicio;
-import mx.edu.uvaq.elibrary.domain.Usuario;
+import mx.edu.uvaq.elibrary.domain.User;
 import mx.edu.uvaq.elibrary.model.business.service.CorreoServicio;
 import mx.edu.uvaq.elibrary.model.persistence.dao.UsuarioDao;
 import org.apache.commons.codec.binary.Base64;
@@ -29,10 +29,10 @@ public class RegistroServicioImpl implements RegistroServicio {
     this.correoServicio = correoServicio;
   }
 
-  public boolean registrarUsuario(Usuario nuevoUsuario, String urlActivacion) {
+  public boolean registrarUsuario(User nuevoUsuario, String urlActivacion) {
     if (validarNuevoUsuario(nuevoUsuario)) {
       String codigoActivacion = generarCodigoActivacion(nuevoUsuario);
-      nuevoUsuario.setCodigoActivacion(codigoActivacion);
+      nuevoUsuario.setActivationCode(codigoActivacion);
       usuarioDao.insertarUsuario(nuevoUsuario);
       correoServicio.enviarCorreoActivacionCuenta(nuevoUsuario, urlActivacion);
       return true;
@@ -40,28 +40,28 @@ public class RegistroServicioImpl implements RegistroServicio {
     return false;
   }
 
-  public boolean existeUsuario(Usuario nuevoUsuario) {
-    Usuario usuario = usuarioDao.encontrarUsuario(nuevoUsuario.getCorreoElectronico());
+  public boolean existeUsuario(User nuevoUsuario) {
+    User usuario = usuarioDao.encontrarUsuario(nuevoUsuario.getEmail());
 
     return usuario != null;
   }
 
-  private boolean validarNuevoUsuario(Usuario nuevoUsuario) {
+  private boolean validarNuevoUsuario(User nuevoUsuario) {
     return !existeUsuario(nuevoUsuario);
   }
 
-  public String generarCodigoActivacion(Usuario usuario) {
-    String datos = String.format("%s%s%s%s", usuario.getCorreoElectronico(), usuario.getNombre(),
-            usuario.getApellidos(), new Date().getTime());
+  public String generarCodigoActivacion(User usuario) {
+    String datos = String.format("%s%s%s%s", usuario.getEmail(), usuario.getName(),
+            usuario.getLastName(), new Date().getTime());
 
     byte[] codigoActivacion = DigestUtils.sha256(datos);
 
     return Base64.encodeBase64URLSafeString(codigoActivacion);
   }
 
-  public boolean activarUsuario(Usuario nuevoUsuario) {
+  public boolean activarUsuario(User nuevoUsuario) {
     if (!validarNuevoUsuario(nuevoUsuario)) {
-      usuarioDao.actualizarUsuario(nuevoUsuario.getCorreoElectronico());
+      usuarioDao.actualizarUsuario(nuevoUsuario.getEmail());
       usuarioDao.asignarRolUsuario(nuevoUsuario, "estudiante");
       return true;
     }

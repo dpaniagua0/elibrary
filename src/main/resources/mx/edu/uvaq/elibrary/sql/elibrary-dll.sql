@@ -8,29 +8,29 @@ CREATE TABLE Rol (
 
 CREATE TABLE Serie (
                 id identity NOT NULL,
-                nombre VARCHAR(50) NOT NULL,
+                name VARCHAR(50) NOT NULL,
                 CONSTRAINT Serie_pk PRIMARY KEY (id)
 );
 
 
 CREATE TABLE Editorial (
                 id identity NOT NULL,
-                nombre VARCHAR(50) NOT NULL,
+                name VARCHAR(50) NOT NULL,
                 CONSTRAINT Editorial_pk PRIMARY KEY (id)
 );
 
 
 CREATE TABLE Autor (
                 id identity NOT NULL,
-                nombre VARCHAR(50) NOT NULL,
-                apellidos VARCHAR(100),
+                name VARCHAR(50) NOT NULL,
+                lastName VARCHAR(100),
                 CONSTRAINT Autor_pk PRIMARY KEY (id)
 );
 
 
 CREATE TABLE Categoria (
                 id identity NOT NULL,
-                nombre VARCHAR(50) NOT NULL,
+                name VARCHAR(50) NOT NULL,
                 id_categoria_padre INTEGER,
                 CONSTRAINT Categoria_pk PRIMARY KEY (id)
 );
@@ -38,12 +38,12 @@ CREATE TABLE Categoria (
 
 CREATE TABLE Libro (
                 id identity NOT NULL,
-                titulo VARCHAR(100) NOT NULL,
+                title VARCHAR(100) NOT NULL,
                 fecha_publicacion DATE,
                 isbn VARCHAR(20),
                 id_serie INTEGER,
-                archivo BLOB,
-                imagen BLOB,
+                file BLOB,
+                image BLOB,
                 CONSTRAINT Libro_pk PRIMARY KEY (id)
 );
 
@@ -69,10 +69,10 @@ CREATE TABLE Libro_Autor (
 
 CREATE TABLE Usuario (
                 correo_electronico VARCHAR(50) NOT NULL,
-                nombre VARCHAR(50) NOT NULL,
-                apellidos VARCHAR(100) DEFAULT '' NOT NULL,
+                name VARCHAR(50) NOT NULL,
+                lastName VARCHAR(100) DEFAULT '' NOT NULL,
                 password VARCHAR(50) NOT NULL,
-                activo BOOLEAN DEFAULT FALSE,
+                active BOOLEAN DEFAULT FALSE,
                 codigo_activacion VARCHAR(100),
                 CONSTRAINT Usuario_pk PRIMARY KEY (correo_electronico)
 );
@@ -85,7 +85,7 @@ CREATE TABLE Usuario_Rol (
 );
 
 
-CREATE VIEW Usuarios_Activos AS SELECT correo_electronico, password FROM Usuario WHERE activo = TRUE;
+CREATE VIEW Usuarios_Activos AS SELECT correo_electronico, password FROM Usuario WHERE active = TRUE;
 
 ALTER TABLE Libro ADD CONSTRAINT Serie_Libro_fk
 FOREIGN KEY (id_serie)

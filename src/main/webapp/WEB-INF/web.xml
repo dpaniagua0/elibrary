@@ -52,8 +52,8 @@
     <jsp-file>/WEB-INF/jsp/admin/usuarios.jsp</jsp-file>
   </servlet>
   <servlet>
-    <servlet-name>vista-categorias</servlet-name>
-    <jsp-file>/WEB-INF/jsp/admin/categorias.jsp</jsp-file>
+    <servlet-name>vista-categories</servlet-name>
+    <jsp-file>/WEB-INF/jsp/admin/categories.jsp</jsp-file>
   </servlet>
   <servlet>
     <servlet-name>vista-inicio</servlet-name>
@@ -121,9 +121,9 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ElibraryFrontController</servlet-name>
-    <url-pattern>/admin/autores/*</url-pattern>
-    <url-pattern>/admin/editoriales/*</url-pattern>
-    <url-pattern>/admin/categorias/*</url-pattern>
+    <url-pattern>/admin/authors/*</url-pattern>
+    <url-pattern>/admin/publishers/*</url-pattern>
+    <url-pattern>/admin/categories/*</url-pattern>
   </servlet-mapping>
   <session-config>
     <session-timeout>30</session-timeout>

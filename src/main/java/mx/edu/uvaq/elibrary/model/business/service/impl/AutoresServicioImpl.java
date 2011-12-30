@@ -5,7 +5,7 @@
 package mx.edu.uvaq.elibrary.model.business.service.impl;
 
 import java.util.List;
-import mx.edu.uvaq.elibrary.domain.Autor;
+import mx.edu.uvaq.elibrary.domain.Author;
 import mx.edu.uvaq.elibrary.model.business.service.AutoresServicio;
 import mx.edu.uvaq.elibrary.model.persistence.dao.AutorDao;
 
@@ -25,15 +25,15 @@ public class AutoresServicioImpl implements AutoresServicio {
     this.autorDao = autorDao;
   }
 
-  public List<Autor> getAutores() {
+  public List<Author> getAutores() {
     return autorDao.encontrarAutores();
   }
 
-  public Autor getAutorPorId(Long idAutor) {
+  public Author getAutorPorId(Long idAutor) {
     return autorDao.encontrarAutorPorId(idAutor);
   }
 
-  public boolean registrarAutor(Autor nuevoAutor) {
+  public boolean registrarAutor(Author nuevoAutor) {
     if (validarNuevoUsuario(nuevoAutor)) {
       autorDao.insertarAutor(nuevoAutor);
       return true;
@@ -41,17 +41,17 @@ public class AutoresServicioImpl implements AutoresServicio {
     return false;
   }
 
-  public boolean existeUsuario(Autor autor) {
-    Autor usuario = autorDao.encontrarAutorPorId(null);
+  public boolean existeUsuario(Author autor) {
+    Author usuario = autorDao.encontrarAutorPorId(null);
 
     return usuario != null;
   }
 
-  private boolean validarNuevoUsuario(Autor nuevoUsuario) {
+  private boolean validarNuevoUsuario(Author nuevoUsuario) {
     return !existeUsuario(nuevoUsuario);
   }
 
-  public boolean modificarAutor(Autor autor) {
+  public boolean modificarAutor(Author autor) {
     autorDao.actualizarAutor(autor);
     return true;
   }

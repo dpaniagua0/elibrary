@@ -4,7 +4,7 @@
  */
 package mx.edu.uvaq.elibrary.model.business.service;
 
-import mx.edu.uvaq.elibrary.domain.Usuario;
+import mx.edu.uvaq.elibrary.domain.User;
 
 /**
  *
@@ -12,5 +12,5 @@ import mx.edu.uvaq.elibrary.domain.Usuario;
  */
 public interface CorreoServicio {
 
-  public abstract void enviarCorreoActivacionCuenta(Usuario usuario, String urlActivacion);
+  public abstract void enviarCorreoActivacionCuenta(User usuario, String urlActivacion);
 }

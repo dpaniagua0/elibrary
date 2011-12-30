@@ -7,8 +7,8 @@ package mx.edu.uvaq.elibrary.model.persistence.dao.jdbc;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import mx.edu.uvaq.elibrary.domain.Categoria;
-import mx.edu.uvaq.elibrary.domain.Libro;
+import mx.edu.uvaq.elibrary.domain.Category;
+import mx.edu.uvaq.elibrary.domain.Book;
 import mx.edu.uvaq.elibrary.model.persistence.dao.CategoriaDao;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -20,13 +20,13 @@ import org.springframework.jdbc.core.RowMapper;
  */
 public class JdbcCategoriaDao extends QuerysNamedParameterJdbcDaoSupport implements CategoriaDao {
 
-  private RowMapper<Categoria> categoriaRowMapper;
+  private RowMapper<Category> categoriaRowMapper;
 
   public JdbcCategoriaDao() {
-    categoriaRowMapper = new BeanPropertyRowMapper<Categoria>(Categoria.class);
+    categoriaRowMapper = new BeanPropertyRowMapper<Category>(Category.class);
   }
 
-  public List<Categoria> encontrarCategoriasDeLibro(Libro libro) {
+  public List<Category> encontrarCategoriasDeLibro(Book libro) {
     String query = querys.get("categorias.query.encontrarCategoriasDeLibro");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     int idLibro = libro.getId().intValue();
@@ -34,28 +34,28 @@ public class JdbcCategoriaDao extends QuerysNamedParameterJdbcDaoSupport impleme
     return getNamedParameterJdbcTemplate().query(query, queryParams, categoriaRowMapper);
   }
 
-  public List<Categoria> encontrarCategorias() {
+  public List<Category> encontrarCategorias() {
     String query = querys.get("categorias.query.encontrarCategorias");
-    List<Categoria> categorias = getJdbcTemplate().query(query, categoriaRowMapper);
+    List<Category> categorias = getJdbcTemplate().query(query, categoriaRowMapper);
     return categorias;
   }
 
-  public Categoria encontrarCategoria(String nombre) {
+  public Category encontrarCategoria(String nombre) {
     String query = querys.get("categorias.query.encontrarCategoria");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     queryParams.put("nombre", nombre);
-    Categoria categoria = null;
+    Category categoria = null;
     try {
-      categoria = (Categoria) getNamedParameterJdbcTemplate().queryForObject(query, queryParams, categoriaRowMapper);
+      categoria = (Category) getNamedParameterJdbcTemplate().queryForObject(query, queryParams, categoriaRowMapper);
     } catch (EmptyResultDataAccessException dae) {
     }
     return categoria;
   }
 
-  public void insertarCategoria(Categoria nuevaCategoria) {
+  public void insertarCategoria(Category nuevaCategoria) {
     String query = querys.get("categorias.query.insertarCategoria");
     Map<String, Object> queryParams = new HashMap<String, Object>();
-    queryParams.put("nombre", nuevaCategoria.getNombre());
+    queryParams.put("nombre", nuevaCategoria.getName());
     getNamedParameterJdbcTemplate().update(query, queryParams);
   }
 }

@@ -5,8 +5,8 @@
 package mx.edu.uvaq.elibrary.presentation.command;
 
 import java.util.List;
-import mx.edu.uvaq.elibrary.domain.Autor;
-import mx.edu.uvaq.elibrary.domain.Libro;
+import mx.edu.uvaq.elibrary.domain.Author;
+import mx.edu.uvaq.elibrary.domain.Book;
 
 /**
  *
@@ -15,16 +15,16 @@ import mx.edu.uvaq.elibrary.domain.Libro;
 public class AutoresForma extends AbstractForma {
 
   private int id;
-  private List<Autor> autores;
+  private List<Author> autores;
   private String nombre;
   private String apellidos;
-  private List<Libro> libros;
+  private List<Book> libros;
 
-  public List<Libro> getLibros() {
+  public List<Book> getLibros() {
     return libros;
   }
 
-  public void setLibros(List<Libro> libros) {
+  public void setLibros(List<Book> libros) {
     this.libros = libros;
   }
 
@@ -36,11 +36,11 @@ public class AutoresForma extends AbstractForma {
     this.apellidos = apellidos;
   }
 
-  public List<Autor> getAutores() {
+  public List<Author> getAutores() {
     return autores;
   }
 
-  public void setAutores(List<Autor> autores) {
+  public void setAutores(List<Author> autores) {
     this.autores = autores;
   }
 
@@ -60,10 +60,10 @@ public class AutoresForma extends AbstractForma {
     this.nombre = nombre;
   }
 
-  public Autor getAutor() {
-    Autor autor = new Autor();
-    autor.setNombre(nombre);
-    autor.setApellidos(apellidos);
+  public Author getAutor() {
+    Author autor = new Author();
+    autor.setName(nombre);
+    autor.setLastName(apellidos);
     return autor;
   }
 }

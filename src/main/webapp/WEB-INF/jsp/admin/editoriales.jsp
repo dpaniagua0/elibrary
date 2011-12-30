@@ -1,11 +1,11 @@
 <%-- 
-    Document   : editoriales
+    Document   : publishers
     Created on : Jun 5, 2011, 9:18:57 PM
     Author     : daniel
 --%>
 
 <%--
-    Document   : autores
+    Document   : authors
     Created on : Jun 5, 2011, 9:46:10 PM
     Author     : daniel
 --%>

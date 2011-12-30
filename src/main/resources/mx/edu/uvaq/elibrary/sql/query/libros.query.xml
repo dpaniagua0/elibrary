@@ -13,10 +13,10 @@
 <properties>
   <entry key="libros.query.encontrarLibros">
     <![CDATA[
-      SELECT l.id, l.titulo, l.fecha_publicacion, l.isbn, s.id id_serie, 
-             s.nombre serie, a.id id_autor, a.nombre autor,
-             a.apellidos apellidos_autor, c.id id_categoria, c.nombre categoria,
-             e.id id_editorial, e.nombre editorial
+      SELECT l.id, l.title, l.fecha_publicacion, l.isbn, s.id id_serie,
+             s.name bookSeries, a.id id_autor, a.name autor,
+             a.lastName apellidos_autor, c.id id_categoria, c.name categoria,
+             e.id id_editorial, e.name editorial
       FROM libro l
       LEFT JOIN Serie s ON s.id = l.id_serie
       LEFT JOIN Libro_Autor la ON la.id_libro = l.id
@@ -25,7 +25,7 @@
       LEFT JOIN Categoria c ON c.id = lc.id_categoria
       LEFT JOIN Libro_Editorial le ON le.id_libro = l.id
       LEFT JOIN Editorial e ON e.id = le.id_editorial
-      ORDER by l.id, l.titulo
+      ORDER by l.id, l.title
     ]]>
   </entry>
   <entry key="libros.query.deleteBook">
@@ -35,8 +35,8 @@
   </entry>
   <entry key="libros.query.insertarLibro">
     <![CDATA[
-      INSERT INTO Libro (isbn, titulo, fecha_publicacion, id_serie, archivo, imagen)
-      VALUES (:isbn,:titulo,:fecha_publicacion,:id_serie,:archivo, :imagen)
+      INSERT INTO Libro (isbn, title, fecha_publicacion, id_serie, file, image)
+      VALUES (:isbn,:title,:fecha_publicacion,:id_serie,:file, :image)
     ]]>
   </entry>
   <entry key="libros.query.encontrarLibroPorId">

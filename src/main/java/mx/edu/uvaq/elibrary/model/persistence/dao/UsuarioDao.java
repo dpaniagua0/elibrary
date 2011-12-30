@@ -5,7 +5,7 @@
 package mx.edu.uvaq.elibrary.model.persistence.dao;
 
 import java.util.List;
-import mx.edu.uvaq.elibrary.domain.Usuario;
+import mx.edu.uvaq.elibrary.domain.User;
 
 /**
  *
@@ -13,13 +13,13 @@ import mx.edu.uvaq.elibrary.domain.Usuario;
  */
 public interface UsuarioDao {
 
-  public void insertarUsuario(Usuario nuevoUsuario);
+  public void insertarUsuario(User nuevoUsuario);
 
-  public void asignarRolUsuario(Usuario usuario, String rolUsuario);
+  public void asignarRolUsuario(User usuario, String rolUsuario);
 
   public void actualizarUsuario(String correoElectronico);
 
-  public Usuario encontrarUsuario(String correoElectronico);
+  public User encontrarUsuario(String correoElectronico);
 
-  public List<Usuario> encontrarUsuarios();
+  public List<User> encontrarUsuarios();
 }

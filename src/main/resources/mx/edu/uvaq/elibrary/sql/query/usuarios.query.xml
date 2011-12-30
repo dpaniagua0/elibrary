@@ -14,18 +14,18 @@
   <entry key="usuarios.query.insertarUsuario">
     <![CDATA[
       INSERT INTO 
-        Usuario (correo_electronico ,nombre, apellidos ,password, codigo_activacion )
-      VALUES (:correo_electronico,:nombre,:apellidos,:password, :codigo_activacion)
+        Usuario (correo_electronico ,name, lastName ,password, codigo_activacion )
+      VALUES (:correo_electronico,:name,:lastName,:password, :codigo_activacion)
     ]]>
   </entry>
   <entry key="usuarios.query.encontrarUsuario">
     <![CDATA[
-     SELECT p.correo_electronico, p.nombre, p.apellidos, p.password, p.activo  FROM Usuario p WHERE p.`correo_electronico` = :correo_electronico
+     SELECT p.correo_electronico, p.name, p.lastName, p.password, p.active  FROM Usuario p WHERE p.`correo_electronico` = :correo_electronico
     ]]>
   </entry>
    <entry key="usuarios.query.encontrarUsuarios">
     <![CDATA[
-     select u.correo_electronico, u.nombre, u.apellidos, u.password, u.activo, ur.rol
+     select u.correo_electronico, u.name, u.lastName, u.password, u.active, ur.rol
      from Usuario u
      left join Usuario_Rol ur
      on u.correo_electronico = ur.correo_electronico
@@ -34,7 +34,7 @@
   </entry>
    <entry key="usuarios.query.actualizarUsuario">
     <![CDATA[
-     UPDATE Usuario u set activo = true , codigo_activacion =  null where u.correo_electronico = :correo_electronico"      
+     UPDATE Usuario u set active = true , codigo_activacion =  null where u.correo_electronico = :correo_electronico"
     ]]>
   </entry>
    <entry key="usuarios.query.asignarRolUsuario">

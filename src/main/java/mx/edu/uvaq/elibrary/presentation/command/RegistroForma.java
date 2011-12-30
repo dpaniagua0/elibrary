@@ -4,7 +4,7 @@
  */
 package mx.edu.uvaq.elibrary.presentation.command;
 
-import mx.edu.uvaq.elibrary.domain.Usuario;
+import mx.edu.uvaq.elibrary.domain.User;
 
 /**
  *
@@ -58,13 +58,13 @@ public class RegistroForma extends AbstractForma {
     this.nombre = nombre;
   }
 
-  public Usuario getUsuario() {
-    Usuario usuario = new Usuario();
-    usuario.setNombre(nombre);
-    usuario.setApellidos(apellidos);
-    usuario.setCorreoElectronico(correoElectronico);
+  public User getUsuario() {
+    User usuario = new User();
+    usuario.setName(nombre);
+    usuario.setLastName(apellidos);
+    usuario.setEmail(correoElectronico);
     usuario.setPassword(password);
-    usuario.setCodigoActivacion(codigoActivacion);
+    usuario.setActivationCode(codigoActivacion);
     return usuario;
   }
 }

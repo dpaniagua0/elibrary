@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import mx.edu.uvaq.elibrary.domain.Usuario;
+import mx.edu.uvaq.elibrary.domain.User;
 import mx.edu.uvaq.elibrary.model.persistence.dao.UsuarioDao;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -23,20 +23,20 @@ import org.springframework.jdbc.core.RowMapper;
  */
 public class JdbcUsuarioDao extends QuerysNamedParameterJdbcDaoSupport implements UsuarioDao {
 
-  private RowMapper<Usuario> usuarioRolRowMapper;
-  private RowMapper<Usuario> usuarioRowMapper;
+  private RowMapper<User> usuarioRolRowMapper;
+  private RowMapper<User> usuarioRowMapper;
 
   public JdbcUsuarioDao() {
-    usuarioRolRowMapper = new RowMapper<Usuario>() {
+    usuarioRolRowMapper = new RowMapper<User>() {
 
-      public Usuario mapRow(ResultSet rs, int i) throws SQLException {
-        Usuario usuario = null;
-        usuario = new Usuario();
-        usuario.setCorreoElectronico(rs.getString("correo_electronico"));
-        usuario.setNombre(rs.getString("nombre"));
-        usuario.setApellidos(rs.getString("apellidos"));
+      public User mapRow(ResultSet rs, int i) throws SQLException {
+        User usuario = null;
+        usuario = new User();
+        usuario.setEmail(rs.getString("correo_electronico"));
+        usuario.setName(rs.getString("nombre"));
+        usuario.setLastName(rs.getString("apellidos"));
         usuario.setPassword(rs.getString("password"));
-        usuario.setActivo(rs.getBoolean("activo"));
+        usuario.setActive(rs.getBoolean("activo"));
         String rol = rs.getString("rol");
         if (rol != null) {
           usuario.setRoles(new ArrayList<String>());
@@ -45,35 +45,35 @@ public class JdbcUsuarioDao extends QuerysNamedParameterJdbcDaoSupport implement
         return usuario;
       }
     };
-    usuarioRowMapper = new BeanPropertyRowMapper<Usuario>(Usuario.class);
+    usuarioRowMapper = new BeanPropertyRowMapper<User>(User.class);
   }
 
-  public void insertarUsuario(Usuario nuevoUsuario) {
+  public void insertarUsuario(User nuevoUsuario) {
     String query = querys.get("usuarios.query.insertarUsuario");
     Map<String, Object> queryParams = new HashMap<String, Object>();
-    queryParams.put("correo_electronico", nuevoUsuario.getCorreoElectronico());
-    queryParams.put("nombre", nuevoUsuario.getNombre());
-    queryParams.put("apellidos", nuevoUsuario.getApellidos());
+    queryParams.put("correo_electronico", nuevoUsuario.getEmail());
+    queryParams.put("nombre", nuevoUsuario.getName());
+    queryParams.put("apellidos", nuevoUsuario.getLastName());
     queryParams.put("password", nuevoUsuario.getPassword());
-    queryParams.put("codigo_activacion", nuevoUsuario.getCodigoActivacion());
+    queryParams.put("codigo_activacion", nuevoUsuario.getActivationCode());
     getNamedParameterJdbcTemplate().update(query, queryParams);
   }
 
-  public Usuario encontrarUsuario(String correoElectronico) {
+  public User encontrarUsuario(String correoElectronico) {
     String query = querys.get("usuarios.query.encontrarUsuario");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     queryParams.put("correo_electronico", correoElectronico);
-    Usuario usuario = null;
+    User usuario = null;
     try {
-      usuario = (Usuario) getNamedParameterJdbcTemplate().queryForObject(query, queryParams, usuarioRowMapper);
+      usuario = (User) getNamedParameterJdbcTemplate().queryForObject(query, queryParams, usuarioRowMapper);
     } catch (EmptyResultDataAccessException dae) {
     }
     return usuario;
   }
 
-  public List<Usuario> encontrarUsuarios() {
+  public List<User> encontrarUsuarios() {
     String query = querys.get("usuarios.query.encontrarUsuarios");
-    List<Usuario> usuarios = getJdbcTemplate().query(query, usuarioRolRowMapper);
+    List<User> usuarios = getJdbcTemplate().query(query, usuarioRolRowMapper);
     return unificarRoles(usuarios);
   }
 
@@ -86,24 +86,24 @@ public class JdbcUsuarioDao extends QuerysNamedParameterJdbcDaoSupport implement
     getNamedParameterJdbcTemplate().update(query, queryParams);
   }
 
-  public void asignarRolUsuario(Usuario usuario, String rolUsuario) {
+  public void asignarRolUsuario(User usuario, String rolUsuario) {
     String query = querys.get("usuarios.query.asignarRolUsuario");
     Map<String, Object> queryParams = new HashMap<String, Object>();
-    queryParams.put("correo_electronico", usuario.getCorreoElectronico());
+    queryParams.put("correo_electronico", usuario.getEmail());
     queryParams.put("rol", rolUsuario);
     getNamedParameterJdbcTemplate().update(query, queryParams);
   }
 
-  private List<Usuario> unificarRoles(List<Usuario> usuarios) {
-    Map<String, Usuario> usuariosRoles = new LinkedHashMap<String, Usuario>();
-    for (Usuario usuario : usuarios) {
-      Usuario usuarioExistente = usuariosRoles.get(usuario.getCorreoElectronico());
+  private List<User> unificarRoles(List<User> usuarios) {
+    Map<String, User> usuariosRoles = new LinkedHashMap<String, User>();
+    for (User usuario : usuarios) {
+      User usuarioExistente = usuariosRoles.get(usuario.getEmail());
       if (usuarioExistente != null) {
         usuarioExistente.getRoles().add(usuario.getRoles().get(0));
       } else {
-        usuariosRoles.put(usuario.getCorreoElectronico(), usuario);
+        usuariosRoles.put(usuario.getEmail(), usuario);
       }
     }
-    return new ArrayList<Usuario>(usuariosRoles.values());
+    return new ArrayList<User>(usuariosRoles.values());
   }
 }

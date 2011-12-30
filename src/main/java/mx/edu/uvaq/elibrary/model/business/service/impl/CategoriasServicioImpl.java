@@ -5,7 +5,7 @@
 package mx.edu.uvaq.elibrary.model.business.service.impl;
 
 import java.util.List;
-import mx.edu.uvaq.elibrary.domain.Categoria;
+import mx.edu.uvaq.elibrary.domain.Category;
 import mx.edu.uvaq.elibrary.model.business.service.CategoriaServicio;
 import mx.edu.uvaq.elibrary.model.persistence.dao.CategoriaDao;
 
@@ -25,11 +25,11 @@ public class CategoriasServicioImpl implements CategoriaServicio {
     this.categoriaDao = categoriaDao;
   }
 
-  public List<Categoria> encontrarCategorias() {
+  public List<Category> encontrarCategorias() {
     return categoriaDao.encontrarCategorias();
   }
 
-  public boolean agregarCategoria(Categoria nuevaCategoria) {
+  public boolean agregarCategoria(Category nuevaCategoria) {
     if (validarNuevaCategoria(nuevaCategoria)) {
       categoriaDao.insertarCategoria(nuevaCategoria);
       return true;
@@ -37,13 +37,13 @@ public class CategoriasServicioImpl implements CategoriaServicio {
     return false;
   }
 
-  public boolean existeUsuario(Categoria nuevoUsuario) {
-    Categoria usuario = categoriaDao.encontrarCategoria(nuevoUsuario.getNombre());
+  public boolean existeUsuario(Category nuevoUsuario) {
+    Category usuario = categoriaDao.encontrarCategoria(nuevoUsuario.getName());
 
     return usuario != null;
   }
 
-  private boolean validarNuevaCategoria(Categoria nuevaCategoria) {
+  private boolean validarNuevaCategoria(Category nuevaCategoria) {
     return !existeUsuario(nuevaCategoria);
   }
 }

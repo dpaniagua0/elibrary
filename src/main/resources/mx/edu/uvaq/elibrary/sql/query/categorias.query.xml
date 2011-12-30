@@ -11,30 +11,30 @@
 <!DOCTYPE properties SYSTEM 'http://java.sun.com/dtd/properties.dtd'>
 
 <properties>
-  <entry key="categorias.query.encontrarCategoriasDeLibro">
+  <entry key="categories.query.encontrarCategoriasDeLibro">
     <![CDATA[
-      SELECT c.id, c.nombre 
+      SELECT c.id, c.name
       FROM Libro_Categoria lc 
       JOIN Categoria c 
       ON c.id = lc.id_categoria AND lc.id_libro = :id_libro 
-      ORDER BY c.nombre
+      ORDER BY c.name
     ]]>
   </entry>
-  <entry key="categorias.query.encontrarCategorias">
+  <entry key="categories.query.encontrarCategorias">
     <![CDATA[
-      SELECT c.id,c.nombre FROM Categoria c ORDER BY c.nombre
+      SELECT c.id,c.name FROM Categoria c ORDER BY c.name
     ]]>
   </entry>
-  <entry key="categorias.query.encontrarCategoria">
+  <entry key="categories.query.encontrarCategoria">
     <![CDATA[
-     SELECT c.nombre FROM Categoria c WHERE c.`nombre` = :nombre
+     SELECT c.name FROM Categoria c WHERE c.`name` = :name
     ]]>
   </entry>
-  <entry key="categorias.query.insertarCategoria">
+  <entry key="categories.query.insertarCategoria">
     <![CDATA[
       INSERT INTO
-        Categoria (nombre)
-      VALUES (:nombre)
+        Categoria (name)
+      VALUES (:name)
     ]]>
   </entry>
 </properties>

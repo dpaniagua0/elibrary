@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import mx.edu.uvaq.elibrary.domain.Libro;
+import mx.edu.uvaq.elibrary.domain.Book;
 import mx.edu.uvaq.elibrary.model.persistence.dao.LibroDao;
 import mx.edu.uvaq.elibrary.model.persistence.dao.jdbc.mapper.LibrosRowCallbackHandler;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -25,21 +25,21 @@ import org.springframework.jdbc.support.KeyHolder;
  */
 public class JdbcLibroDao extends QuerysNamedParameterJdbcDaoSupport implements LibroDao {
 
-  private RowMapper<Libro> libroRowMapper;
+  private RowMapper<Book> libroRowMapper;
 
   public JdbcLibroDao() {
-    libroRowMapper = new BeanPropertyRowMapper<Libro>(Libro.class) {
+    libroRowMapper = new BeanPropertyRowMapper<Book>(Book.class) {
 
       @Override
-      public Libro mapRow(ResultSet rs, int rowNumber) throws SQLException {
-        Libro libro = super.mapRow(rs, rowNumber);
-        libro.setFechaPublicacion(new Date(libro.getFechaPublicacion().getTime()));
+      public Book mapRow(ResultSet rs, int rowNumber) throws SQLException {
+        Book libro = super.mapRow(rs, rowNumber);
+        libro.setPublishingDate(new Date(libro.getPublishingDate().getTime()));
         return libro;
       }
     };
   }
 
-  public List<Libro> encontrarLibros() {
+  public List<Book> encontrarLibros() {
     String query = querys.get("libros.query.encontrarLibros");
     LibrosRowCallbackHandler rowHandler = new LibrosRowCallbackHandler();
     getJdbcTemplate().query(query, rowHandler);
@@ -53,22 +53,22 @@ public class JdbcLibroDao extends QuerysNamedParameterJdbcDaoSupport implements 
     getNamedParameterJdbcTemplate().update(query, queryParams);
   }
 
-  public Number insertarLibro(Libro nuevoLibro) {
+  public Number insertarLibro(Book nuevoLibro) {
     String query = querys.get("libros.query.insertarLibro");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     queryParams.put("isbn", nuevoLibro.getIsbn());
-    queryParams.put("titulo", nuevoLibro.getTitulo());
-    queryParams.put("fecha_publicacion", nuevoLibro.getFechaPublicacion());
-    Integer idSerie = nuevoLibro.getSerie().getId();
+    queryParams.put("titulo", nuevoLibro.getTitle());
+    queryParams.put("fecha_publicacion", nuevoLibro.getPublishingDate());
+    Integer idSerie = nuevoLibro.getBookSeries().getId();
     queryParams.put("id_serie", idSerie);
-    queryParams.put("archivo", nuevoLibro.getArchivo());
-    queryParams.put("imagen", nuevoLibro.getImagen());
+    queryParams.put("archivo", nuevoLibro.getFile());
+    queryParams.put("imagen", nuevoLibro.getImage());
     KeyHolder idGenerado = new GeneratedKeyHolder();
     getNamedParameterJdbcTemplate().update(query, new MapSqlParameterSource(queryParams), idGenerado);
     return idGenerado.getKey();
   }
 
-  public Libro encontrarLibroPorId(int id) {
+  public Book encontrarLibroPorId(int id) {
     String query = querys.get("libros.query.encontrarLibroPorId");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     queryParams.put("id", id);

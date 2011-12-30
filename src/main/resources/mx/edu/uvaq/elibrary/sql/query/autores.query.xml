@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-    Document   : autores.query.xml
+    Document   : authors.query.xml
     Created on : May 30, 2011, 2:54 AM
     Author     : arcesino
     Description:
@@ -11,36 +11,36 @@
 <!DOCTYPE properties SYSTEM 'http://java.sun.com/dtd/properties.dtd'>
 
 <properties>
-  <entry key="autores.query.encontrarAutoresDeLibro">
+  <entry key="authors.query.encontrarAutoresDeLibro">
     <![CDATA[
-      SELECT a.id, a.nombre, a.apellidos
+      SELECT a.id, a.name, a.lastName
       FROM Libro_Autor la 
       JOIN Autor a 
       ON a.id = la.id_autor AND la.id_libro = :id 
-      ORDER BY a.nombre
+      ORDER BY a.name
     ]]>
   </entry>
-  <entry key="autores.query.encontrarAutores">
+  <entry key="authors.query.encontrarAutores">
     <![CDATA[
-      SELECT * FROM Autor a ORDER BY a.nombre
+      SELECT * FROM Autor a ORDER BY a.name
     ]]>
   </entry>
-  <entry key="autores.query.insertarAutor">
+  <entry key="authors.query.insertarAutor">
     <![CDATA[
-      INSERT INTO Autor (nombre, apellidos) VALUES(:nombre, :apellidos)
+      INSERT INTO Autor (name, lastName) VALUES(:name, :lastName)
     ]]>
   </entry>
-  <entry key="autores.query.encontrarAutor">
+  <entry key="authors.query.encontrarAutor">
     <![CDATA[
-     SELECT a.nombre, a.apellidos FROM Autor a WHERE a.`id` = :id
+     SELECT a.name, a.lastName FROM Autor a WHERE a.`id` = :id
     ]]>
   </entry>
-  <entry key="autores.query.actualizarAutor">
+  <entry key="authors.query.actualizarAutor">
     <![CDATA[
-     UPDATE Autor SET nombre = :nombre, apellidos = :apellidos WHERE `id` = :id
+     UPDATE Autor SET name = :name, lastName = :lastName WHERE `id` = :id
     ]]>
   </entry>
-  <entry key="autores.query.eliminarAutor">
+  <entry key="authors.query.eliminarAutor">
     <![CDATA[
      DELETE FROM Autor WHERE `id` = :id
     ]]>

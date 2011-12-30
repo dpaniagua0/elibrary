@@ -5,7 +5,7 @@
 package mx.edu.uvaq.elibrary.model.business.service.impl;
 
 import java.util.List;
-import mx.edu.uvaq.elibrary.domain.Usuario;
+import mx.edu.uvaq.elibrary.domain.User;
 import mx.edu.uvaq.elibrary.model.business.service.UsuariosServicio;
 import mx.edu.uvaq.elibrary.model.persistence.dao.UsuarioDao;
 
@@ -25,11 +25,11 @@ public class UsuariosServicioImpl implements UsuariosServicio {
     this.usuarioDao = usuarioDao;
   }
 
-  public List<Usuario> recuperarUsuarios() {
+  public List<User> recuperarUsuarios() {
     return usuarioDao.encontrarUsuarios();
   }
 
-  public void agregarRol(Usuario usuario, String rolUsuario) {
+  public void agregarRol(User usuario, String rolUsuario) {
     usuarioDao.asignarRolUsuario(usuario, rolUsuario);
   }
 }

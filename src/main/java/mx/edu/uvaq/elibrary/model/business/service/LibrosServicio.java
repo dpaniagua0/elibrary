@@ -5,7 +5,7 @@
 package mx.edu.uvaq.elibrary.model.business.service;
 
 import java.util.List;
-import mx.edu.uvaq.elibrary.domain.Libro;
+import mx.edu.uvaq.elibrary.domain.Book;
 
 /**
  *
@@ -13,9 +13,9 @@ import mx.edu.uvaq.elibrary.domain.Libro;
  */
 public interface LibrosServicio {
 
-  List<Libro> recuperarLibros();
+  List<Book> recuperarLibros();
 
-  Libro recuperarLibroPorId(int id);
+  Book recuperarLibroPorId(int id);
   
-  Number crearLibro(Libro libro, byte[] archivo, byte[] imagen);
+  Number crearLibro(Book libro, byte[] archivo, byte[] imagen);
 }

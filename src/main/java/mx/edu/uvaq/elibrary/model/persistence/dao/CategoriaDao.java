@@ -5,8 +5,8 @@
 package mx.edu.uvaq.elibrary.model.persistence.dao;
 
 import java.util.List;
-import mx.edu.uvaq.elibrary.domain.Categoria;
-import mx.edu.uvaq.elibrary.domain.Libro;
+import mx.edu.uvaq.elibrary.domain.Category;
+import mx.edu.uvaq.elibrary.domain.Book;
 
 /**
  *
@@ -14,11 +14,11 @@ import mx.edu.uvaq.elibrary.domain.Libro;
  */
 public interface CategoriaDao {
 
-  List<Categoria> encontrarCategoriasDeLibro(Libro libro);
+  List<Category> encontrarCategoriasDeLibro(Book libro);
 
-  List<Categoria> encontrarCategorias();
+  List<Category> encontrarCategorias();
 
-  public Categoria encontrarCategoria(String nombre);
+  public Category encontrarCategoria(String nombre);
 
-  public void insertarCategoria(Categoria nuevaCategoria);
+  public void insertarCategoria(Category nuevaCategoria);
 }

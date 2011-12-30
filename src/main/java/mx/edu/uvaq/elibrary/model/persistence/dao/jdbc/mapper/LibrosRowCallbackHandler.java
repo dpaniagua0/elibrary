@@ -11,11 +11,11 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import mx.edu.uvaq.elibrary.domain.Autor;
-import mx.edu.uvaq.elibrary.domain.Categoria;
-import mx.edu.uvaq.elibrary.domain.Editorial;
-import mx.edu.uvaq.elibrary.domain.Libro;
-import mx.edu.uvaq.elibrary.domain.Serie;
+import mx.edu.uvaq.elibrary.domain.Author;
+import mx.edu.uvaq.elibrary.domain.Category;
+import mx.edu.uvaq.elibrary.domain.Publisher;
+import mx.edu.uvaq.elibrary.domain.Book;
+import mx.edu.uvaq.elibrary.domain.BookSeries;
 import org.springframework.jdbc.core.RowCallbackHandler;
 
 /**
@@ -24,25 +24,25 @@ import org.springframework.jdbc.core.RowCallbackHandler;
  */
 public class LibrosRowCallbackHandler implements RowCallbackHandler {
 
-  private Map<Integer, Libro> libros;
+  private Map<Integer, Book> libros;
 
   public LibrosRowCallbackHandler() {
-    libros = new LinkedHashMap<Integer, Libro>();
+    libros = new LinkedHashMap<Integer, Book>();
   }
 
-  public List<Libro> getLibros() {
-    return new ArrayList<Libro>(libros.values());
+  public List<Book> getLibros() {
+    return new ArrayList<Book>(libros.values());
   }
 
   public void processRow(ResultSet rs) throws SQLException {
     int id = rs.getInt("id");
-    Libro libro = libros.get(id);
+    Book libro = libros.get(id);
     if (libro == null) {
-      libro = new Libro();
+      libro = new Book();
       libro.setId(Integer.valueOf(id));
       libro.setIsbn(rs.getString("isbn"));
-      libro.setFechaPublicacion(new Date(rs.getDate("fecha_publicacion").getTime()));
-      libro.setTitulo(rs.getString("titulo"));
+      libro.setPublishingDate(new Date(rs.getDate("fecha_publicacion").getTime()));
+      libro.setTitle(rs.getString("titulo"));
       procesarSerie(rs, libro);
       libros.put(id, libro);
     }
@@ -51,73 +51,73 @@ public class LibrosRowCallbackHandler implements RowCallbackHandler {
     procesarEditorial(libro, rs);
   }
 
-  private void procesarSerie(ResultSet rs, Libro libro) throws SQLException {
-    Serie serie = libro.getSerie();
+  private void procesarSerie(ResultSet rs, Book libro) throws SQLException {
+    BookSeries serie = libro.getBookSeries();
     if (serie == null) {
       int idSerie = rs.getInt("id_serie");
       if (idSerie > 0) {
-        serie = new Serie();
+        serie = new BookSeries();
         serie.setId(idSerie);
-        serie.setNombre(rs.getString("serie"));
-        libro.setSerie(serie);
+        serie.setName(rs.getString("serie"));
+        libro.setBookSeries(serie);
       }
     }
   }
 
-  private void procesarAutor(Libro libro, ResultSet rs) throws SQLException {
+  private void procesarAutor(Book libro, ResultSet rs) throws SQLException {
     int idAutor = rs.getInt("id_autor");
     if (idAutor > 0) {
       boolean autorNoExiste = true;
-      for (Autor a : libro.getAutores()) {
+      for (Author a : libro.getAuthors()) {
         if (idAutor == a.getId()) {
           autorNoExiste = false;
           break;
         }
       }
       if (autorNoExiste) {
-        Autor autor = new Autor();
+        Author autor = new Author();
         autor.setId(idAutor);
-        autor.setNombre(rs.getString("autor"));
-        autor.setApellidos(rs.getString("apellidos_autor"));
-        libro.getAutores().add(autor);
+        autor.setName(rs.getString("autor"));
+        autor.setLastName(rs.getString("apellidos_autor"));
+        libro.getAuthors().add(autor);
       }
     }
   }
   
-  private void procesarCategoria(Libro libro, ResultSet rs) throws SQLException {
+  private void procesarCategoria(Book libro, ResultSet rs) throws SQLException {
     int idCategoria = rs.getInt("id_categoria");
     if (idCategoria > 0) {
       boolean categoriaNoExiste = true;
-      for (Categoria c : libro.getCategorias()) {
+      for (Category c : libro.getCategories()) {
         if (idCategoria == c.getId()) {
           categoriaNoExiste = false;
           break;
         }
       }
       if (categoriaNoExiste) {
-        Categoria categoria = new Categoria();
+        Category categoria = new Category();
         categoria.setId(idCategoria);
-        categoria.setNombre(rs.getString("categoria"));
-        libro.getCategorias().add(categoria);
+        categoria.setName(rs.getString("categoria"));
+        libro.getCategories().add(categoria);
       }
     }
   }
   
-  private void procesarEditorial(Libro libro, ResultSet rs) throws SQLException {
+  private void procesarEditorial(Book libro, ResultSet rs) throws SQLException {
     int idEditorial = rs.getInt("id_editorial");
     if (idEditorial > 0) {
       boolean editorialNoExiste = true;
-      for (Editorial a : libro.getEditoriales()) {
+      for (Publisher a : libro.getPublishers()) {
         if (idEditorial == a.getId()) {
           editorialNoExiste = false;
           break;
         }
       }
       if (editorialNoExiste) {
-        Editorial editorial = new Editorial();
+        Publisher editorial = new Publisher();
         editorial.setId(idEditorial);
-        editorial.setNombre(rs.getString("editorial"));
-        libro.getEditoriales().add(editorial);
+        editorial.setName(rs.getString("editorial"));
+        libro.getPublishers().add(editorial);
       }
     }
   }

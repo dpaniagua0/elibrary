@@ -7,8 +7,8 @@ package mx.edu.uvaq.elibrary.model.persistence.dao.jdbc;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import mx.edu.uvaq.elibrary.domain.Editorial;
-import mx.edu.uvaq.elibrary.domain.Libro;
+import mx.edu.uvaq.elibrary.domain.Publisher;
+import mx.edu.uvaq.elibrary.domain.Book;
 import mx.edu.uvaq.elibrary.model.persistence.dao.EditorialDao;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -20,13 +20,13 @@ import org.springframework.jdbc.core.RowMapper;
  */
 public class JdbcEditorialDao extends QuerysNamedParameterJdbcDaoSupport implements EditorialDao {
 
-  private RowMapper<Editorial> editorialRowMapper;
+  private RowMapper<Publisher> editorialRowMapper;
 
   public JdbcEditorialDao() {
-    editorialRowMapper = new BeanPropertyRowMapper<Editorial>(Editorial.class);
+    editorialRowMapper = new BeanPropertyRowMapper<Publisher>(Publisher.class);
   }
 
-  public List<Editorial> encontrarEditorialesDeLibro(Libro libro) {
+  public List<Publisher> encontrarEditorialesDeLibro(Book libro) {
     String query = querys.get("editoriales.query.encontrarEditorialesDeLibro");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     int idLibro = libro.getId().intValue();
@@ -34,24 +34,24 @@ public class JdbcEditorialDao extends QuerysNamedParameterJdbcDaoSupport impleme
     return getNamedParameterJdbcTemplate().query(query.toString(), queryParams, editorialRowMapper);
   }
 
-  public List<Editorial> encontrarEditoriales() {
+  public List<Publisher> encontrarEditoriales() {
     String query = querys.get("editoriales.query.encontrarEditoriales");
-    List<Editorial> editoriales = getJdbcTemplate().query(query, editorialRowMapper);
+    List<Publisher> editoriales = getJdbcTemplate().query(query, editorialRowMapper);
     return editoriales;
   }
 
-  public void insertarEditorial(Editorial editorial) {
+  public void insertarEditorial(Publisher editorial) {
     String query = querys.get("editoriales.query.insertarEditorial");
     Map<String, Object> queryParams = new HashMap<String, Object>();
-    queryParams.put("nombre", editorial.getNombre());
+    queryParams.put("nombre", editorial.getName());
     getNamedParameterJdbcTemplate().update(query, queryParams);
   }
 
-  public void actualizarEditorial(Editorial editorial) {
+  public void actualizarEditorial(Publisher editorial) {
     String query = querys.get("editoriales.query.actualizarEditorial");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     queryParams.put("id", editorial.getId());
-    queryParams.put("nombre", editorial.getNombre());
+    queryParams.put("nombre", editorial.getName());
     getNamedParameterJdbcTemplate().update(query, queryParams);
   }
 
@@ -62,13 +62,13 @@ public class JdbcEditorialDao extends QuerysNamedParameterJdbcDaoSupport impleme
     getNamedParameterJdbcTemplate().update(query, queryParams);
   }
 
-  public Editorial encontrarEditorialPorId(Long idEditorial) {
+  public Publisher encontrarEditorialPorId(Long idEditorial) {
     String query = querys.get("editoriales.query.encontrarEditorial");
     Map<String, Object> queryParams = new HashMap<String, Object>();
     queryParams.put("id", idEditorial);
-    Editorial editorial = null;
+    Publisher editorial = null;
     try {
-      editorial = (Editorial) getNamedParameterJdbcTemplate().queryForObject(query, queryParams, editorialRowMapper);
+      editorial = (Publisher) getNamedParameterJdbcTemplate().queryForObject(query, queryParams, editorialRowMapper);
       editorial.setId(idEditorial.intValue());
     } catch (EmptyResultDataAccessException dae) {
     }

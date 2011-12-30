@@ -12,7 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import mx.edu.uvaq.elibrary.domain.Libro;
+import mx.edu.uvaq.elibrary.domain.Book;
 import mx.edu.uvaq.elibrary.model.business.service.LibrosServicio;
 import mx.edu.uvaq.elibrary.presentation.UtilidadesControlador;
 import mx.edu.uvaq.elibrary.presentation.command.LibrosForma;
@@ -112,7 +112,7 @@ public class LibrosControlador extends HttpServlet {
       vistaSiguiente = "vista-inicio-administracion";
     }
     LibrosForma librosForma = (LibrosForma) request.getAttribute(NOMBRE_FORMA);
-    List<Libro> libros = librosServicio.recuperarLibros();
+    List<Book> libros = librosServicio.recuperarLibros();
     librosForma.setLibros(libros);
     return vistaSiguiente;
   }
@@ -121,7 +121,7 @@ public class LibrosControlador extends HttpServlet {
     LibrosForma librosForma = (LibrosForma) request.getAttribute(NOMBRE_FORMA);
     int id = librosForma.getId();
 
-    Libro libro = librosServicio.recuperarLibroPorId(id);
+    Book libro = librosServicio.recuperarLibroPorId(id);
     JsonConfig config = new JsonConfig();
     config.registerJsonBeanProcessor(Date.class, new JsDateJsonBeanProcessor());
 

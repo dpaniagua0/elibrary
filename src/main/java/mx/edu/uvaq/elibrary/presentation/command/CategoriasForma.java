@@ -5,7 +5,7 @@
 package mx.edu.uvaq.elibrary.presentation.command;
 
 import java.util.List;
-import mx.edu.uvaq.elibrary.domain.Categoria;
+import mx.edu.uvaq.elibrary.domain.Category;
 
 /**
  *
@@ -13,7 +13,7 @@ import mx.edu.uvaq.elibrary.domain.Categoria;
  */
 public class CategoriasForma extends AbstractForma {
 
-  private List<Categoria> categorias;
+  private List<Category> categorias;
   private int id;
   private String nombre;
   private int idCategoriaPadre;
@@ -42,17 +42,17 @@ public class CategoriasForma extends AbstractForma {
     this.id = id;
   }
 
-  public List<Categoria> getCategorias() {
+  public List<Category> getCategorias() {
     return categorias;
   }
 
-  public void setCategorias(List<Categoria> categorias) {
+  public void setCategorias(List<Category> categorias) {
     this.categorias = categorias;
   }
 
-  public Categoria getCategoria() {
-    Categoria categoria = new Categoria();
-    categoria.setNombre(nombre);
+  public Category getCategoria() {
+    Category categoria = new Category();
+    categoria.setName(nombre);
     return categoria;
   }
 }

@@ -86,7 +86,7 @@ public class BookFormFilter implements Filter {
         BeanUtils.populate(libroForma, mapLibroForma);
         Object idSerie = mapLibro.get("id_serie");
         if (idSerie != null) {
-          libroForma.getLibro().getSerie().setId(Integer.valueOf(idSerie.toString()));
+          libroForma.getLibro().getBookSeries().setId(Integer.valueOf(idSerie.toString()));
         }
       } catch (IllegalAccessException ex) {
         Logger.getLogger(BookFormFilter.class.getName()).log(Level.SEVERE, null, ex);

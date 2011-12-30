@@ -13,7 +13,7 @@
 <properties>
   <entry key="series.query.encontrarSeriesDeLibro">
     <![CDATA[
-     SELECT s.id, s.nombre 
+     SELECT s.id, s.name
      FROM Libro l, Serie s 
      WHERE l.id = :id_libro 
      AND s.id = l.id_serie

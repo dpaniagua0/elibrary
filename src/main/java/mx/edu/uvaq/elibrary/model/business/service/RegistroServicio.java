@@ -4,7 +4,7 @@
  */
 package mx.edu.uvaq.elibrary.model.business.service;
 
-import mx.edu.uvaq.elibrary.domain.Usuario;
+import mx.edu.uvaq.elibrary.domain.User;
 
 /**
  *
@@ -12,9 +12,9 @@ import mx.edu.uvaq.elibrary.domain.Usuario;
  */
 public interface RegistroServicio {
 
-  public abstract boolean registrarUsuario(Usuario nuevoUsuario, String urlActivacion);
+  public abstract boolean registrarUsuario(User nuevoUsuario, String urlActivacion);
 
-  String generarCodigoActivacion(Usuario usuario);
+  String generarCodigoActivacion(User usuario);
 
-  boolean activarUsuario(Usuario usuario);
+  boolean activarUsuario(User usuario);
 }

@@ -5,7 +5,7 @@
 package mx.edu.uvaq.elibrary.presentation.command;
 
 import java.util.List;
-import mx.edu.uvaq.elibrary.domain.Libro;
+import mx.edu.uvaq.elibrary.domain.Book;
 
 /**
  *
@@ -13,7 +13,7 @@ import mx.edu.uvaq.elibrary.domain.Libro;
  */
 public class LibrosForma extends AbstractForma {
 
-  private List<Libro> libros;
+  private List<Book> libros;
   private List<String> categorias;
   private int id;
 
@@ -33,11 +33,11 @@ public class LibrosForma extends AbstractForma {
     this.categorias = categorias;
   }
 
-  public List<Libro> getLibros() {
+  public List<Book> getLibros() {
     return libros;
   }
 
-  public void setLibros(List<Libro> libros) {
+  public void setLibros(List<Book> libros) {
     this.libros = libros;
   }
 }

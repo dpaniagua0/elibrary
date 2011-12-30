@@ -5,7 +5,7 @@
 package mx.edu.uvaq.elibrary.presentation.command;
 
 import java.util.List;
-import mx.edu.uvaq.elibrary.domain.Usuario;
+import mx.edu.uvaq.elibrary.domain.User;
 
 /**
  *
@@ -13,13 +13,13 @@ import mx.edu.uvaq.elibrary.domain.Usuario;
  */
 public class UsuariosForma extends AbstractForma {
 
-    private List<Usuario> usuarios;
+    private List<User> usuarios;
 
-    public List<Usuario> getUsuarios() {
+    public List<User> getUsuarios() {
         return usuarios;
     }
 
-    public void setUsuarios(List<Usuario>  usuarios) {
+    public void setUsuarios(List<User>  usuarios) {
         this.usuarios = usuarios;
     }
 }

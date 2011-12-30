@@ -4,7 +4,7 @@
  */
 package mx.edu.uvaq.elibrary.presentation.command;
 
-import mx.edu.uvaq.elibrary.domain.Libro;
+import mx.edu.uvaq.elibrary.domain.Book;
 import org.apache.commons.fileupload.FileItemStream;
 
 /**
@@ -13,19 +13,19 @@ import org.apache.commons.fileupload.FileItemStream;
  */
 public class LibroForma extends AbstractForma {
   
-  private Libro libro;
+  private Book libro;
   private FileItemStream archivo;
   private FileItemStream imagen;
 
   public LibroForma() {
-    libro = new Libro();
+    libro = new Book();
   }
 
-  public Libro getLibro() {
+  public Book getLibro() {
     return libro;
   }
 
-  public void setLibro(Libro libro) {
+  public void setLibro(Book libro) {
     this.libro = libro;
   }
 

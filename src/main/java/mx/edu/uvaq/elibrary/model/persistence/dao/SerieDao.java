@@ -4,8 +4,8 @@
  */
 package mx.edu.uvaq.elibrary.model.persistence.dao;
 
-import mx.edu.uvaq.elibrary.domain.Libro;
-import mx.edu.uvaq.elibrary.domain.Serie;
+import mx.edu.uvaq.elibrary.domain.Book;
+import mx.edu.uvaq.elibrary.domain.BookSeries;
 
 /**
  *
@@ -13,5 +13,5 @@ import mx.edu.uvaq.elibrary.domain.Serie;
  */
 public interface SerieDao {
 
-  Serie encontrarSerieDeLibro(Libro libro);
+  BookSeries encontrarSerieDeLibro(Book libro);
 }

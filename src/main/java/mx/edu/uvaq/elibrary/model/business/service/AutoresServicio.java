@@ -5,7 +5,7 @@
 package mx.edu.uvaq.elibrary.model.business.service;
 
 import java.util.List;
-import mx.edu.uvaq.elibrary.domain.Autor;
+import mx.edu.uvaq.elibrary.domain.Author;
 
 /**
  *
@@ -13,13 +13,13 @@ import mx.edu.uvaq.elibrary.domain.Autor;
  */
 public interface AutoresServicio {
 
-  List<Autor> getAutores();
+  List<Author> getAutores();
 
-  public Autor getAutorPorId(Long idAutor);
+  public Author getAutorPorId(Long idAutor);
 
-  public boolean registrarAutor(Autor autor);
+  public boolean registrarAutor(Author autor);
   
-  public boolean modificarAutor(Autor autor);
+  public boolean modificarAutor(Author autor);
 
   public boolean borrarAutor(Long idAutor);
 }

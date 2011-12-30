@@ -5,7 +5,7 @@
 package mx.edu.uvaq.elibrary.presentation.command;
 
 import java.util.List;
-import mx.edu.uvaq.elibrary.domain.Editorial;
+import mx.edu.uvaq.elibrary.domain.Publisher;
 
 /**
  *
@@ -15,13 +15,13 @@ public class EditorialesForma extends AbstractForma {
 
   private int id;
   private String nombre;
-  private List<Editorial> editoriales;
+  private List<Publisher> editoriales;
 
-  public List<Editorial> getEditoriales() {
+  public List<Publisher> getEditoriales() {
     return editoriales;
   }
 
-  public void setEditoriales(List<Editorial> editoriales) {
+  public void setEditoriales(List<Publisher> editoriales) {
     this.editoriales = editoriales;
   }
 
@@ -41,9 +41,9 @@ public class EditorialesForma extends AbstractForma {
     this.nombre = nombre;
   }
 
-  public Editorial getEditorial() {
-    Editorial editorial = new Editorial();
-    editorial.setNombre(nombre);
+  public Publisher getEditorial() {
+    Publisher editorial = new Publisher();
+    editorial.setName(nombre);
     return editorial;
   }
 }

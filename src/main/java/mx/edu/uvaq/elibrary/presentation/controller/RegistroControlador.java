@@ -10,7 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import mx.edu.uvaq.elibrary.domain.Usuario;
+import mx.edu.uvaq.elibrary.domain.User;
 import mx.edu.uvaq.elibrary.model.business.service.RegistroServicio;
 import mx.edu.uvaq.elibrary.presentation.Mensaje;
 import mx.edu.uvaq.elibrary.presentation.UtilidadesControlador;
@@ -90,7 +90,7 @@ public class RegistroControlador extends HttpServlet {
   }
 
   private String ejecutarAccionDefecto(RegistroForma formaRegistro, HttpServletRequest request) {
-    Usuario nuevoUsuario = formaRegistro.getUsuario();
+    User nuevoUsuario = formaRegistro.getUsuario();
     StringBuffer urlActivacion = request.getRequestURL();
     if (registroServicio.registrarUsuario(nuevoUsuario, urlActivacion.toString())) {
       formaRegistro.agregarMensaje("exito-registro", Mensaje.crearMensajeInformacion("Informacion", "El usuario se ha registrado correctamente"));
@@ -101,7 +101,7 @@ public class RegistroControlador extends HttpServlet {
   }
 
   private String ejecutarAccionActivar(RegistroForma formaRegistro, HttpServletRequest request) {
-    Usuario actualizarUsuario = formaRegistro.getUsuario();
+    User actualizarUsuario = formaRegistro.getUsuario();
     if (registroServicio.activarUsuario(actualizarUsuario)) {
       formaRegistro.agregarMensaje("exito-activacion", Mensaje.crearMensajeError("Informacion", "Activacion exitosa"));
     } else {

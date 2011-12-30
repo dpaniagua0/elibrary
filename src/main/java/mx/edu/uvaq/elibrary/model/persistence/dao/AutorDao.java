@@ -5,23 +5,23 @@
 package mx.edu.uvaq.elibrary.model.persistence.dao;
 
 import java.util.List;
-import mx.edu.uvaq.elibrary.domain.Autor;
-import mx.edu.uvaq.elibrary.domain.Libro;
+import mx.edu.uvaq.elibrary.domain.Author;
+import mx.edu.uvaq.elibrary.domain.Book;
 
 /**
  *
  * @author arcesino
  */
 public interface AutorDao {
-  List<Autor> encontrarAutoresDeLibro(Libro libro);
+  List<Author> encontrarAutoresDeLibro(Book libro);
 
-  List<Autor> encontrarAutores();
+  List<Author> encontrarAutores();
 
-  public Autor encontrarAutorPorId(Long idAutor);
+  public Author encontrarAutorPorId(Long idAutor);
 
-  public void insertarAutor(Autor autor);
+  public void insertarAutor(Author autor);
 
-  public void actualizarAutor(Autor autor);
+  public void actualizarAutor(Author autor);
 
   public void eliminarAutor(Long idAutor);
 }

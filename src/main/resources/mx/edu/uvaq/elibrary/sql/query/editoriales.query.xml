@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-    Document   : editoriales.query.xml
+    Document   : publishers.query.xml
     Created on : May 30, 2011, 2:54 AM
     Author     : arcesino
     Description:
@@ -11,36 +11,36 @@
 <!DOCTYPE properties SYSTEM 'http://java.sun.com/dtd/properties.dtd'>
 
 <properties>
-  <entry key="editoriales.query.encontrarEditorialesDeLibro">
+  <entry key="publishers.query.encontrarEditorialesDeLibro">
     <![CDATA[
-    SELECT e.id, e.nombre 
+    SELECT e.id, e.name
     FROM Libro_Editorial le 
     JOIN Editorial e 
     ON e.id = le.id_editorial AND le.id_libro = :id_libro 
-    ORDER BY e.nombre
+    ORDER BY e.name
     ]]>
   </entry>
-  <entry key="editoriales.query.encontrarEditoriales">
+  <entry key="publishers.query.encontrarEditoriales">
     <![CDATA[
-    SELECT * FROM Editorial e ORDER BY e.nombre
+    SELECT * FROM Editorial e ORDER BY e.name
     ]]>
   </entry>
-  <entry key="editoriales.query.insertarEditorial">
+  <entry key="publishers.query.insertarEditorial">
     <![CDATA[
-      INSERT INTO Editorial (nombre) VALUES (:nombre)
+      INSERT INTO Editorial (name) VALUES (:name)
     ]]>
   </entry>
-  <entry key="editoriales.query.encontrarEditorial">
+  <entry key="publishers.query.encontrarEditorial">
     <![CDATA[
-    SELECT e.id, e.nombre FROM Editorial e WHERE e.`id` = :id
+    SELECT e.id, e.name FROM Editorial e WHERE e.`id` = :id
     ]]>
   </entry>
-  <entry key="editoriales.query.actualizarEditorial">
+  <entry key="publishers.query.actualizarEditorial">
     <![CDATA[
-     UPDATE Editorial SET nombre = :nombre WHERE `id` = :id
+     UPDATE Editorial SET name = :name WHERE `id` = :id
     ]]>
   </entry>
-  <entry key="editoriales.query.eliminarEditorial">
+  <entry key="publishers.query.eliminarEditorial">
     <![CDATA[
       DELETE FROM Editorial where `id` = :id 
     ]]>

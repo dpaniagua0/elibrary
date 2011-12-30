@@ -11,7 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import mx.edu.uvaq.elibrary.domain.Usuario;
+import mx.edu.uvaq.elibrary.domain.User;
 import mx.edu.uvaq.elibrary.model.business.service.UsuariosServicio;
 import mx.edu.uvaq.elibrary.presentation.UtilidadesControlador;
 import mx.edu.uvaq.elibrary.presentation.command.UsuariosForma;
@@ -88,7 +88,7 @@ public class UsuariosControlador extends HttpServlet {
   private String ejecutarAccion(HttpServletRequest request, HttpServletResponse response) {
     String vistaSiguiente = "vista-usuarios";
     UsuariosForma usuariosForma = (UsuariosForma) request.getAttribute(NOMBRE_FORMA);
-    List<Usuario> usuarios = usuariosServicio.recuperarUsuarios();
+    List<User> usuarios = usuariosServicio.recuperarUsuarios();
     usuariosForma.setUsuarios(usuarios);
     return vistaSiguiente;
   }

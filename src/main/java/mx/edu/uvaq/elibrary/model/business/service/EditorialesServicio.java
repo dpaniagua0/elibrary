@@ -5,7 +5,7 @@
 package mx.edu.uvaq.elibrary.model.business.service;
 
 import java.util.List;
-import mx.edu.uvaq.elibrary.domain.Editorial;
+import mx.edu.uvaq.elibrary.domain.Publisher;
 
 /**
  *
@@ -13,13 +13,13 @@ import mx.edu.uvaq.elibrary.domain.Editorial;
  */
 public interface EditorialesServicio {
 
-  List<Editorial> getEditoriales();
+  List<Publisher> getEditoriales();
 
-  public boolean registrarEditorial(Editorial editorial);
+  public boolean registrarEditorial(Publisher editorial);
 
-  public Editorial getEditorialPorId(Long ideditorial);
+  public Publisher getEditorialPorId(Long ideditorial);
 
   public boolean borrarEditorial(Long id);
 
-  public boolean modificarEditorial(Editorial editorial);
+  public boolean modificarEditorial(Publisher editorial);
 }

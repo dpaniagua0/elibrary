@@ -5,7 +5,7 @@
 package mx.edu.uvaq.elibrary.model.business.service;
 
 import java.util.List;
-import mx.edu.uvaq.elibrary.domain.Categoria;
+import mx.edu.uvaq.elibrary.domain.Category;
 
 /**
  *
@@ -13,7 +13,7 @@ import mx.edu.uvaq.elibrary.domain.Categoria;
  */
 public interface CategoriaServicio {
 
-  List<Categoria> encontrarCategorias();
+  List<Category> encontrarCategorias();
 
-  public boolean agregarCategoria(Categoria nuevaCategoria);
+  public boolean agregarCategoria(Category nuevaCategoria);
 }

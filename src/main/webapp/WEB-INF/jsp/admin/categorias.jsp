@@ -1,5 +1,5 @@
 <%-- 
-    Document   : categorias
+    Document   : categories
     Created on : Jun 5, 2011, 9:18:46 PM
     Author     : daniel
 --%>
