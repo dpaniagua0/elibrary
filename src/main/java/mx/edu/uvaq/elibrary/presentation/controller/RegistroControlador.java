@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mx.edu.uvaq.elibrary.domain.User;
-import mx.edu.uvaq.elibrary.model.business.service.RegistroServicio;
+import mx.edu.uvaq.elibrary.model.business.service.RegisterService;
 import mx.edu.uvaq.elibrary.presentation.Mensaje;
 import mx.edu.uvaq.elibrary.presentation.UtilidadesControlador;
 import mx.edu.uvaq.elibrary.presentation.command.RegistroForma;
@@ -24,7 +24,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 public class RegistroControlador extends HttpServlet {
 
   private static final String VISTA_REGISTRO = "vista-registro";
-  private RegistroServicio registroServicio;
+  private RegisterService registerService;
   private static final String NOMBRE_FORMA = "formaRegistro";
 
   /**
@@ -36,7 +36,7 @@ public class RegistroControlador extends HttpServlet {
    */
   @Override
   public void init() throws ServletException {
-    registroServicio = (RegistroServicio) WebApplicationContextUtils.getWebApplicationContext(getServletContext()).getBean("registroServicio");
+    registerService = (RegisterService) WebApplicationContextUtils.getWebApplicationContext(getServletContext()).getBean("registroServicio");
   }
 
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -92,7 +92,7 @@ public class RegistroControlador extends HttpServlet {
   private String ejecutarAccionDefecto(RegistroForma formaRegistro, HttpServletRequest request) {
     User nuevoUsuario = formaRegistro.getUsuario();
     StringBuffer urlActivacion = request.getRequestURL();
-    if (registroServicio.registrarUsuario(nuevoUsuario, urlActivacion.toString())) {
+    if (registerService.registerUser(nuevoUsuario, urlActivacion.toString())) {
       formaRegistro.agregarMensaje("exito-registro", Mensaje.crearMensajeInformacion("Informacion", "El usuario se ha registrado correctamente"));
     } else {
       formaRegistro.agregarMensaje("error-registro", Mensaje.crearMensajeError("Error", "El usuario registrado ya existe"));
@@ -102,7 +102,7 @@ public class RegistroControlador extends HttpServlet {
 
   private String ejecutarAccionActivar(RegistroForma formaRegistro, HttpServletRequest request) {
     User actualizarUsuario = formaRegistro.getUsuario();
-    if (registroServicio.activarUsuario(actualizarUsuario)) {
+    if (registerService.activateUser(actualizarUsuario)) {
       formaRegistro.agregarMensaje("exito-activacion", Mensaje.crearMensajeError("Informacion", "Activacion exitosa"));
     } else {
       formaRegistro.agregarMensaje("error-activacion", Mensaje.crearMensajeError("Error", "Activacion fallida"));

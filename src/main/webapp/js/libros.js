@@ -139,7 +139,7 @@ $(function() {
   });
   
 //  $('#boton-nuevo-libro').click(function() {
-//    UVAQ.eLibrary.libros.crearLibro();
+//    UVAQ.eLibrary.libros.createBook();
 //  });
 });
 

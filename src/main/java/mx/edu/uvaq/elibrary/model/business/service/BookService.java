@@ -11,11 +11,11 @@ import mx.edu.uvaq.elibrary.domain.Book;
  *
  * @author daniel
  */
-public interface LibrosServicio {
+public interface BookService {
 
-  List<Book> recuperarLibros();
+  List<Book> getBooks();
 
-  Book recuperarLibroPorId(int id);
+  Book getBookById(int id);
   
-  Number crearLibro(Book libro, byte[] archivo, byte[] imagen);
+  Number createBook(Book libro, byte[] archivo, byte[] imagen);
 }

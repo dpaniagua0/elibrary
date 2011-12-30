@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mx.edu.uvaq.elibrary.domain.User;
-import mx.edu.uvaq.elibrary.model.business.service.UsuariosServicio;
+import mx.edu.uvaq.elibrary.model.business.service.UserService;
 import mx.edu.uvaq.elibrary.presentation.UtilidadesControlador;
 import mx.edu.uvaq.elibrary.presentation.command.UsuariosForma;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -24,7 +24,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 public class UsuariosControlador extends HttpServlet {
 
   private final static String NOMBRE_FORMA = "usuariosForma";
-  private UsuariosServicio usuariosServicio;
+  private UserService userService;
 
   /**
    * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -35,7 +35,7 @@ public class UsuariosControlador extends HttpServlet {
    */
   @Override
   public void init() throws ServletException {
-    usuariosServicio = (UsuariosServicio) WebApplicationContextUtils.getWebApplicationContext(getServletContext()).getBean("usuariosServicio");
+    userService = (UserService) WebApplicationContextUtils.getWebApplicationContext(getServletContext()).getBean("usuariosServicio");
   }
 
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -88,7 +88,7 @@ public class UsuariosControlador extends HttpServlet {
   private String ejecutarAccion(HttpServletRequest request, HttpServletResponse response) {
     String vistaSiguiente = "vista-usuarios";
     UsuariosForma usuariosForma = (UsuariosForma) request.getAttribute(NOMBRE_FORMA);
-    List<User> usuarios = usuariosServicio.recuperarUsuarios();
+    List<User> usuarios = userService.getUsers();
     usuariosForma.setUsuarios(usuarios);
     return vistaSiguiente;
   }

@@ -8,9 +8,13 @@ import mx.edu.uvaq.elibrary.domain.User;
 
 /**
  *
- * @author arcesino
+ * @author daniel
  */
-public interface CorreoServicio {
+public interface RegisterService {
 
-  public abstract void enviarCorreoActivacionCuenta(User usuario, String urlActivacion);
+  public abstract boolean registerUser(User user, String activationURL);
+
+  String generateActivationCode(User user);
+
+  boolean activateUser(User user);
 }

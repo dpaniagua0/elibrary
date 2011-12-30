@@ -11,9 +11,9 @@ import mx.edu.uvaq.elibrary.domain.Category;
  *
  * @author daniel
  */
-public interface CategoriaServicio {
+public interface CategoryService {
 
-  List<Category> encontrarCategorias();
+  List<Category> getCategories();
 
-  public boolean agregarCategoria(Category nuevaCategoria);
+  public boolean createCategory(Category category);
 }

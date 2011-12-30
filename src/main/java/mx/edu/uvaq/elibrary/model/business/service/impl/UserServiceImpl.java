@@ -6,14 +6,14 @@ package mx.edu.uvaq.elibrary.model.business.service.impl;
 
 import java.util.List;
 import mx.edu.uvaq.elibrary.domain.User;
-import mx.edu.uvaq.elibrary.model.business.service.UsuariosServicio;
+import mx.edu.uvaq.elibrary.model.business.service.UserService;
 import mx.edu.uvaq.elibrary.model.persistence.dao.UsuarioDao;
 
 /**
  *
  * @author arcesino
  */
-public class UsuariosServicioImpl implements UsuariosServicio {
+public class UserServiceImpl implements UserService {
 
   private UsuarioDao usuarioDao;
 
@@ -25,11 +25,11 @@ public class UsuariosServicioImpl implements UsuariosServicio {
     this.usuarioDao = usuarioDao;
   }
 
-  public List<User> recuperarUsuarios() {
+  public List<User> getUsers() {
     return usuarioDao.encontrarUsuarios();
   }
 
-  public void agregarRol(User usuario, String rolUsuario) {
-    usuarioDao.asignarRolUsuario(usuario, rolUsuario);
+  public void addRole(User user, String role) {
+    usuarioDao.asignarRolUsuario(user, role);
   }
 }

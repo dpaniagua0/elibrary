@@ -35,7 +35,7 @@ public class JdbcCategoriaDao extends QuerysNamedParameterJdbcDaoSupport impleme
   }
 
   public List<Category> encontrarCategorias() {
-    String query = querys.get("categorias.query.encontrarCategorias");
+    String query = querys.get("categorias.query.getCategories");
     List<Category> categorias = getJdbcTemplate().query(query, categoriaRowMapper);
     return categorias;
   }

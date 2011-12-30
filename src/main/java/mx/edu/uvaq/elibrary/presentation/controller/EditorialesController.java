@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import mx.edu.uvaq.elibrary.domain.Publisher;
-import mx.edu.uvaq.elibrary.model.business.service.EditorialesServicio;
+import mx.edu.uvaq.elibrary.model.business.service.PublisherService;
 import mx.edu.uvaq.elibrary.presentation.Mensaje;
 import org.apache.commons.lang.math.NumberUtils;
 
@@ -18,10 +18,10 @@ import org.apache.commons.lang.math.NumberUtils;
  */
 public class EditorialesController extends AbstractController {
   
-  private EditorialesServicio editorialesServicio;
+  private PublisherService publisherService;
 
-  public void seteditorialesServicio(EditorialesServicio editorialesServicio) {
-    this.editorialesServicio = editorialesServicio;
+  public void seteditorialesServicio(PublisherService publisherService) {
+    this.publisherService = publisherService;
   }
 
   @Override
@@ -30,7 +30,7 @@ public class EditorialesController extends AbstractController {
   }
 
   public void listar() {
-    List<Publisher> editoriales = editorialesServicio.getEditoriales();
+    List<Publisher> editoriales = publisherService.getPublishers();
     Map<String, Object> modelo = new HashMap<String, Object>();
     modelo.put("editoriales", editoriales);
     renderView("index", modelo);
@@ -48,7 +48,7 @@ public class EditorialesController extends AbstractController {
     Long ideditorial = NumberUtils.toLong(getRequest().getParameter("id"));
     if (ideditorial > 0) {
       editorial.setId(ideditorial.intValue());
-      if (editorialesServicio.modificarEditorial(editorial)) {
+      if (publisherService.editPublisher(editorial)) {
         String mensajeEditorialSalvado = String.format("El editorial %s, ha sido modificado con éxito.", editorial.getName());
         addMessage("editorial-salvar-resultado", Mensaje.crearMensajeExito(null, mensajeEditorialSalvado));
       } else {
@@ -57,7 +57,7 @@ public class EditorialesController extends AbstractController {
       }
       listar();
     } else {
-      if (editorialesServicio.registrarEditorial(editorial)) {
+      if (publisherService.registerPublisher(editorial)) {
         String mensajeEditorialSalvado = String.format("El editorial %s, ha sido registrado con éxito.", editorial.getName());
         addMessage("editorial-salvar-resultado", Mensaje.crearMensajeExito(null, mensajeEditorialSalvado));
       } else {
@@ -70,7 +70,7 @@ public class EditorialesController extends AbstractController {
 
   public void editar() {
     Long ideditorial = Long.valueOf(getRequest().getParameter("id"));
-    Publisher editorial = editorialesServicio.getEditorialPorId(ideditorial);
+    Publisher editorial = publisherService.getPublisherById(ideditorial);
     if (editorial != null) {
       Map<String, Object> modelo = new HashMap<String, Object>();
       modelo.put("editorial", editorial);
@@ -82,7 +82,7 @@ public class EditorialesController extends AbstractController {
     String[] idsEditoriales = getRequest().getParameterValues("id");
     for(String idEditorial : idsEditoriales) {
       Long id = Long.valueOf(idEditorial);
-      editorialesServicio.borrarEditorial(id);
+      publisherService.removePublisher(id);
     }
     String mensajeErrorSalvar = String.format("Los editoriales han sido eliminados.");
     addMessage("editorial-eliminar-resultado", Mensaje.crearMensajeExito(null, mensajeErrorSalvar));

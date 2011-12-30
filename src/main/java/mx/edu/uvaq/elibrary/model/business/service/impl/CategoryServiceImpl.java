@@ -6,14 +6,14 @@ package mx.edu.uvaq.elibrary.model.business.service.impl;
 
 import java.util.List;
 import mx.edu.uvaq.elibrary.domain.Category;
-import mx.edu.uvaq.elibrary.model.business.service.CategoriaServicio;
+import mx.edu.uvaq.elibrary.model.business.service.CategoryService;
 import mx.edu.uvaq.elibrary.model.persistence.dao.CategoriaDao;
 
 /**
  *
  * @author daniel
  */
-public class CategoriasServicioImpl implements CategoriaServicio {
+public class CategoryServiceImpl implements CategoryService {
 
   private CategoriaDao categoriaDao;
 
@@ -25,25 +25,25 @@ public class CategoriasServicioImpl implements CategoriaServicio {
     this.categoriaDao = categoriaDao;
   }
 
-  public List<Category> encontrarCategorias() {
+  public List<Category> getCategories() {
     return categoriaDao.encontrarCategorias();
   }
 
-  public boolean agregarCategoria(Category nuevaCategoria) {
-    if (validarNuevaCategoria(nuevaCategoria)) {
-      categoriaDao.insertarCategoria(nuevaCategoria);
+  public boolean createCategory(Category category) {
+    if (validateNewCategory(category)) {
+      categoriaDao.insertarCategoria(category);
       return true;
     }
     return false;
   }
 
-  public boolean existeUsuario(Category nuevoUsuario) {
-    Category usuario = categoriaDao.encontrarCategoria(nuevoUsuario.getName());
+  public boolean categoryExists(Category category) {
+    Category existingCategory = categoriaDao.encontrarCategoria(category.getName());
 
-    return usuario != null;
+    return existingCategory != null;
   }
 
-  private boolean validarNuevaCategoria(Category nuevaCategoria) {
-    return !existeUsuario(nuevaCategoria);
+  private boolean validateNewCategory(Category category) {
+    return !categoryExists(category);
   }
 }

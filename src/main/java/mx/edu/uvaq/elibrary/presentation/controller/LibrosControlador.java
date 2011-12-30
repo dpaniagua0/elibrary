@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mx.edu.uvaq.elibrary.domain.Book;
-import mx.edu.uvaq.elibrary.model.business.service.LibrosServicio;
+import mx.edu.uvaq.elibrary.model.business.service.BookService;
 import mx.edu.uvaq.elibrary.presentation.UtilidadesControlador;
 import mx.edu.uvaq.elibrary.presentation.command.LibrosForma;
 import net.sf.json.JSONSerializer;
@@ -30,11 +30,11 @@ public class LibrosControlador extends HttpServlet {
   private static final String VISTA_INICIO = "vista-inicio";
   private static final String NOMBRE_FORMA = "librosForma";
   
-  private LibrosServicio librosServicio;
+  private BookService bookService;
 
   @Override
   public void init() throws ServletException {
-    librosServicio = (LibrosServicio) WebApplicationContextUtils.getWebApplicationContext(getServletContext()).getBean("librosServicio");
+    bookService = (BookService) WebApplicationContextUtils.getWebApplicationContext(getServletContext()).getBean("librosServicio");
   }
 
   /**
@@ -112,7 +112,7 @@ public class LibrosControlador extends HttpServlet {
       vistaSiguiente = "vista-inicio-administracion";
     }
     LibrosForma librosForma = (LibrosForma) request.getAttribute(NOMBRE_FORMA);
-    List<Book> libros = librosServicio.recuperarLibros();
+    List<Book> libros = bookService.getBooks();
     librosForma.setLibros(libros);
     return vistaSiguiente;
   }
@@ -121,7 +121,7 @@ public class LibrosControlador extends HttpServlet {
     LibrosForma librosForma = (LibrosForma) request.getAttribute(NOMBRE_FORMA);
     int id = librosForma.getId();
 
-    Book libro = librosServicio.recuperarLibroPorId(id);
+    Book libro = bookService.getBookById(id);
     JsonConfig config = new JsonConfig();
     config.registerJsonBeanProcessor(Date.class, new JsDateJsonBeanProcessor());
 

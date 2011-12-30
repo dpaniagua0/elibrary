@@ -4,6 +4,7 @@
  */
 package mx.edu.uvaq.elibrary.presentation.controller;
 
+import mx.edu.uvaq.elibrary.model.business.service.BookService;
 import mx.edu.uvaq.elibrary.model.business.service.ServiceException;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -11,7 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import mx.edu.uvaq.elibrary.model.business.service.LibrosServicio;
+
 import mx.edu.uvaq.elibrary.presentation.Mensaje;
 import mx.edu.uvaq.elibrary.presentation.command.LibroForma;
 import mx.edu.uvaq.elibrary.presentation.upload.FileUploadListener;
@@ -27,11 +28,11 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 public class CargaLibroControlador extends HttpServlet {
 
   public static final String NOMBRE_FORMA = "libroForma";
-  private LibrosServicio librosServicio;
+  private BookService bookService;
 
   @Override
   public void init() throws ServletException {
-    librosServicio = (LibrosServicio) WebApplicationContextUtils.getWebApplicationContext(getServletContext()).getBean("librosServicio");
+    bookService = (BookService) WebApplicationContextUtils.getWebApplicationContext(getServletContext()).getBean("librosServicio");
   }
 
   /** 
@@ -95,7 +96,7 @@ public class CargaLibroControlador extends HttpServlet {
     byte[] archivo = obtenerBytesAchivo(libroForma.getArchivo());
     byte[] imagen = obtenerBytesAchivo(libroForma.getImagen());
     try {
-      librosServicio.crearLibro(libroForma.getLibro(), archivo, imagen);
+      bookService.createBook(libroForma.getLibro(), archivo, imagen);
       libroForma.agregarMensaje("libro-creado", Mensaje.crearMensajeInformacion("Libro creado", "El libro ha sido creado exitosamente."));
     } catch(ServiceException se) {
       libroForma.agregarMensaje("error-libro", Mensaje.crearMensajeError("Error", "Hubo un error al crear el libro."));
