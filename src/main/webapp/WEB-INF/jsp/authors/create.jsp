@@ -30,42 +30,12 @@
       <jsp:param name="encabezado" value="${encabezadoUsuarios}"/>
     </jsp:include>
     <div class="container-fluid">
-      <div class="sidebar">
-        <div class="well">
-          <h5>${i18n['books.labels.actions']}</h5>
-          <ul>
-            <li>
-              <c:url var="url" value="/admin/autores/crear"/>
-              <a id="agregar-autor-link" href="${url}" title="${i18n['books.addAuthor']}">
-                ${i18n['books.addAuthor']}
-                <c:url var="url" value="/images/plus-circle-frame.png"/>
-                <img src="${url}" alt="[plus-circle-frama.png]"/>
-              </a>
-            </li>
-            <li>
-              <c:url var="url" value="/admin/autores/editar"/>
-              <a id="editar-autor-link" href="${url}" title="${i18n['books.editAuthor']}">
-                ${i18n['books.editAuthor']}
-                <c:url var="url" value="/images/pencil.png"/>
-                <img src="${url}" alt="[pencil.png]"/>
-              </a>
-            </li>
-            <li>
-              <c:url var="url" value="/admin/autores/eliminar"/>
-              <a id="eliminar-autor-link" href="#" title="${i18n['books.deleteAuthor']}">
-                ${i18n['books.deleteAuthor']}
-                <c:url var="url" value="/images/minus-circle-frame.png"/>
-                <img src="${url}" alt="[minus-circle-frame.png]"/>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <jsp:include page="/WEB-INF/jspf/sidebar.jspf"/>
       <div class="content hero-unit">
         <c:if test="${not empty mensajes['autor-salvar-resultado']}">
           <div class="alert-message ${mensajes['autor-salvar-resultado'].messageClass} ">
             <a class="close" href="#">×</a>
-              ${mensajes['autor-salvar-resultado'].detail}
+            ${mensajes['autor-salvar-resultado'].detail}
           </div>
         </c:if>
         <c:url var="url" value="/admin/autores/salvar"/>

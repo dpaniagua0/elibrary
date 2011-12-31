@@ -1,0 +1,27 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<fmt:setBundle basename="mx.edu.uvaq.elibrary.i18n.messages" var="bundle"/>
+<c:set var="i18n" value="${bundle.resourceBundle}"/>
+
+<c:url var="startURL" value="/inicio"/>
+<c:url var="usersURL" value="/admin/usuarios"/>
+<c:url var="categoriesURL" value="/admin/categorias"/>
+<c:url var="authorsURL" value="/admin/autores"/>
+<c:url var="publishersURL" value="/admin/editoriales"/>
+
+<div class="sidebar">
+  <div class="well">
+    <h5>${i18n['headers.menu']}</h5>
+    <ul>
+      <li><a href="${authorsURL}">${i18n['books.authors']}</a></li>
+      <li><a href="${categoriesURL}">${i18n['books.categories']}</a></li>
+      <li><a href="${publishersURL}">${i18n['books.publishers']}</a></li>
+      <li><a href="${startURL}">${i18n['books.header']}</a></li>
+      <li><a href="${usersURL}">${i18n['users.header']}</a></li>
+    </ul>
+  </div>
+</div>

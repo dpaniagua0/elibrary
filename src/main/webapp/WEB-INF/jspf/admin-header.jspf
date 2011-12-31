@@ -27,12 +27,6 @@
               <span class="span1 ">${pageContext.request.remoteUser}</span>
             </a>
             <ul class="menu-dropdown">
-              <li><a href="${authorsURL}">${i18n['books.authors']}</a></li>
-              <li><a href="${categoriesURL}">${i18n['books.categories']}</a></li>
-              <li><a href="${publishersURL}">${i18n['books.publishers']}</a></li>
-              <li><a href="${startURL}">${i18n['books.header']}</a></li>
-              <li><a href="${usersURL}">${i18n['users.header']}</a></li>
-              <li class="divider"/>
               <li><a href="${logoutURL}">${i18n['labels.logout']}</a></li>
             </ul>
           </li>

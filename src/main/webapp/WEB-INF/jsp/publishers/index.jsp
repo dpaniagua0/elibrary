@@ -34,44 +34,14 @@
 
 
     <div class="container-fluid">
-      <div class="sidebar">
-        <div class="well">
-          <h5>${i18n['books.labels.acciones']}</h5>
-          <ul>
-            <li>
-              <c:url var="url" value="/admin/editoriales/crear"/>
-              <a id="agregar-editorial-link" href="${url}" title="${i18n['books.addPublisher']}">
-                ${i18n['books.addPublisher']}
-                <c:url var="url" value="/images/plus-circle-frame.png"/>
-                <img src="${url}" alt="[plus-circle-frama.png]"/>
-              </a>
-            </li>
-            <li>
-              <c:url var="url" value="/admin/editoriales/editar"/>
-              <a id="editar-editorial-link" href="${url}" title="${i18n['books.editPublisher']}">
-                ${i18n['books.editPublisher']}
-                <c:url var="url" value="/images/pencil.png"/>
-                <img src="${url}" alt="[pencil.png]"/>
-              </a>
-            </li>
-            <li>
-              <c:url var="url" value="/admin/editoriales/eliminar"/>
-              <a id="eliminar-editorial-link" href="${url}" title="${i18n['books.deletePublisher']}">
-                ${i18n['books.deletePublisher']}
-                <c:url var="url" value="/images/minus-circle-frame.png"/>
-                <img src="${url}" alt="[minus-circle-frame.png]"/>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <jsp:include page="/WEB-INF/jspf/sidebar.jspf"/>
       <div class="content">
         <!-- Main hero unit for a primary marketing message or call to action -->
         <div class="hero-unit">
           <c:if test="${not empty messages['editorial-eliminar-resultado']}">
             <div class="alert-message ${messages['editorial-eliminar-resultado'].claseMensaje} ">
               <a class="close" href="#">×</a>
-                ${messages['editorial-eliminar-resultado'].detalle}
+              ${messages['editorial-eliminar-resultado'].detalle}
             </div>
           </c:if>
           <h2>${i18n['books.publishers']}</h2>
@@ -112,7 +82,7 @@
             </c:when>
             <c:otherwise>
               <div>
-                  ${i18n['books.messages.noPublishers']}
+                ${i18n['books.messages.noPublishers']}
               </div>
             </c:otherwise>
           </c:choose>
@@ -122,6 +92,6 @@
         ${i18n['books.messages.noPublisherSelected']}
       </div>
     </div>
-    </div>
-  </body>
+  </div>
+</body>
 </html>
