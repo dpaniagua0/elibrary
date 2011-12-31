@@ -12,7 +12,6 @@
 
 <fmt:setBundle basename="mx.edu.uvaq.elibrary.i18n.messages" var="bundle"/>
 <c:set var="i18n" value="${bundle.resourceBundle}"/>
-<c:set var="rutaContexto" value="${pageContext.servletContext.contextPath}"/>
 
 <html>
   <head>
@@ -33,28 +32,28 @@
     <div class="container-fluid">
       <div class="sidebar">
         <div class="well">
-          <h5>${i18n['libros.acciones']}</h5>
+          <h5>${i18n['books.labels.actions']}</h5>
           <ul>
             <li>
               <c:url var="url" value="/admin/autores/crear"/>
-              <a id="agregar-autor-link" href="${url}" title="${i18n['libros.agregarAutor']}">
-                ${i18n['libros.agregarAutor']}
+              <a id="agregar-autor-link" href="${url}" title="${i18n['books.addAuthor']}">
+                ${i18n['books.addAuthor']}
                 <c:url var="url" value="/images/plus-circle-frame.png"/>
                 <img src="${url}" alt="[plus-circle-frama.png]"/>
               </a>
             </li>
             <li>
               <c:url var="url" value="/admin/autores/editar"/>
-              <a id="editar-autor-link" href="${url}" title="${i18n['libros.editarAutor']}">
-                ${i18n['libros.editarAutor']}
+              <a id="editar-autor-link" href="${url}" title="${i18n['books.editAuthor']}">
+                ${i18n['books.editAuthor']}
                 <c:url var="url" value="/images/pencil.png"/>
                 <img src="${url}" alt="[pencil.png]"/>
               </a>
             </li>
             <li>
               <c:url var="url" value="/admin/autores/eliminar"/>
-              <a id="eliminar-autor-link" href="#" title="${i18n['libros.eliminarAutor']}">
-                ${i18n['libros.eliminarAutor']}
+              <a id="eliminar-autor-link" href="#" title="${i18n['books.deleteAuthor']}">
+                ${i18n['books.deleteAuthor']}
                 <c:url var="url" value="/images/minus-circle-frame.png"/>
                 <img src="${url}" alt="[minus-circle-frame.png]"/>
               </a>
@@ -64,9 +63,9 @@
       </div>
       <div class="content hero-unit">
         <c:if test="${not empty mensajes['autor-salvar-resultado']}">
-          <div class="alert-message ${mensajes['autor-salvar-resultado'].claseMensaje} ">
+          <div class="alert-message ${mensajes['autor-salvar-resultado'].messageClass} ">
             <a class="close" href="#">×</a>
-              ${mensajes['autor-salvar-resultado'].detalle}
+              ${mensajes['autor-salvar-resultado'].detail}
           </div>
         </c:if>
         <c:url var="url" value="/admin/autores/salvar"/>
@@ -76,14 +75,14 @@
               <tr>
                 <td><label for="autor">Autor</label></td>
                 <td>
-                  <input id="autor" name="nombre" type="text" value="${modelo.autor.nombre}"/>
-                  <input name="id" type="hidden" value="${modelo.autor.id}"/>
+                  <input id="autor" name="nombre" type="text" value="${author.name}"/>
+                  <input name="id" type="hidden" value="${author.id}"/>
                 </td>
               </tr>
               <tr>
                 <td><label for="apellidos">Apellidos</label></td>
                 <td>
-                  <input id="apellidos" name="apellidos" type="text" value="${modelo.autor.apellidos}"/>
+                  <input id="apellidos" name="apellidos" type="text" value="${author.lastName}"/>
                 </td>
               </tr>
             </tbody>

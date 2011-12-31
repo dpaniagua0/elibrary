@@ -29,8 +29,8 @@
     <link rel="stylesheet" href="${rutaContexto}/js/jquery/themes/start/jquery-ui-start.css" type="text/css"/>
     <link rel="stylesheet" href="${rutaContexto}/css/global.css" type="text/css"/>
     <script type="text/javascript" src="${rutaContexto}/js/jquery/plugins/qtip/jquery.qtip.js"></script>
-    <script type="text/javascript" src="${rutaContexto}/js/utilidades.js"></script>
-    <script type="text/javascript" src="${rutaContexto}/js/libros.js"></script>
+    <script type="text/javascript" src="${rutaContexto}/js/utilities.js"></script>
+    <script type="text/javascript" src="${rutaContexto}/js/books.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-dropdown.js"></script>
     <script type="text/javascript">
       $(function() {

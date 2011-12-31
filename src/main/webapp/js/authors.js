@@ -7,16 +7,16 @@ $(function() {
   $("a#editar-autor-link").click(function(evento) {
     evento.preventDefault();
     var $columnaId = $("td.columna-checkbox:has(:checked)").first().siblings("td.columna-id").first();
-    var url = $(this).attr("href") + "&id=" + $columnaId.text();
+    var url = $(this).attr("href") + "?id=" + $columnaId.text();
     window.location.replace(url);
   });
   
   $("a#eliminar-autor-link").click(function(evento) {
     evento.preventDefault();
     var $ids = $("td.columna-checkbox:has(:checked)").siblings("td.columna-id");
-    var url = $(this).attr("href")
+    var url = $(this).attr("href") + '?'
     $ids.each(function() {
-      url += "&id=" + $(this).text();
+      url += "id=" + $(this).text() + '&';
     });
     window.location.replace(url);
   });

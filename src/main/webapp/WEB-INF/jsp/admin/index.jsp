@@ -30,8 +30,8 @@
   <link rel="stylesheet" href="${rutaContexto}/js/jquery/themes/start/jquery-ui-start.css" type="text/css"/>
   <link rel="stylesheet" href="${rutaContexto}/css/global.css" type="text/css"/>
   <script type="text/javascript" src="${rutaContexto}/js/jquery/plugins/qtip/jquery.qtip.js"></script>
-  <script type="text/javascript" src="${rutaContexto}/js/utilidades.js"></script>
-  <script type="text/javascript" src="${rutaContexto}/js/libros.js"></script>
+  <script type="text/javascript" src="${rutaContexto}/js/utilities.js"></script>
+  <script type="text/javascript" src="${rutaContexto}/js/books.js"></script>
   <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-modal.js"></script>
   <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-dropdown.js"></script>
   <script type="text/javascript">
@@ -57,7 +57,7 @@
   <div class="container-fluid">
     <div class="sidebar">
       <div class="well">
-        <h5>${i18n['books.labels.acciones']}</h5>
+        <h5>${i18n['books.labels.actions']}</h5>
         <ul>
           <li>
             <a id="agregar-libro-link" href="#" title="${i18n['books.addBook']}">

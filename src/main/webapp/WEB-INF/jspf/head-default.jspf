@@ -19,4 +19,4 @@
 <script type="text/javascript" src="${contextPath}/js/bootstrap/bootstrap-modal.js"></script>
 <script type="text/javascript" src="${contextPath}/js/bootstrap/bootstrap-dropdown.js"></script>
 <script type="text/javascript" src="${contextPath}/js/bootstrap/bootstrap-alerts.js"></script>
-<script type="text/javascript" src="${contextPath}/js/utilidades.js"></script>
+<script type="text/javascript" src="${contextPath}/js/utilities.js"></script>

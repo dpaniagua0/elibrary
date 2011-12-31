@@ -13,7 +13,7 @@
 <properties>
   <entry key="authors.query.findAuthorsOfBook">
     <![CDATA[
-      SELECT a.id, a.nombre, a.apellidos
+      SELECT a.id, a.nombre name, a.apellidos lastName
       FROM Libro_Autor la 
       JOIN Autor a 
       ON a.id = la.id_autor AND la.id_libro = :id 
@@ -22,7 +22,7 @@
   </entry>
   <entry key="authors.query.findAuthors">
     <![CDATA[
-      SELECT * FROM Autor a ORDER BY a.nombre
+      SELECT a.id, a.nombre name, a.apellidos lastName FROM Autor a ORDER BY a.nombre
     ]]>
   </entry>
   <entry key="authors.query.insertAuthor">
@@ -32,7 +32,7 @@
   </entry>
   <entry key="authors.query.findAuthor">
     <![CDATA[
-     SELECT a.nombre, a.apellidos FROM Autor a WHERE a.`id` = :id
+     SELECT a.nombre name, a.apellidos lastName FROM Autor a WHERE a.`id` = :id
     ]]>
   </entry>
   <entry key="authors.query.updateAuthor">
