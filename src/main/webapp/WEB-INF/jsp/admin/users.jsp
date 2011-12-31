@@ -11,7 +11,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<fmt:setBundle basename="mx.edu.uvaq.elibrary.i18n.MensajesELibrary" var="bundle"/>
+<fmt:setBundle basename="mx.edu.uvaq.elibrary.i18n.messages" var="bundle"/>
 <c:set var="i18n" value="${bundle.resourceBundle}"/>
 <c:set var="rutaContexto" value="${pageContext.servletContext.contextPath}"/>
 
@@ -39,7 +39,7 @@
     <title>${i18n['usuarios.titulo']}</title>
   </head>
   <body>
-    <jsp:include page="/WEB-INF/jspf/encabezadoAdministracion.jspf"/>
+    <jsp:include page="/WEB-INF/jspf/admin-header.jspf"/>
 
     <div class="container-fluid">
       <div class="sidebar">

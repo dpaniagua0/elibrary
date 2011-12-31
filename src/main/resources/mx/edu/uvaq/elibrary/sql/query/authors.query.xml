@@ -13,31 +13,31 @@
 <properties>
   <entry key="authors.query.findAuthorsOfBook">
     <![CDATA[
-      SELECT a.id, a.name, a.lastName
+      SELECT a.id, a.nombre, a.apellidos
       FROM Libro_Autor la 
       JOIN Autor a 
       ON a.id = la.id_autor AND la.id_libro = :id 
-      ORDER BY a.name
+      ORDER BY a.nombre
     ]]>
   </entry>
   <entry key="authors.query.findAuthors">
     <![CDATA[
-      SELECT * FROM Autor a ORDER BY a.name
+      SELECT * FROM Autor a ORDER BY a.nombre
     ]]>
   </entry>
   <entry key="authors.query.insertAuthor">
     <![CDATA[
-      INSERT INTO Autor (name, lastName) VALUES(:name, :lastName)
+      INSERT INTO Autor (nombre, apellidos) VALUES(:nombre, :apellidos)
     ]]>
   </entry>
   <entry key="authors.query.findAuthor">
     <![CDATA[
-     SELECT a.name, a.lastName FROM Autor a WHERE a.`id` = :id
+     SELECT a.nombre, a.apellidos FROM Autor a WHERE a.`id` = :id
     ]]>
   </entry>
   <entry key="authors.query.updateAuthor">
     <![CDATA[
-     UPDATE Autor SET name = :name, lastName = :lastName WHERE `id` = :id
+     UPDATE Autor SET nombre = :nombre, apellidos = :apellidos WHERE `id` = :id
     ]]>
   </entry>
   <entry key="authors.query.deleteAuthor">

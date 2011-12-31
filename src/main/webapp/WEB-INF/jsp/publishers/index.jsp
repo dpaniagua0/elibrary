@@ -16,13 +16,13 @@
 <%@taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
-<fmt:setBundle basename="mx.edu.uvaq.elibrary.i18n.MensajesELibrary" var="bundle"/>
+<fmt:setBundle basename="mx.edu.uvaq.elibrary.i18n.messages" var="bundle"/>
 <c:set var="i18n" value="${bundle.resourceBundle}"/>
 <c:set var="rutaContexto" value="${pageContext.servletContext.contextPath}"/>
 
 <html>
   <head>
-    <jsp:include page="/WEB-INF/jspf/headDefault.jspf"/>
+    <jsp:include page="/WEB-INF/jspf/head-default.jspf"/>
     <script type="text/javascript">
       $(function() {
         UVAQ.eLibrary.estilizarTabla();
@@ -34,7 +34,7 @@
   </head>
   <body>
 
-    <jsp:include page="/WEB-INF/jspf/encabezadoAdministracion.jspf">
+    <jsp:include page="/WEB-INF/jspf/admin-header.jspf">
       <jsp:param name="encabezado" value="${encabezadoUsuarios}"/>
     </jsp:include>
 

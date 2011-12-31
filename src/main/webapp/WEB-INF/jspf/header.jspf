@@ -4,11 +4,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<fmt:setBundle basename="mx.edu.uvaq.elibrary.i18n.MensajesELibrary" var="bundle"/>
+<fmt:setBundle basename="mx.edu.uvaq.elibrary.i18n.messages" var="bundle"/>
 <c:set var="i18n" value="${bundle.resourceBundle}"/>
-<c:set var="nombreContexto" value="${pageContext.servletContext.contextPath}"/>
+<c:set var="contextName" value="${pageContext.servletContext.contextPath}"/>
 
-<c:url var="urlSesion" value="/inicio/cerrar-sesion"/>
+<c:url var="logoutURL" value="/inicio/logout"/>
 <div class="topbar">
   <div id="topbar-example" class="topbar" data-dropdown="dropdown">
     <div class="topbar fill">
@@ -22,7 +22,7 @@
               <span class="span1 ">${pageContext.request.remoteUser}</span>
             </a>
             <ul class="menu-dropdown">
-              <li><a href="${urlSesion}">${i18n['labels.logout']}</a></li>
+              <li><a href="${logoutURL}">${i18n['labels.logout']}</a></li>
             </ul>
           </li>
         </ul>

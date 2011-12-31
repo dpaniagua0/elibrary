@@ -32,7 +32,7 @@ public class AuthorsController extends AbstractController {
   public void listar() {
     List<Author> authors = authorService.getAuthors();
     Map<String, Object> model = new HashMap<String, Object>();
-    model.put("autores", authors);
+    model.put("authors", authors);
     renderView("index", model);
   }
 

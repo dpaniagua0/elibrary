@@ -11,7 +11,7 @@
 <%@taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
-<fmt:setBundle basename="mx.edu.uvaq.elibrary.i18n.MensajesELibrary" var="bundle"/>
+<fmt:setBundle basename="mx.edu.uvaq.elibrary.i18n.messages" var="bundle"/>
 <c:set var="i18n" value="${bundle.resourceBundle}"/>
 <c:set var="rutaContexto" value="${pageContext.servletContext.contextPath}"/>
 
@@ -44,7 +44,7 @@
     <title>${i18n['login.header']}</title>
   </head>
   <body>
-    <jsp:include page="/WEB-INF/jspf/encabezado.jspf">
+    <jsp:include page="/WEB-INF/jspf/header.jspf">
       <jsp:param name="encabezado" value="${encabezadoUsuarios}"/>
     </jsp:include>
     <div class="container">

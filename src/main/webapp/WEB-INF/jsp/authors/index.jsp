@@ -10,14 +10,13 @@
 <%@taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
-<fmt:setBundle basename="mx.edu.uvaq.elibrary.i18n.MensajesELibrary" var="bundle"/>
+<fmt:setBundle basename="mx.edu.uvaq.elibrary.i18n.messages" var="bundle"/>
 <c:set var="i18n" value="${bundle.resourceBundle}"/>
 <c:set var="rutaContexto" value="${pageContext.servletContext.contextPath}"/>
 
 <html>
   <head>
-    <jsp:include page="/WEB-INF/jspf/headDefault.jspf"/>
-    <script type="text/javascript" src="${rutaContexto}/js/libros.js"></script>
+    <jsp:include page="/WEB-INF/jspf/head-default.jspf"/>
     <script type="text/javascript" src="${rutaContexto}/js/autores.js"></script>
     <script type="text/javascript">
       $(function() {
@@ -29,7 +28,7 @@
     <title>${i18n['login.header']}</title>
   </head>
   <body>
-    <jsp:include page="/WEB-INF/jspf/encabezadoAdministracion.jspf">
+    <jsp:include page="/WEB-INF/jspf/admin-header.jspf">
       <jsp:param name="encabezado" value="${encabezadoUsuarios}"/>
     </jsp:include>
     <div class="container-fluid">
@@ -38,7 +37,7 @@
           <h5>${i18n['libros.acciones']}</h5>
           <ul>
             <li>
-              <c:url var="url" value="/admin/autores?accion=crear"/>
+              <c:url var="url" value="/admin/autores/crear"/>
               <a id="agregar-autor-link" href="${url}" title="${i18n['libros.agregarAutor']}">
                 ${i18n['libros.agregarAutor']}
                 <c:url var="url" value="/images/plus-circle-frame.png"/>
@@ -46,7 +45,7 @@
               </a>
             </li>
             <li>
-              <c:url var="url" value="/admin/autores?accion=editar"/>
+              <c:url var="url" value="/admin/autores/editar"/>
               <a id="editar-autor-link" href="${url}" title="${i18n['libros.editarAutor']}">
                 ${i18n['libros.editarAutor']}
                 <c:url var="url" value="/images/pencil.png"/>
@@ -54,7 +53,7 @@
               </a>
             </li>
             <li>
-              <c:url var="url" value="/admin/autores?accion=eliminar"/>
+              <c:url var="url" value="/admin/autores/eliminar"/>
               <a id="eliminar-autor-link" href="${url}" title="${i18n['libros.eliminarAutor']}">
                 ${i18n['libros.eliminarAutor']}
                 <c:url var="url" value="/images/minus-circle-frame.png"/>
@@ -97,7 +96,7 @@
             </div>
           </div>
           <c:choose>
-            <c:when test="${not empty modelo.autores}">
+            <c:when test="${not empty autores}">
               <table class="tabla-datos bordered-table">
                 <thead>
                   <tr>
@@ -112,7 +111,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <c:forEach items="${modelo.autores}" var="autor">
+                  <c:forEach items="${autores}" var="autor">
                     <tr class="alt">
                       <td class="columna-checkbox"><input type="checkbox"/></td>
                       <td class="columna-id">${autor.id}</td>

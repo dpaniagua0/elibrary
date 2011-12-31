@@ -104,13 +104,15 @@ public abstract class AbstractController {
 
   protected void renderView(String view, Map<String, Object> model) {
     String viewUrl = buildViewURL(view);
+    System.out.println("viewURL: " + viewUrl);
     exportModelToRequest(model);
-    request.setAttribute("mensajes", messages);
+    request.setAttribute("messages", messages);
     RequestDispatcher dispatcher = request.getRequestDispatcher(viewUrl);
     try {
       dispatcher.forward(request, response);
     } catch (Exception ex) {
       // TODO: Handle exception for unknown views.
+      throw new RuntimeException(ex);
     }
   }
 
@@ -136,7 +138,7 @@ public abstract class AbstractController {
 
   protected void redirect(String url) {
     try {
-      response.sendRedirect(request.getContextPath() + "/dummy/action2");
+      response.sendRedirect(request.getContextPath() + url);
     } catch (IOException ex) {
       throw new RedirectIOException();
     }
@@ -148,6 +150,5 @@ public abstract class AbstractController {
     } catch (IOException ex) {
       throw new RenderIOException();
     }
-
   }
 }

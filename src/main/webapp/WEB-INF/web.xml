@@ -12,7 +12,7 @@
   </context-param>
   <!--    <context-param>
       <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
-      <param-value>mx.edu.uvaq.elibrary.i18n.MensajesELibrary</param-value>
+      <param-value>mx.edu.uvaq.elibrary.i18n.messages</param-value>
   </context-param>-->
   <context-param>
     <param-name>db.tcpServer</param-name>
@@ -41,62 +41,69 @@
   </filter>
   <filter-mapping>
     <filter-name>BookFormFilter</filter-name>
-    <servlet-name>controlador-carga-book</servlet-name>
+    <servlet-name>bookLoad-controller</servlet-name>
   </filter-mapping>
+  <servlet>
+    <servlet-name>ElibraryFrontController</servlet-name>
+    <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.ElibraryFrontController</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ElibraryFrontController</servlet-name>
+    <url-pattern>/admin/autores/*</url-pattern>
+    <url-pattern>/admin/editoriales/*</url-pattern>
+    <url-pattern>/admin/categorias/*</url-pattern>
+  </servlet-mapping>
   <servlet>
     <servlet-name>vista-registro</servlet-name>
     <jsp-file>/WEB-INF/jsp/login.jsp</jsp-file>
   </servlet>
   <servlet>
-    <servlet-name>vista-users</servlet-name>
+    <servlet-name>vista-usuarios</servlet-name>
     <jsp-file>/WEB-INF/jsp/admin/users.jsp</jsp-file>
   </servlet>
   <servlet>
-    <servlet-name>vista-categories</servlet-name>
+    <servlet-name>vista-categorias</servlet-name>
     <jsp-file>/WEB-INF/jsp/admin/categories.jsp</jsp-file>
   </servlet>
   <servlet>
     <servlet-name>vista-inicio</servlet-name>
-    <jsp-file>/WEB-INF/jsp/inicio.jsp</jsp-file>
+    <jsp-file>/WEB-INF/jsp/index.jsp</jsp-file>
   </servlet>
   <servlet>
     <servlet-name>vista-inicio-administracion</servlet-name>
-    <jsp-file>/WEB-INF/jsp/admin/inicioAdministracion.jsp</jsp-file>
+    <jsp-file>/WEB-INF/jsp/admin/index.jsp</jsp-file>
   </servlet>
   <servlet>
-    <servlet-name>controlador-registro</servlet-name>
+    <servlet-name>register-controller</servlet-name>
     <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.RegisterController</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>controlador-cerrar-sesion</servlet-name>
+    <servlet-name>logout-controller</servlet-name>
     <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.LogoutController</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>controlador-carga-book</servlet-name>
+    <servlet-name>bookLoad-controller</servlet-name>
     <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.BookLoadController</servlet-class>
   </servlet>
-  <servlet>
-    <servlet-name>ElibraryFrontController</servlet-name>
-    <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.ElibraryFrontController</servlet-class>
-  </servlet>
   <servlet-mapping>
-    <servlet-name>controlador-registro</servlet-name>
+    <servlet-name>register-controller</servlet-name>
     <url-pattern>/registro</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>controlador-users</servlet-name>
+    <servlet-name>users-controller</servlet-name>
     <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.UsersController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>controlador-users</servlet-name>
-    <url-pattern>/admin/users</url-pattern>
+    <servlet-name>users-controller</servlet-name>
+    <url-pattern>/admin/usuarios</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>controlador-books</servlet-name>
+    <servlet-name>books-controller</servlet-name>
     <servlet-class>mx.edu.uvaq.elibrary.presentation.controller.BooksController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>controlador-books</servlet-name>
+    <servlet-name>books-controller</servlet-name>
     <url-pattern>/inicio</url-pattern>
   </servlet-mapping>
   <!--    <servlet>
@@ -112,18 +119,12 @@
     <url-pattern>*.jspf</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>controlador-cerrar-sesion</servlet-name>
+    <servlet-name>logout-controller</servlet-name>
     <url-pattern>/inicio/cerrar-sesion</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>controlador-carga-book</servlet-name>
-    <url-pattern>/admin/controlador-carga-book</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ElibraryFrontController</servlet-name>
-    <url-pattern>/admin/authors/*</url-pattern>
-    <url-pattern>/admin/publishers/*</url-pattern>
-    <url-pattern>/admin/categories/*</url-pattern>
+    <servlet-name>bookLoad-controller</servlet-name>
+    <url-pattern>/admin/cargar-libro</url-pattern>
   </servlet-mapping>
   <session-config>
     <session-timeout>30</session-timeout>

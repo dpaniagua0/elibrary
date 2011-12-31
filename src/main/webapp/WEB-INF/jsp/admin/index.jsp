@@ -11,7 +11,7 @@
 <%@taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
-<fmt:setBundle basename="mx.edu.uvaq.elibrary.i18n.MensajesELibrary" var="bundle"/>
+<fmt:setBundle basename="mx.edu.uvaq.elibrary.i18n.messages" var="bundle"/>
 <c:set var="i18n" value="${bundle.resourceBundle}"/>
 <c:set var="rutaContexto" value="${pageContext.servletContext.contextPath}"/>
 
@@ -49,32 +49,32 @@
   <title>${i18n['login.header']}</title>
 </head>
 <body>
-  <fmt:message key="login.header" var="encabezadoInicio"/>
-  <fmt:message key="usuarios.encabezado" var="encabezadoUsuarios"/>
-  <jsp:include page="/WEB-INF/jspf/encabezadoAdministracion.jspf">
-    <jsp:param name="encabezado" value="${encabezadoUsuarios}"/>
+  <fmt:message key="login.header" var="loginHeader"/>
+  <fmt:message key="users.header" var="usersHeader"/>
+  <jsp:include page="/WEB-INF/jspf/admin-header.jspf">
+    <jsp:param name="header" value="${usersHeader}"/>
   </jsp:include>
   <div class="container-fluid">
     <div class="sidebar">
       <div class="well">
-        <h5>${i18n['libros.acciones']}</h5>
+        <h5>${i18n['books.labels.acciones']}</h5>
         <ul>
           <li>
-            <a id="agregar-libro-link" href="#" title="${i18n['libros.agregarLibro']}">
-              ${i18n['libros.agregarLibro']}
+            <a id="agregar-libro-link" href="#" title="${i18n['books.addBook']}">
+              ${i18n['books.addBook']}
               <c:url var="url" value="/images/book-plus.png"/>
               <img src="${url}" alt="[book-plus.png]"/>
             </a></li>
           <li>
-            <a id="editar-libro-link" href="#" title="${i18n['libros.editarLibro']}">
-              ${i18n['libros.editarLibro']}
+            <a id="editar-libro-link" href="#" title="${i18n['books.editBook']}">
+              ${i18n['books.editBook']}
               <c:url var="url" value="/images/book-pencil.png"/>
               <img src="${url}" alt="[book-pencil.png]"/>
             </a>
           </li>
           <li>
-            <a id="eliminar-libro-link" href="#" title="${i18n['libros.eliminarLibro']}">
-              ${i18n['libros.eliminarLibro']}
+            <a id="eliminar-libro-link" href="#" title="${i18n['books.deleteBook']}">
+              ${i18n['books.deleteBook']}
               <c:url var="url" value="/images/book-minus.png"/>
               <img src="${url}" alt="[book-minus.png]"/>
             </a>
@@ -85,17 +85,17 @@
     <div class="content">
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
-        <h2>${i18n['libros.encabezado']}</h2>
+        <h2>${i18n['books.header']}</h2>
         <div class="row" style="text-align: center;">
           <div class="span12">
             <form>
               <fieldset>
                 <div class="span14 clearfix">
                   <select class="small" name="criterio">
-                    <option value="1">${i18n['libros.categoria']}</option>
-                    <option value="2">${i18n['libros.titulo']}</option>
-                    <option value="3">${i18n['libros.autor']}</option>
-                    <option value="4">${i18n['libros.editorial']}</option>
+                    <option value="1">${i18n['books.labels.category']}</option>
+                    <option value="2">${i18n['books.labels.title']}</option>
+                    <option value="3">${i18n['books.labels.author']}</option>
+                    <option value="4">${i18n['books.labels.publisher']}</option>
                   </select>
                   <input class="xxlarge busqueda" id="busqueda" name="busqueda" type="text"/>
                   <input class="small" name="buscar" value="${i18n['labels.search']}" type="submit"/>
@@ -187,19 +187,19 @@
                   <th class="columna-checkbox"><input type="checkbox"/></th>
                   <th class="columna-id">ID</th>
                   <th>
-                      ${i18n['libros.isbn']}
+                      ${i18n['books.labels.isbn']}
                   </th>
                   <th>
-                      ${i18n['libros.titulo']}
+                      ${i18n['books.labels.title']}
                   </th>
                   <th>
-                      ${i18n['libros.autor']}
+                      ${i18n['books.labels.author']}
                   </th>
                   <th>
-                      ${i18n['libros.editorial']}
+                      ${i18n['books.labels.publisher']}
                   </th>
                   <th>
-                      ${i18n['libros.categoria']}
+                      ${i18n['books.labels.category']}
                   </th>
                   <th></th>
                 </tr>
@@ -233,12 +233,12 @@
           </c:when>
           <c:otherwise>
             <div>
-                ${i18n['libros.mensajes.noHayLibros']}
+                ${i18n['books.messages.noBooks']}
             </div>
           </c:otherwise>
         </c:choose>
-        <div id="seleccion-invalida" class="ui-helper-hidden" title="${i18n['libros.mensaje.info']}">
-          ${i18n['libros.mensaje.seleccionInvalida']}
+        <div id="seleccion-invalida" class="ui-helper-hidden" title="${i18n['books.labels.information']}">
+          ${i18n['books.messages.noBookSelected']}
         </div>
         <div id="panel-progreso-libro" class="ui-helper-hidden" title="Progreso operacion">
           <div>

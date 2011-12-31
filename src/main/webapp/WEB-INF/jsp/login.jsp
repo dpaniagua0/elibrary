@@ -10,7 +10,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<fmt:setBundle basename="mx.edu.uvaq.elibrary.i18n.MensajesELibrary" var="bundle"/>
+<fmt:setBundle basename="mx.edu.uvaq.elibrary.i18n.messages" var="bundle"/>
 <c:set var="rutaContexto" value="${pageContext.servletContext.contextPath}"/>
 <c:set var="i18n" value="${bundle.resourceBundle}"/>
 <html>
@@ -19,7 +19,7 @@
     <link href='${rutaContexto}/images/logo.png' rel='shortcut icon'/>
     <link rel="stylesheet" href="${rutaContexto}/css/bootstrap.css" type="text/css"/>
     <link rel="stylesheet" href="${rutaContexto}/css/login.css" type="text/css"/>
-    <script type="text/javascript" src="${rutacontexto}/js/jquery/jquery.js"></script>
+    <script type="text/javascript" src="${rutaContexto}/js/jquery/jquery.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/jquery/ui/jquery-ui.js"></script>
     <link rel="stylesheet" href="${rutaContexto}/js/jquery/themes/south-street/jquery-ui-1.8.11.css" type="text/css"/>
     <!--    <script type="text/javascript" src="${rutaContexto}/js/mensajes.js"></script>-->
@@ -29,7 +29,7 @@
     <!--    <script type="text/javascript">
           $(UVAQ.eLibrary.mostrarMensaje(formaRegistro));
         </script> -->
-    <title>${i18n['login.titulo']}</title>
+    <title>${i18n['login.title']}</title>
   </head>
   <body>
 
@@ -42,7 +42,7 @@
           </a>
           <form action="j_security_check" method="POST" class="pull-right">
             <input id="username" class="input-medium " name="j_username" type="text" value="${param['j_username']}"
-                   placeholder="${i18n['etiquetas.correoElectronico']}"/>
+                   placeholder="${i18n['labels.email']}"/>
             <input id="password" class="input-medium" name="j_password" type="password"
                    placeholder="${i18n['labels.password']}"/>
             <button class="btn primary" type="submit">${i18n['login.labels.enter']}</button>
@@ -76,20 +76,20 @@
             <form id="forma-registro" action="${url}" method="POST">
               <fieldset>
                 <div class="clearfix">
-                  <label class="xlarge" for="nombre">${i18n['etiquetas.nombre']}:</label>
+                  <label class="xlarge" for="nombre">${i18n['labels.name']}:</label>
                   <div class="input">
                     <input name="nombre" id="nombre" class="xlarge" value="${formaRegsitro.nombre}" type="text"/>
                   </div>
                 </div>
                 <div class="clearfix">
-                  <label class="xlarge" for="apellidos">${i18n['etiquetas.apellidos']}:</label>
+                  <label class="xlarge" for="apellidos">${i18n['labels.lastName']}:</label>
                   <div class="input">
                     <input class="xlarge" name="apellidos" id="apellidos" type="text"
                            value="${formaRegsitro.apellidos}"/>
                   </div>
                 </div>
                 <div class="clearfix">
-                  <label class="xlarge" for="correoElectronico">${i18n['login.etiquetas.correoElectronico']}:</label>
+                  <label class="xlarge" for="correoElectronico">${i18n['labels.email']}:</label>
                   <div class="input">
                     <input class="xlarge" name="correoElectronico" id="correo-electronico" type="text"
                            value="${formaRegsitro.correoElectronico}"/>
