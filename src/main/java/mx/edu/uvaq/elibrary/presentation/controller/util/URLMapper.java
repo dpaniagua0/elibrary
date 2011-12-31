@@ -21,7 +21,8 @@ public class URLMapper {
     String controllerURL = null;
     if (existControllerForURL(requestURL)) {
       controllerURL = requestURL;
-      action = "defaultAction";
+      String actionParameter = request.getParameter("_action");
+      action = StringUtils.isNotBlank(actionParameter) ? actionParameter : "defaultAction";
     } else {
       controllerURL = request.getServletPath();
       action = getFixedPathInfo(request);

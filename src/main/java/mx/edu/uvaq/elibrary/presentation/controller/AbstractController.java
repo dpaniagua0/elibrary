@@ -43,6 +43,7 @@ public abstract class AbstractController {
     try {
       response.getWriter().println("I'm the default action. Overwrite me!");
     } catch (IOException ex) {
+      throw new RuntimeException("Error executing default action", ex);
     }
   }
 
