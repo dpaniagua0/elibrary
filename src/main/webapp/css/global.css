@@ -226,7 +226,7 @@ button.fg-button { width:auto; overflow:visible; } /* removes extra button width
   font-weight: bold;
 }
 
-input[name=autor],input[name=titulo],input[name=editorial],input[name=categoria],input[name=apellidos] {
+input[name=autor],input[name=titulo],input[name=editorial],input[name=categoria] {
   width: 95%;
 }
 
