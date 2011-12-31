@@ -8,27 +8,15 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <fmt:setBundle basename="mx.edu.uvaq.elibrary.i18n.messages" var="bundle"/>
-<c:set var="rutaContexto" value="${pageContext.servletContext.contextPath}"/>
 <c:set var="i18n" value="${bundle.resourceBundle}"/>
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href='${rutaContexto}/images/logo.png' rel='shortcut icon'/>
-    <link rel="stylesheet" href="${rutaContexto}/css/bootstrap.css" type="text/css"/>
-    <link rel="stylesheet" href="${rutaContexto}/css/login.css" type="text/css"/>
-    <script type="text/javascript" src="${rutaContexto}/js/jquery/jquery.js"></script>
-    <script type="text/javascript" src="${rutaContexto}/js/jquery/ui/jquery-ui.js"></script>
-    <link rel="stylesheet" href="${rutaContexto}/js/jquery/themes/south-street/jquery-ui-1.8.11.css" type="text/css"/>
-    <!--    <script type="text/javascript" src="${rutaContexto}/js/mensajes.js"></script>-->
-    <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-buttons.js"></script>
-    <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-modal.js"></script>
-    <script type="text/javascript" src="${rutaContexto}/js/bootstrap/bootstrap-alerts.js"></script>
-    <!--    <script type="text/javascript">
-          $(UVAQ.eLibrary.mostrarMensaje(formaRegistro));
-        </script> -->
+    <jsp:include page="/WEB-INF/jspf/head-default.jspf"/>
+    <c:url value="/css/login.css" var="url"/>
+    <link rel="stylesheet" href="${url}" type="text/css"/>
     <title>${i18n['login.title']}</title>
   </head>
   <body>
@@ -53,7 +41,7 @@
         <c:when test="${param['j_username'] ne null or param['j_password'] ne null}">
           <div id="mensaje-error" class="fade in alert-message info" data-alert="alert">
             <a href="#" class="close">×</a>
-              ${i18n['login.errors.invalidLogin']}
+            ${i18n['login.errors.invalidLogin']}
           </div>
         </c:when>
         <c:otherwise>&nbsp;</c:otherwise>
@@ -63,8 +51,9 @@
     <div class="container">
       <div class="content">
         <div class="page-header">
-          <a href="${url}" class="logo brand">
-            <img src="${rutaContexto}/images/elibrary.png"/>
+          <a href="" class="logo brand">
+            <c:url value="/images/elibrary.png" var="url"/>
+            <img src="${url}"/>
           </a>
         </div>
         <div class="row">
@@ -129,7 +118,7 @@
                 });
               </script>
               <div id="exito-registro" title="${formaRegistro.mensajes['exito-registro'].resumen}">
-                  ${formaRegistro.mensajes['exito-registro'].detalle}
+                ${formaRegistro.mensajes['exito-registro'].detalle}
               </div>
             </c:if>
             <c:if test="${not empty formaRegistro.mensajes['exito-activacion']}">
@@ -152,7 +141,7 @@
                 });
               </script>
               <div id="exito-activacion" title="${formaRegistro.mensajes['exito-activacion'].resumen}">
-                  ${formaRegistro.mensajes['exito-activacion'].detalle}
+                ${formaRegistro.mensajes['exito-activacion'].detalle}
               </div>
             </c:if>
           </div>
