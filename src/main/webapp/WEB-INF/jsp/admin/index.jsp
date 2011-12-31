@@ -56,7 +56,7 @@
     </jsp:include>
     <div class="container-fluid">
       <jsp:include page="/WEB-INF/jspf/sidebar.jspf"/>
-      <div class="content">
+       <div class="content">
         <!-- Main hero unit for a primary marketing message or call to action -->
         <div class="hero-unit">
           <h2>${i18n['books.header']}</h2>
