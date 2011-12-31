@@ -4,12 +4,6 @@
     Author     : daniel
 --%>
 
-<%--
-    Document   : authors
-    Created on : Jun 5, 2011, 9:46:10 PM
-    Author     : daniel
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -42,28 +36,28 @@
     <div class="container-fluid">
       <div class="sidebar">
         <div class="well">
-          <h5>${i18n['libros.acciones']}</h5>
+          <h5>${i18n['books.labels.acciones']}</h5>
           <ul>
             <li>
               <c:url var="url" value="/admin/editoriales/crear"/>
-              <a id="agregar-editorial-link" href="${url}" title="${i18n['libros.agregarEditorial']}">
-                ${i18n['libros.agregarEditorial']}
+              <a id="agregar-editorial-link" href="${url}" title="${i18n['books.addPublisher']}">
+                ${i18n['books.addPublisher']}
                 <c:url var="url" value="/images/plus-circle-frame.png"/>
                 <img src="${url}" alt="[plus-circle-frama.png]"/>
               </a>
             </li>
             <li>
               <c:url var="url" value="/admin/editoriales/editar"/>
-              <a id="editar-editorial-link" href="${url}" title="${i18n['libros.editarEditorial']}">
-                ${i18n['libros.editarEditorial']}
+              <a id="editar-editorial-link" href="${url}" title="${i18n['books.editPublisher']}">
+                ${i18n['books.editPublisher']}
                 <c:url var="url" value="/images/pencil.png"/>
                 <img src="${url}" alt="[pencil.png]"/>
               </a>
             </li>
             <li>
               <c:url var="url" value="/admin/editoriales/eliminar"/>
-              <a id="eliminar-editorial-link" href="${url}" title="${i18n['libros.eliminarEditorial']}">
-                ${i18n['libros.eliminarEditorial']}
+              <a id="eliminar-editorial-link" href="${url}" title="${i18n['books.deletePublisher']}">
+                ${i18n['books.deletePublisher']}
                 <c:url var="url" value="/images/minus-circle-frame.png"/>
                 <img src="${url}" alt="[minus-circle-frame.png]"/>
               </a>
@@ -74,13 +68,13 @@
       <div class="content">
         <!-- Main hero unit for a primary marketing message or call to action -->
         <div class="hero-unit">
-          <c:if test="${not empty mensajes['editorial-eliminar-resultado']}">
-            <div class="alert-message ${mensajes['editorial-eliminar-resultado'].claseMensaje} ">
+          <c:if test="${not empty messages['editorial-eliminar-resultado']}">
+            <div class="alert-message ${messages['editorial-eliminar-resultado'].claseMensaje} ">
               <a class="close" href="#">×</a>
-                ${mensajes['editorial-eliminar-resultado'].detalle}
+                ${messages['editorial-eliminar-resultado'].detalle}
             </div>
           </c:if>
-          <h2>${i18n['libros.editoriales']}</h2>
+          <h2>${i18n['books.publishers']}</h2>
           <div class="row" style="text-align: center;">
             <div class="span14">
               <form>
@@ -110,7 +104,7 @@
                     <tr class="alt">
                       <td class="columna-checkbox"><input id="checkbox" type="checkbox"/></td>
                       <td class="columna-id">${editorial.id}</td>
-                      <td>${editorial.nombre}</td>
+                      <td>${editorial.name}</td>
                     </tr>
                   </c:forEach>
                 </tbody>
@@ -118,14 +112,14 @@
             </c:when>
             <c:otherwise>
               <div>
-                  ${i18n['libros.mensajes.noHayEditoriales']}
+                  ${i18n['books.messages.noPublishers']}
               </div>
             </c:otherwise>
           </c:choose>
         </div>
       </div>
-      <div id="seleccion-invalida" class="ui-helper-hidden" title="${i18n['libros.mensaje.info']}">
-        ${i18n['libros.mensaje.seleccionInvalida']}
+      <div id="seleccion-invalida" class="hidden">
+        ${i18n['books.messages.noPublisherSelected']}
       </div>
     </div>
     </div>

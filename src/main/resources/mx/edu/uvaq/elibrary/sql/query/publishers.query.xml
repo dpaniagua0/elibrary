@@ -13,31 +13,31 @@
 <properties>
   <entry key="publishers.query.findPublishersOfBook">
     <![CDATA[
-    SELECT e.id, e.name
+    SELECT e.id, e.nombre
     FROM Libro_Editorial le 
     JOIN Editorial e 
     ON e.id = le.id_editorial AND le.id_libro = :id_libro 
-    ORDER BY e.name
+    ORDER BY e.nombre
     ]]>
   </entry>
   <entry key="publishers.query.findPublishers">
     <![CDATA[
-    SELECT * FROM Editorial e ORDER BY e.name
+    SELECT e.id,e.nombre name FROM Editorial e ORDER BY e.nombre
     ]]>
   </entry>
   <entry key="publishers.query.insertPublisher">
     <![CDATA[
-      INSERT INTO Editorial (name) VALUES (:name)
+      INSERT INTO Editorial (nombre) VALUES (:nombre)
     ]]>
   </entry>
-  <entry key="publishers.query.findPublisher">
+  <entry key="publishers.query.findPublisherById">
     <![CDATA[
-    SELECT e.id, e.name FROM Editorial e WHERE e.`id` = :id
+    SELECT e.id, e.nombre name FROM Editorial e WHERE e.`id` = :id
     ]]>
   </entry>
   <entry key="publishers.query.updatePublisher">
     <![CDATA[
-     UPDATE Editorial SET name = :name WHERE `id` = :id
+     UPDATE Editorial SET nombre = :nombre WHERE `id` = :id
     ]]>
   </entry>
   <entry key="publishers.query.deletePublisher">
