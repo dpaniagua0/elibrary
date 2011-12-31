@@ -5,15 +5,15 @@
 --%>
 <%--<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>--%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
-<fmt:setBundle basename="mx.edu.uvaq.elibrary.i18n.MensajesELibrary" var="bundle" />
-<c:set var="i18n" value="${bundle.resourceBundle}" />
-<c:set var="rutaContexto" value="${pageContext.servletContext.contextPath}" />
+<fmt:setBundle basename="mx.edu.uvaq.elibrary.i18n.MensajesELibrary" var="bundle"/>
+<c:set var="i18n" value="${bundle.resourceBundle}"/>
+<c:set var="rutaContexto" value="${pageContext.servletContext.contextPath}"/>
 
 <html>
   <head>
@@ -21,13 +21,14 @@
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Expires" content="0"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href='${rutaContexto}/images/logo.png' rel='shortcut icon' />
-    <link rel="stylesheet" href="${rutaContexto}/css/global.css" type="text/css" />
-    <link rel="stylesheet" href="${rutaContexto}/css/bootstrap.css" type="text/css" />
-    <link rel="stylesheet" href="${rutaContexto}/js/jquery/plugins/qtip/jquery.qtip.css" type="text/css" />
+    <link href='${rutaContexto}/images/logo.png' rel='shortcut icon'/>
+    <link rel="stylesheet" href="${rutaContexto}/css/global.css" type="text/css"/>
+    <link rel="stylesheet" href="${rutaContexto}/css/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="${rutaContexto}/js/jquery/plugins/qtip/jquery.qtip.css" type="text/css"/>
     <script type="text/javascript" src="${rutaContexto}/js/jquery/jquery.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/jquery/ui/jquery-ui.js"></script>
-    <link rel="stylesheet" href="${rutaContexto}/js/jquery/themes/start/jquery-ui-start.css" type="text/css" /><link rel="stylesheet" href="${rutaContexto}/css/global.css" type="text/css" />
+    <link rel="stylesheet" href="${rutaContexto}/js/jquery/themes/start/jquery-ui-start.css" type="text/css"/>
+    <link rel="stylesheet" href="${rutaContexto}/css/global.css" type="text/css"/>
     <script type="text/javascript" src="${rutaContexto}/js/jquery/plugins/qtip/jquery.qtip.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/utilidades.js"></script>
     <script type="text/javascript" src="${rutaContexto}/js/libros.js"></script>
@@ -40,11 +41,11 @@
         UVAQ.eLibrary.usarQtips();
       });
     </script>
-    <title>${i18n['login.encabezado']}</title>
+    <title>${i18n['login.header']}</title>
   </head>
   <body>
     <jsp:include page="/WEB-INF/jspf/encabezado.jspf">
-      <jsp:param name="encabezado" value="${encabezadoUsuarios}" />
+      <jsp:param name="encabezado" value="${encabezadoUsuarios}"/>
     </jsp:include>
     <div class="container">
       <div class="content">
@@ -63,19 +64,20 @@
                       <option value="4">${i18n['libros.editorial']}</option>
                     </select>
                     <input class="xxlarge busqueda" id="busqueda" name="busqueda" type="text"/>
-                    <input class="small"  name="buscar" value="${i18n['etiquetas.buscar']}" type="submit" />
+                    <input class="small" name="buscar" value="${i18n['labels.search']}" type="submit"/>
                   </div>
                 </fieldset>
-              </form>    
+              </form>
               <div id="info-libro" class="ui-widget ui-corner-all ui-helper-hidden" style="text-align: center;">
                 <!-- Ese frame se utiliza para que la carga de archivo se cargue en él y no se tenga que cambiar de archivo. -->
                 <!--        <iframe id='target_upload' name='target_upload' src='' style="width: 0px; height: 0px"></iframe>-->
                 <div id="info-libro-header-nuevo" class="ui-widget-header">Nuevo libro</div>
                 <div id="info-libro-header-editar" class="ui-widget-header ui-helper-hidden">Editar libro</div>
                 <div class="ui-widget-content">
-                  <c:url var="url" value="/admin/controlador-carga-libro" />
-                  <form action="${url}" method="POST" enctype="multipart/form-data" target="target_upload" class="ui-widget-content">
-                    <input name="id" type="hidden" />
+                  <c:url var="url" value="/admin/controlador-carga-libro"/>
+                  <form action="${url}" method="POST" enctype="multipart/form-data" target="target_upload"
+                        class="ui-widget-content">
+                    <input name="id" type="hidden"/>
                     <table class="tamano-completo">
                       <caption>* Los campos en negrita son requeridos</caption>
                       <tbody>
@@ -96,32 +98,43 @@
                         <tr>
                           <td><label for="autores">Autor(es)</label></td>
                           <td colspan="3">
-                            <input id="autores" name="lista_autores" type="text" readonly="true" class="tamano-completo"/>
+                            <input id="autores" name="lista_autores" type="text" readonly="true"
+                                   class="tamano-completo"/>
                             <input name="ids_autores" type="hidden"/>
                           </td>
-                          <td><button class="autor"></button></td>
+                          <td>
+                            <button class="autor"></button>
+                          </td>
                         </tr>
                         <tr>
                           <td><label for="editoriales">Editorial(es)</label></td>
                           <td colspan="3">
-                            <input id="editoriales" name="lista_editoriales" type="text" readonly="true" class="tamano-completo"/>
+                            <input id="editoriales" name="lista_editoriales" type="text" readonly="true"
+                                   class="tamano-completo"/>
                             <input name="ids_editoriales" type="hidden"/>
                           </td>
-                          <td><button class="editorial"></button></td>
+                          <td>
+                            <button class="editorial"></button>
+                          </td>
                         </tr>
                         <tr>
                           <td><label for="categorias">Categoria(s)</label></td>
                           <td colspan="3">
-                            <input id="categorias" name="lista_categorias" type="text" readonly="true" class="tamano-completo"/>
+                            <input id="categorias" name="lista_categorias" type="text" readonly="true"
+                                   class="tamano-completo"/>
                             <input name="ids_categorias" type="hidden"/>
                           </td>
-                          <td><button class="categoria"></button></td>
+                          <td>
+                            <button class="categoria"></button>
+                          </td>
                         </tr>
                       </tbody>
                     </table>
                     <div class="panel-botones">
                       <button id="boton-nuevo-libro" name="accion" value="nuevo-libro" type="submit">Nuevo</button>
-                      <button id="boton-editar-libro" class="ui-helper-hidden" name="accion" value="guardar-libro" type="submit">Guardar</button>
+                      <button id="boton-editar-libro" class="ui-helper-hidden" name="accion" value="guardar-libro"
+                              type="submit">Guardar
+                      </button>
                       <button id="boton-cancelar" type="button">Cancelar</button>
                     </div>
                   </form>
@@ -137,19 +150,19 @@
                     <th class="columna-checkbox"><input type="checkbox"/></th>
                     <th class="columna-id">ID</th>
                     <th>
-                      ${i18n['libros.isbn']}
+                        ${i18n['libros.isbn']}
                     </th>
                     <th>
-                      ${i18n['libros.titulo']}
+                        ${i18n['libros.titulo']}
                     </th>
                     <th>
-                      ${i18n['libros.autor']}
+                        ${i18n['libros.autor']}
                     </th>
                     <th>
-                      ${i18n['libros.editorial']}
+                        ${i18n['libros.editorial']}
                     </th>
                     <th>
-                      ${i18n['libros.categoria']}
+                        ${i18n['libros.categoria']}
                     </th>
                     <th></th>
                   </tr>
@@ -157,18 +170,18 @@
                 <tbody>
                   <c:forEach items="${librosForma.libros}" var="libro">
                     <tr class="alt">
-                      <td class="columna-checkbox"><input  id="checkbox" type="checkbox" /></td>
+                      <td class="columna-checkbox"><input id="checkbox" type="checkbox"/></td>
                       <td class="columna-id">${libro.id}</td>
                       <td>${libro.isbn}</td>
                       <td>${libro.titulo}</td>
                       <td>
-                        <my:tooltip-lista lista="${libro.autores}" tooltipItem="nombreCompleto" titulo="Autores" />
+                        <my:tooltip-lista lista="${libro.autores}" tooltipItem="nombreCompleto" titulo="Autores"/>
                       </td>
                       <td>
-                        <my:tooltip-lista lista="${libro.editoriales}" tooltipItem="nombre" titulo="Editoriales" />
+                        <my:tooltip-lista lista="${libro.editoriales}" tooltipItem="nombre" titulo="Editoriales"/>
                       </td>
                       <td>
-                        <my:tooltip-lista lista="${libro.categorias}" tooltipItem="nombre" titulo="Categorias" />
+                        <my:tooltip-lista lista="${libro.categorias}" tooltipItem="nombre" titulo="Categorias"/>
                       </td>
                       <td>
                         <a id="descarga" href="#">
@@ -183,7 +196,7 @@
             </c:when>
             <c:otherwise>
               <div>
-                ${i18n['libros.mensajes.noHayLibros']}
+                  ${i18n['libros.mensajes.noHayLibros']}
               </div>
             </c:otherwise>
           </c:choose>
@@ -192,7 +205,7 @@
           </div>
           <div id="panel-progreso-libro" class="ui-helper-hidden" title="Progreso operacion">
             <div>
-              <div id="progreso-libro" />
+              <div id="progreso-libro"/>
               <div id="estatus-progreso-libro" style="text-align: center">
                 (0%) Guardando libro...
               </div>
