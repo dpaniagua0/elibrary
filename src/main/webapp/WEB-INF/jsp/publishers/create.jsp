@@ -33,28 +33,28 @@
     <div class="container-fluid">
       <div class="sidebar">
         <div class="well">
-          <h5>${i18n['libros.acciones']}</h5>
+          <h5>${i18n['books.labels.acciones']}</h5>
           <ul>
             <li>
               <c:url var="url" value="/admin/editoriales/crear"/>
-              <a id="agregar-editorial-link" href="${url}" title="${i18n['libros.agregarEditorial']}">
-                ${i18n['libros.agregarEditorial']}
+              <a id="agregar-editorial-link" href="${url}" title="${i18n['books.addPublisher']}">
+                ${i18n['books.addPublisher']}
                 <c:url var="url" value="/images/plus-circle-frame.png"/>
                 <img src="${url}" alt="[plus-circle-frama.png]"/>
               </a>
             </li>
             <li>
               <c:url var="url" value="/admin/editoriales/editar"/>
-              <a id="editar-editorial-link" href="${url}" title="${i18n['libros.editarEditorial']}">
-                ${i18n['libros.editarEditorial']}
+              <a id="editar-editorial-link" href="${url}" title="${i18n['books.editPublisher']}">
+                ${i18n['books.editPublisher']}
                 <c:url var="url" value="/images/pencil.png"/>
                 <img src="${url}" alt="[pencil.png]"/>
               </a>
             </li>
             <li>
               <c:url var="url" value="/admin/editoriales/eliminar"/>
-              <a id="eliminar-editorial-link" href="${url}" title="${i18n['libros.eliminarEditorial']}">
-                ${i18n['libros.eliminarEditorial']}
+              <a id="eliminar-editorial-link" href="${url}" title="${i18n['books.deletePublisher']}">
+                ${i18n['books.deletePublisher']}
                 <c:url var="url" value="/images/minus-circle-frame.png"/>
                 <img src="${url}" alt="[minus-circle-frame.png]"/>
               </a>
@@ -63,10 +63,10 @@
         </div>
       </div>
       <div class="content hero-unit">
-        <c:if test="${not empty mensajes['editorial-salvar-resultado']}">
-          <div class="alert-message ${mensajes['editorial-salvar-resultado'].claseMensaje} ">
+        <c:if test="${not empty messages['editorial-salvar-resultado']}">
+          <div class="alert-message ${messages['editorial-salvar-resultado'].claseMensaje} ">
             <a class="close" href="#">×</a>
-              ${mensajes['editorial-salvar-resultado'].detalle}
+              ${messages['editorial-salvar-resultado'].detalle}
           </div>
         </c:if>
         <c:url var="url" value="/admin/editoriales/salvar"/>
@@ -76,7 +76,7 @@
               <tr>
                 <td><label for="editorial">editorial</label></td>
                 <td>
-                  <input id="editorial" name="nombre" type="text" value="${editorial.nombre}"/>
+                  <input id="editorial" name="nombre" type="text" value="${editorial.name}"/>
                   <input name="id" type="hidden" value="${editorial.id}"/>
                 </td>
               </tr>
