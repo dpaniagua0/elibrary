@@ -31,9 +31,6 @@ public class AuthorsController extends AbstractController {
 
   public void listar() {
     List<Author> authors = authorService.getAuthors();
-    for(Author a : authors) {
-      System.out.println(a.getFullName());
-    }
     Map<String, Object> model = new HashMap<String, Object>();
     model.put("authors", authors);
     renderView("index", model);

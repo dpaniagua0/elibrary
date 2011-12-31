@@ -82,8 +82,6 @@ public class ElibraryFrontController extends HttpServlet {
   }// </editor-fold>
 
   private void routeRequest(URLMapping urlMapping, HttpServletRequest request, HttpServletResponse response) throws IOException {
-    System.out.println("Controller: " + urlMapping.getController());
-    System.out.println("Accion: " + urlMapping.getAction());
     AbstractController controller = getController(urlMapping.getController(), request, response);
     executeAction(controller, urlMapping.getAction());
   }
