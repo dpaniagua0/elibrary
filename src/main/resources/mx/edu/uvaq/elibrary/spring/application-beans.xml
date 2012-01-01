@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
-       default-autowire="byName">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
   <!-- Load application properties -->
   <bean id="propertyConfigurer"
@@ -36,5 +35,11 @@
         class.resource.loader.class=org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
       </value>
     </property>
+  </bean>
+
+  <bean id="validatorImpl" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+
+  <bean id="validator" class="mx.edu.uvaq.elibrary.validation.BeanValidator">
+    <property name="validatorImpl" ref="validatorImpl"/>
   </bean>
 </beans>
