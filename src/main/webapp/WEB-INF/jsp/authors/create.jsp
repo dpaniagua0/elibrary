@@ -32,10 +32,10 @@
     <div class="container-fluid">
       <jsp:include page="/WEB-INF/jspf/sidebar.jspf"/>
       <div class="content hero-unit">
-        <c:if test="${not empty mensajes['autor-salvar-resultado']}">
-          <div class="alert-message ${mensajes['autor-salvar-resultado'].messageClass} ">
+        <c:if test="${not empty _messages['autor-salvar-resultado']}">
+          <div class="alert-message ${_messages['autor-salvar-resultado'].messageClass} ">
             <a class="close" href="#">×</a>
-            ${mensajes['autor-salvar-resultado'].detail}
+              ${_messages['autor-salvar-resultado'].detail}
           </div>
         </c:if>
         <c:url var="url" value="/admin/autores/salvar"/>

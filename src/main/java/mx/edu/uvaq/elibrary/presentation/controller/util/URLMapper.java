@@ -4,6 +4,7 @@
  */
 package mx.edu.uvaq.elibrary.presentation.controller.util;
 
+import mx.edu.uvaq.elibrary.ApplicationConstants;
 import mx.edu.uvaq.elibrary.presentation.exception.WebResourceNotFoundException;
 import mx.edu.uvaq.elibrary.web.SpringWebApplicationContext;
 import org.apache.commons.lang.StringUtils;
@@ -21,7 +22,7 @@ public class URLMapper {
     String controllerURL = null;
     if (existControllerForURL(requestURL)) {
       controllerURL = requestURL;
-      String actionParameter = request.getParameter("_action");
+      String actionParameter = request.getParameter(ApplicationConstants.ACTION_PARAMETER_NAME);
       action = StringUtils.isNotBlank(actionParameter) ? actionParameter : "defaultAction";
     } else {
       controllerURL = request.getServletPath();

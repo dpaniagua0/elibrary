@@ -36,16 +36,16 @@
       <div class="content">
         <!-- Main hero unit for a primary marketing message or call to action -->
         <div class="hero-unit">
-          <c:if test="${not empty messages['autor-salvar-resultado']}">
-            <div class="alert-message ${messages['autor-salvar-resultado'].messageClass} ">
+          <c:if test="${not empty _messages['autor-salvar-resultado']}">
+            <div class="alert-message ${_messages['autor-salvar-resultado'].messageClass} ">
               <a class="close" href="#">×</a>
-                ${messages['autor-salvar-resultado'].detail}
+                ${_messages['autor-salvar-resultado'].detail}
             </div>
           </c:if>
-          <c:if test="${not empty messages['autor-eliminar-resultado']}">
-            <div class="alert-message ${messages['autor-eliminar-resultado'].messageClass} ">
+          <c:if test="${not empty _messages['autor-eliminar-resultado']}">
+            <div class="alert-message ${_messages['autor-eliminar-resultado'].messageClass} ">
               <a class="close" href="#">×</a>
-                ${messages['autor-eliminar-resultado'].detail}
+                ${_messages['autor-eliminar-resultado'].detail}
             </div>
           </c:if>
           <h2>${i18n['books.authors']}</h2>

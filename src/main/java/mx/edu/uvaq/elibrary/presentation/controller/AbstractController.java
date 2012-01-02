@@ -4,6 +4,7 @@
  */
 package mx.edu.uvaq.elibrary.presentation.controller;
 
+import mx.edu.uvaq.elibrary.ApplicationConstants;
 import mx.edu.uvaq.elibrary.presentation.Message;
 import mx.edu.uvaq.elibrary.presentation.exception.RedirectIOException;
 import mx.edu.uvaq.elibrary.presentation.exception.RenderIOException;
@@ -105,9 +106,8 @@ public abstract class AbstractController {
 
   protected void renderView(String view, Map<String, Object> model) {
     String viewUrl = buildViewURL(view);
-    System.out.println("viewURL: " + viewUrl);
     exportModelToRequest(model);
-    request.setAttribute("messages", messages);
+    request.setAttribute(ApplicationConstants.MESSAGES_KEY, messages);
     RequestDispatcher dispatcher = request.getRequestDispatcher(viewUrl);
     try {
       dispatcher.forward(request, response);
@@ -137,7 +137,15 @@ public abstract class AbstractController {
     }
   }
 
+  protected void redirect(String url, Map<String, Object> model) {
+    for (Map.Entry<String, Object> entry : model.entrySet()) {
+      flash.setAttribute(entry.getKey(), entry.getValue());
+    }
+    redirect(url);
+  }
+
   protected void redirect(String url) {
+    flash.setAttribute(ApplicationConstants.MESSAGES_KEY, messages);
     try {
       response.sendRedirect(request.getContextPath() + url);
     } catch (IOException ex) {

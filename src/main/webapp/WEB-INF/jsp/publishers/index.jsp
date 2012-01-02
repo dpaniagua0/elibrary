@@ -38,10 +38,10 @@
       <div class="content">
         <!-- Main hero unit for a primary marketing message or call to action -->
         <div class="hero-unit">
-          <c:if test="${not empty messages['editorial-eliminar-resultado']}">
-            <div class="alert-message ${messages['editorial-eliminar-resultado'].claseMensaje} ">
+          <c:if test="${not empty _messages['editorial-eliminar-resultado']}">
+            <div class="alert-message ${_messages['editorial-eliminar-resultado'].claseMensaje} ">
               <a class="close" href="#">×</a>
-              ${messages['editorial-eliminar-resultado'].detalle}
+                ${_messages['editorial-eliminar-resultado'].detalle}
             </div>
           </c:if>
           <h2>${i18n['books.publishers']}</h2>
@@ -82,7 +82,7 @@
             </c:when>
             <c:otherwise>
               <div>
-                ${i18n['books.messages.noPublishers']}
+                  ${i18n['books.messages.noPublishers']}
               </div>
             </c:otherwise>
           </c:choose>
@@ -92,6 +92,6 @@
         ${i18n['books.messages.noPublisherSelected']}
       </div>
     </div>
-  </div>
-</body>
+    </div>
+  </body>
 </html>

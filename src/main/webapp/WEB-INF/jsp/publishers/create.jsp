@@ -33,10 +33,10 @@
     <div class="container-fluid">
       <jsp:include page="/WEB-INF/jspf/sidebar.jspf"/>
       <div class="content hero-unit">
-        <c:if test="${not empty messages['editorial-salvar-resultado']}">
-          <div class="alert-message ${messages['editorial-salvar-resultado'].claseMensaje} ">
+        <c:if test="${not empty _messages['editorial-salvar-resultado']}">
+          <div class="alert-message ${_messages['editorial-salvar-resultado'].claseMensaje} ">
             <a class="close" href="#">×</a>
-            ${messages['editorial-salvar-resultado'].detalle}
+              ${_messages['editorial-salvar-resultado'].detalle}
           </div>
         </c:if>
         <c:url var="url" value="/admin/editoriales/salvar"/>
