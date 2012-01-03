@@ -67,8 +67,9 @@
           </div>
           <div class="row" style="text-align: center;margin-bottom:  21px;">
             <div class="clearfix">
-              <a class="btn primary small">${i18n['books.add']}</a>
-              <a class="btn small">${i18n['books.edit']}</a>
+              <c:url var="addAuthors" value="/admin/autores/crear"/>
+              <a class="btn primary small" href="${addAuthors}">${i18n['books.add']}</a>
+              <a class="btn small" href="#">${i18n['books.edit']}</a>
               <a class="btn danger small">${i18n['books.delete']}</a>
             </div>
           </div>
