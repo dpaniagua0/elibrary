@@ -39,13 +39,13 @@
           <c:if test="${not empty _messages['autor-salvar-resultado']}">
             <div class="alert-message ${_messages['autor-salvar-resultado'].messageClass} ">
               <a class="close" href="#">×</a>
-                ${_messages['autor-salvar-resultado'].detail}
+              ${_messages['autor-salvar-resultado'].detail}
             </div>
           </c:if>
           <c:if test="${not empty _messages['autor-eliminar-resultado']}">
             <div class="alert-message ${_messages['autor-eliminar-resultado'].messageClass} ">
               <a class="close" href="#">×</a>
-                ${_messages['autor-eliminar-resultado'].detail}
+              ${_messages['autor-eliminar-resultado'].detail}
             </div>
           </c:if>
           <h2>${i18n['books.authors']}</h2>
@@ -63,6 +63,13 @@
                   </div>
                 </fieldset>
               </form>
+            </div>
+          </div>
+          <div class="row" style="text-align: center;margin-bottom:  21px;">
+            <div class="clearfix">
+              <a class="btn primary small">${i18n['books.add']}</a>
+              <a class="btn small">${i18n['books.edit']}</a>
+              <a class="btn danger small">${i18n['books.delete']}</a>
             </div>
           </div>
           <c:choose>
@@ -94,7 +101,7 @@
             </c:when>
             <c:otherwise>
               <div>
-                  ${i18n['books.messages.noAuthors']}
+                ${i18n['books.messages.noAuthors']}
               </div>
             </c:otherwise>
           </c:choose>
