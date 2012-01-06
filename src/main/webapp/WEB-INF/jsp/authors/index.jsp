@@ -67,10 +67,12 @@
           </div>
           <div class="row" style="text-align: center;margin-bottom:  21px;">
             <div class="clearfix">
-              <c:url var="addAuthors" value="/admin/autores/crear"/>
-              <a class="btn primary small" href="${addAuthors}">${i18n['books.add']}</a>
-              <a class="btn small" href="#">${i18n['books.edit']}</a>
-              <a class="btn danger small">${i18n['books.delete']}</a>
+              <c:url var="addAuthor" value="/admin/autores/crear"/>
+              <c:url var="editAuthor" value="/admin/autores/editar"/>
+              <c:url var="deleteAuthor" value="/admin/autores/eliminar"/>
+              <a class="btn primary small" href="${addAuthor}">${i18n['books.add']}</a>
+              <a id="edit-author-link" class="btn small" href="${editAuthor}">${i18n['books.edit']}</a>
+              <a id="delete-author-link" class="btn danger small" href="${deleteAuthor}">${i18n['books.delete']}</a>
             </div>
           </div>
           <c:choose>

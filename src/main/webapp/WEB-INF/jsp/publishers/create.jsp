@@ -34,9 +34,9 @@
       <jsp:include page="/WEB-INF/jspf/sidebar.jspf"/>
       <div class="content hero-unit">
         <c:if test="${not empty _messages['editorial-salvar-resultado']}">
-          <div class="alert-message ${_messages['editorial-salvar-resultado'].claseMensaje} ">
+          <div class="alert-message ${_messages['editorial-salvar-resultado'].messageClass} ">
             <a class="close" href="#">×</a>
-              ${_messages['editorial-salvar-resultado'].detalle}
+              ${_messages['editorial-salvar-resultado'].detail}
           </div>
         </c:if>
         <c:url var="url" value="/admin/editoriales/salvar"/>

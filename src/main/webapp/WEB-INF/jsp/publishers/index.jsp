@@ -17,14 +17,15 @@
 <html>
   <head>
     <jsp:include page="/WEB-INF/jspf/head-default.jspf"/>
+    <script type="text/javascript" src="${rutaContexto}/js/publishers.js"></script>
     <script type="text/javascript">
       $(function() {
         UVAQ.eLibrary.estilizarTabla();
         UVAQ.eLibrary.generarTooltips();
         UVAQ.eLibrary.usarQtips();
       });
-    </script>
-    <title>${i18n['login.header']}</title>
+      </script>
+      <title>${i18n['login.header']}</title>
   </head>
   <body>
 
@@ -39,9 +40,9 @@
         <!-- Main hero unit for a primary marketing message or call to action -->
         <div class="hero-unit">
           <c:if test="${not empty _messages['editorial-eliminar-resultado']}">
-            <div class="alert-message ${_messages['editorial-eliminar-resultado'].claseMensaje} ">
+            <div class="alert-message ${_messages['editorial-eliminar-resultado'].messageClass} ">
               <a class="close" href="#">×</a>
-              ${_messages['editorial-eliminar-resultado'].detalle}
+              ${_messages['editorial-eliminar-resultado'].detail}
             </div>
           </c:if>
           <h2>${i18n['books.publishers']}</h2>
@@ -59,10 +60,12 @@
           </div>
           <div class="row" style="text-align: center;margin-bottom:  21px;">
             <div class="clearfix">
-              <c:url var="addPublishers" value="/admin/editoriales/crear"/>
-              <a class="btn primary small" href="${addPublishers}">${i18n['books.add']}</a>
-              <a class="btn small">${i18n['books.edit']}</a>
-              <a class="btn danger small">${i18n['books.delete']}</a>
+              <c:url var="addPublisher" value="/admin/editoriales/crear"/>
+              <c:url var="editPublisher" value="/admin/editoriales/editar"/>
+              <c:url var="deletePublisher" value="/admin/editoriales/eliminar"/>
+              <a class="btn primary small" href="${addPublisher}">${i18n['books.add']}</a>
+              <a id="edit-publisher-link" class="btn small" href="${editPublisher}">${i18n['books.edit']}</a>
+              <a id="delete-publisher-link" class="btn danger small" href="${deletePublisher}">${i18n['books.delete']}</a>
             </div>
           </div>
           <c:choose>
