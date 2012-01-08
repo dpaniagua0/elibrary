@@ -175,13 +175,13 @@
                       <td>${libro.isbn}</td>
                       <td>${libro.titulo}</td>
                       <td>
-                        <my:tooltip-lista lista="${libro.autores}" tooltipItem="nombreCompleto" titulo="Autores"/>
+                        <my:list-tooltip list="${libro.autores}" tooltipItem="nombreCompleto" title="Autores"/>
                       </td>
                       <td>
-                        <my:tooltip-lista lista="${libro.editoriales}" tooltipItem="nombre" titulo="Editoriales"/>
+                        <my:list-tooltip list="${libro.editoriales}" tooltipItem="nombre" title="Editoriales"/>
                       </td>
                       <td>
-                        <my:tooltip-lista lista="${libro.categorias}" tooltipItem="nombre" titulo="Categorias"/>
+                        <my:list-tooltip list="${libro.categorias}" tooltipItem="nombre" title="Categorias"/>
                       </td>
                       <td>
                         <a id="descarga" href="#">
