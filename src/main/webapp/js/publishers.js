@@ -3,16 +3,23 @@
  * and open the template in the editor.
  */
 
-
 $(function() {
   $("a#edit-publisher-link").click(function(evento) {
     evento.preventDefault();
     var $columnaId = $("td.columna-checkbox:has(:checked)").first().siblings("td.columna-id").first();
-    if(!$columnaId.empty()){
+    if($columnaId.text()){
       var url = $(this).attr("href") + "?id=" + $columnaId.text();
       window.location.replace(url);
     } else {
-      alert("Debe seleccionar algo");
+      $("#error-seleccion").modal({
+        "backdrop"  : "static",
+        "keyboard"  : true,
+        "show"      : true    
+      });
+      
+      $("#error-seleccion a#error").click(function(){
+        $("#error-seleccion").modal('hide');
+      });
     }
   });
   
@@ -20,13 +27,33 @@ $(function() {
     evento.preventDefault();
     var $ids = $("td.columna-checkbox:has(:checked)").siblings("td.columna-id");
     var url = $(this).attr("href") + '?'
-    if(!$ids.empty()){
-      $ids.each(function() {
-        url += "id=" + $(this).text() + '&';
+    if($ids.text()){
+      $("#myModal").modal({
+        "backdrop"  : "static",
+        "keyboard"  : true,
+        "show"      : true    
       });
-      window.location.replace(url);
+      $("#myModal a#ok").click(function(e) {
+        $ids.each(function() {
+          url += "id=" + $(this).text() + '&';
+        });
+        window.location.replace(url);
+        $("#myModal").modal('hide');
+      });
+      $("#myModal a#cancel").click(function(e){
+        $("#myModal").modal('hide');
+        $("td.columna-checkbox").attr('checked', false);
+      });
     } else {
-      alert("Debe seleccionar algo");
+      $("#error-seleccion").modal({
+        "backdrop"  : "static",
+        "keyboard"  : true,
+        "show"      : true    
+      });
+      
+      $("#error-seleccion a#error").click(function(){
+        $("#error-seleccion").modal('hide');
+      });
     }
   });
 });
